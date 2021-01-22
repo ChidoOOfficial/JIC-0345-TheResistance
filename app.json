@@ -1,0 +1,12 @@
+{
+  "name": "LoginScreen",
+  "displayName": "LoginScreen",
+  "expo": {
+    "name": "LoginScreen",
+    "slug": "LoginScreen",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
