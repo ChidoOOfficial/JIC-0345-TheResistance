@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
 import React from "react";
+import Toolbar from './Toolbar';
+
 //import all the components we are going to use.
 
 export default class LoginPage extends React.Component {
@@ -28,7 +30,7 @@ export default class LoginPage extends React.Component {
                         placeholderTextColor="white"
                         onChangeText={text => this.setState({password:text})}/>
                 </View>
-                <TouchableOpacity onPress={() =>navigate('LessonsPage')}>
+                <TouchableOpacity onPress={() => {navigate('LessonsPage');}}>
                     <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6}}>
                         <Text style={styles.login}>Login</Text>
@@ -40,7 +42,7 @@ export default class LoginPage extends React.Component {
                         <Text style={styles.forgotPassword}>Forgot Password?</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigate('UserProfileListPage');}}>
                     <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6, marginTop: 50}}>
                         <Text style={styles.login}>Signup</Text>

@@ -1,16 +1,21 @@
 import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React from "react";
+import Toolbar from './Toolbar';
 //import all the components we are going to use.
 
 export default class LessonsPage extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-            <View style={styles.screen}>
-                <Text style={styles.logo}>Lessons!</Text>
-
+            <View style={{flex: 1}}>
+                <View style={[styles.screen, {flex: 1}]}>
+                    <Text style={styles.logo}>Lessons!</Text>
+                    
+                </View>
+                <Toolbar />
             </View>
         );
+        
     }
 }
 const styles = StyleSheet.create({
