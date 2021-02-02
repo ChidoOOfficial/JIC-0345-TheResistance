@@ -8,7 +8,12 @@ export default class LessonsPage extends React.Component {
         return (
             <View style={styles.screen}>
                 <Text style={styles.logo}>Lessons!</Text>
-
+                <TouchableOpacity onPress={() =>navigate('StorePage')}>
+                    <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                        justifyContent: 'center', padding:6}}>
+                        <Text style={styles.login}>Store</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
