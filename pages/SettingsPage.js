@@ -1,25 +1,24 @@
-import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 import React from "react";
 //import all the components we are going to use.
 
-export default class LessonsPage extends React.Component {
+export default class SettingsPage extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.screen}>
-                <Text style={styles.logo}>Lessons!</Text>
-
-            <TouchableOpacity onPress={() =>navigate('SettingsPage')}>
-                    <View style={{backgroundColor: "gray", alignItems: 'center', flexDirection: "row",
+                <Text style={styles.logo}>Settings</Text>
+                <TouchableOpacity onPress={() =>navigate('LoginPage')}>
+                    <View style={{backgroundColor: "gray" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', padding:6}}>
-                        <Text style={styles.login}>Settings</Text>
+                        <Text style={styles.login}>Log out</Text>
                     </View>
                 </TouchableOpacity>
-
             </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
