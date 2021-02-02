@@ -9,10 +9,10 @@ export default class LessonsPage extends React.Component {
             <View style={styles.screen}>
                 <Text style={styles.logo}>Lessons!</Text>
 
-            <TouchableOpacity onPress={() =>navigate('SettingsPage')}>
-                    <View style={{backgroundColor: "gray", alignItems: 'center', flexDirection: "row",
+                <TouchableOpacity onPress={() =>navigate('Settings')}>
+                    <View style={{backgroundColor: "lightgray", alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', padding:6}}>
-                        <Text style={styles.login}>Settings</Text>
+                        <Text style={styles.settings}>Settings</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     login: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: '800',
+        flexDirection: 'row'
+    },
+    settings: {
         color: 'black',
         fontSize: 20,
         fontWeight: '800',

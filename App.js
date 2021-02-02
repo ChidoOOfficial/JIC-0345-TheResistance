@@ -12,8 +12,8 @@ const App = createStackNavigator({
       LoginPage: { screen: LoginPage },
       //First entry by default be our first screen if we do not define initialRouteName
       LessonsPage: { screen: LessonsPage },
-      SettingsPage: {screen: SettingsPage },
-
+      Settings: {screen: SettingsPage },
+      
     },
     {
       initialRouteName: 'LoginPage',
