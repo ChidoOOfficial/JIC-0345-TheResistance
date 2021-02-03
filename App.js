@@ -10,6 +10,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import StorePage from './pages/StorePage';
 import SettingsPage from './pages/SettingsPage';
 import RankingsPage from './pages/RankingsPage';
+import QuizzesPage from './pages/QuizzesPage';
 
 //import all the screens we are going to switch
 const App = createStackNavigator({
@@ -22,12 +23,11 @@ const App = createStackNavigator({
       StorePage: { screen: StorePage },
       Settings: {screen: SettingsPage },
       RankingsPage: { screen: RankingsPage },
+
+      QuizzesPage : { screen: QuizzesPage },
     },
     {
       initialRouteName: 'LoginPage',
     }
 );
 export default createAppContainer(App);
-
-
-
