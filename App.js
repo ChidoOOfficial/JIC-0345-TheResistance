@@ -6,6 +6,7 @@ import { createStackNavigator} from 'react-navigation-stack';
 import LoginPage from './pages/LoginPage';
 import LessonsPage from './pages/LessonsPage';
 import UserProfileListPage from './pages/UserProfileListPage';
+import UserProfilePage from './pages/UserProfilePage';
 //import all the screens we are going to switch
 const App = createStackNavigator({
       //Constant which holds all the screens like index of any book
@@ -14,6 +15,8 @@ const App = createStackNavigator({
       LessonsPage: { screen: LessonsPage },
 
       UserProfileListPage: { screen: UserProfileListPage },
+
+      UserProfilePage: { screen: UserProfilePage }
     },
     {
       initialRouteName: 'LoginPage',

@@ -4,14 +4,37 @@ import Toolbar from './Toolbar';
 
 //import all the components we are going to use.
 
+
 export default class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.login = this.login.bind(this);
+    }
+
     state={
         username:"",
         password:""
     };
 
-    render(){
+    login = (navigate) => {
+        console.log('runnings');
+        navigate('LessonsPage');
+        /*fetch('http://128.61.76.39:3000/', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            console.log(json);
+        });*/
+    }   
+
+    render(){       
         const { navigate } = this.props.navigation;
+
         return (
             <View style={styles.screen}>
                 <Text style={styles.logo}>Welcome!</Text>
@@ -30,7 +53,7 @@ export default class LoginPage extends React.Component {
                         placeholderTextColor="white"
                         onChangeText={text => this.setState({password:text})}/>
                 </View>
-                <TouchableOpacity onPress={() => {navigate('LessonsPage');}}>
+                <TouchableOpacity onPress={() => this.login(navigate)}>
                     <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6}}>
                         <Text style={styles.login}>Login</Text>
@@ -42,7 +65,7 @@ export default class LoginPage extends React.Component {
                         <Text style={styles.forgotPassword}>Forgot Password?</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {navigate('UserProfileListPage');}}>
+                <TouchableOpacity>
                     <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6, marginTop: 50}}>
                         <Text style={styles.login}>Signup</Text>
@@ -52,6 +75,7 @@ export default class LoginPage extends React.Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,

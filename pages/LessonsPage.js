@@ -12,7 +12,7 @@ export default class LessonsPage extends React.Component {
                     <Text style={styles.logo}>Lessons!</Text>
                     
                 </View>
-                <Toolbar />
+                <Toolbar navigation={navigate}/>
             </View>
         );
         

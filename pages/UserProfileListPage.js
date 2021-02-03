@@ -17,6 +17,7 @@ class UserProfileHolder extends Component {
 
 export default class UserProfileListPage extends React.Component {
     render(){
+        const { navigate } = this.props.navigation;
         return (
             <View style={{flex: 1}}>
                 <SafeAreaView style={styles.screen}>
@@ -38,7 +39,7 @@ export default class UserProfileListPage extends React.Component {
                         <Button title='ADD STUDENT' onPress={() => Alert.prompt('Add Student', 'Enter Student ID', (i) => console.log(i))}/>
                     </View>
                 </SafeAreaView>
-                <Toolbar />
+                <Toolbar navigation={navigate}/>
             </View>
             
         );
