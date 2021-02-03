@@ -17,6 +17,12 @@ export default class LessonsPage extends React.Component {
                             <Text style={styles.login}>Store</Text>
                         </View>
                     </TouchableOpacity>
+                    <TouchableOpacity onPress={() =>navigate('Settings')}>
+                        <View style={{backgroundColor: "lightgray", alignItems: 'center', flexDirection: "row",
+                            justifyContent: 'center', padding:6}}>
+                            <Text style={styles.settings}>Settings</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <Toolbar navigation={navigate}/>
             </View>
@@ -71,6 +77,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end'
     },
     login: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: '800',
+        flexDirection: 'row'
+    },
+    settings: {
         color: 'black',
         fontSize: 20,
         fontWeight: '800',
