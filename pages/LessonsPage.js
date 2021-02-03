@@ -7,10 +7,16 @@ export default class LessonsPage extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
+            
             <View style={{flex: 1}}>
-                <View style={[styles.screen, {flex: 1}]}>
+                <View style={styles.screen}>
                     <Text style={styles.logo}>Lessons!</Text>
-                    
+                    <TouchableOpacity onPress={() =>navigate('StorePage')}>
+                        <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                            justifyContent: 'center', padding:6}}>
+                            <Text style={styles.login}>Store</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <Toolbar navigation={navigate}/>
             </View>
