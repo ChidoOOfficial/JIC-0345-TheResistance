@@ -9,6 +9,8 @@ import UserProfileListPage from './pages/UserProfileListPage';
 import UserProfilePage from './pages/UserProfilePage';
 import StorePage from './pages/StorePage';
 import SettingsPage from './pages/SettingsPage';
+import RankingsPage from './pages/RankingsPage';
+
 //import all the screens we are going to switch
 const App = createStackNavigator({
       //Constant which holds all the screens like index of any book
@@ -19,6 +21,7 @@ const App = createStackNavigator({
       UserProfilePage: { screen: UserProfilePage },
       StorePage: { screen: StorePage },
       Settings: {screen: SettingsPage },
+      RankingsPage: { screen: RankingsPage },
     },
     {
       initialRouteName: 'LoginPage',
