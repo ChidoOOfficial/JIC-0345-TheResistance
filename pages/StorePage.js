@@ -1,6 +1,8 @@
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Image, Alert} from 'react-native';
 import React from "react";
 
+import Toolbar from './Toolbar';
+
 export default class StorePage extends React.Component {
     constructor(props) {
         super(props);
@@ -55,54 +57,60 @@ export default class StorePage extends React.Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
+        
         var itemList = [];
         for (let i = 0; i < this.state.items.length; i++) {
             itemList.push(
-                <View style={styles.itemGroup}>
-                    <View style={styles.subContainer}>
-                        <Image source={this.state.items[i].src} style={styles.itemPic} />
+               <View style={styles.itemGroup}>
+                        <View style={styles.subContainer}>
+                            <Image source={this.state.items[i].src} style={styles.itemPic} />
 
-                        <View stlye={styles.nameQtyBox}>
-                            <Text style={styles.itemTitle}>{this.state.items[i].name}</Text>
-                            <Text>You have: 9</Text>
+                            <View stlye={styles.nameQtyBox}>
+                                <Text style={styles.itemTitle}>{this.state.items[i].name}</Text>
+                                <Text>You have: 9</Text>
+                            </View>
+                        </View>
+                        <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
+                            <View>
+                                <Text style={styles.price}>Price</Text>
+                                <Text>{this.state.items[i].price}</Text>
+                            </View>
+                            <View style={styles.itemBuyBox}>
+                                <TouchableOpacity onPress={this.sell.bind(this, i)}>
+                                    <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
+                                        justifyContent: 'center', borderRadius: 5, padding:15}}>
+                                        <Text>-</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <Text style={styles.itemAmount}>{this.state.items[i].owned}</Text>
+                                <TouchableOpacity onPress={this.buy.bind(this, i)}>
+                                    <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
+                                        justifyContent: 'center', borderRadius: 5, padding:15}}>
+                                        <Text>+</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                    <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
-                        <View>
-                            <Text style={styles.price}>Price</Text>
-                            <Text>{this.state.items[i].price}</Text>
-                        </View>
-                        <View style={styles.itemBuyBox}>
-                            <TouchableOpacity onPress={this.sell.bind(this, i)}>
-                                <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
-                                    justifyContent: 'center', borderRadius: 5, padding:15}}>
-                                    <Text>-</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <Text style={styles.itemAmount}>{this.state.items[i].owned}</Text>
-                            <TouchableOpacity onPress={this.buy.bind(this, i)}>
-                                <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
-                                    justifyContent: 'center', borderRadius: 5, padding:15}}>
-                                    <Text>+</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
+                    
             );
         }
         return (
-            <View style={styles.screen}>
-                <Text style={styles.itemTitle}>Available Points: {this.state.points}</Text>
-                
-                {itemList}
+            <View style={{flex: 1}}>
+                <View style={styles.screen}>
+                    <Text style={styles.itemTitle}>Available Points: {this.state.points}</Text>
+                    
+                    {itemList}
 
-                <TouchableOpacity onPress={this.confirm.bind(this)}>
-                    <View style={{backgroundColor: "#7af59b" ,alignItems: 'center', flexDirection: "row",
-                        justifyContent: 'center', borderRadius: 5, padding:15, marginTop: 50}}>
-                        <Text style={styles.login}>Purchase!</Text>
-                    </View>
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={this.confirm.bind(this)}>
+                        <View style={{backgroundColor: "#7af59b" ,alignItems: 'center', flexDirection: "row",
+                            justifyContent: 'center', borderRadius: 5, padding:15, marginTop: 50}}>
+                            <Text style={styles.login}>Purchase!</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }

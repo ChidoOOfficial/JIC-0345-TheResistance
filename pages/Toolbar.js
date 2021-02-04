@@ -7,14 +7,14 @@ export default class Toolbar extends Component {
         return(
             <View style={[styles.toolbarContainer]}>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}>
                         <View style={styles.container}>
                             <Image source={require('../assets/home.png')} style={styles.image} />
                         </View>  
                     </TouchableOpacity>                  
                 </View>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.props.navigation('RankingsPage'); }}>
                         <View style={styles.container}>
                             <Image source={require('../assets/score.png')} style={styles.image} />
                         </View>   
@@ -28,14 +28,14 @@ export default class Toolbar extends Component {
                     </TouchableOpacity>                             
                 </View>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.props.navigation('StorePage'); }}>
                         <View style={styles.container}>
                             <Image source={require('../assets/shop.png')} style={styles.image} />
                         </View>  
                     </TouchableOpacity>                             
                 </View>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {this.props.navigation('Settings');}}>
                         <View style={styles.container}>
                             <Image source={require('../assets/settings.png')} style={styles.image} />
                         </View>  

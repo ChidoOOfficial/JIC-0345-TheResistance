@@ -18,24 +18,14 @@ export default class LessonsPage extends React.Component {
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
-            
             <View style={{flex: 1}}>
-                <View style={styles.screen}>
+                <View style={{flex: 1}}>
+                    <View style={styles.screen}>
                     <ScrollView contentContainerStyle={styles.screen}>
                         <Text style={styles.logo}> LESSONS </Text>
-                        <TouchableOpacity onPress={() =>navigate('StorePage')}>
-                            <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
-                                justifyContent: 'center', padding:6}}>
-                                <Text style={styles.login}>Store</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() =>navigate('Settings')}>
-                            <View style={{backgroundColor: "lightgray", alignItems: 'center', flexDirection: "row",
-                                justifyContent: 'center', padding:6}}>
-                                <Text style={styles.settings}>Settings</Text>
-                            </View>
-                        </TouchableOpacity>
+                        
                         <TextInput
                             placeholder="            Search for lessons..."
                             placeholderTextColor="black"
@@ -129,6 +119,7 @@ export default class LessonsPage extends React.Component {
                             </TouchableOpacity>
                         </Card>
                         </ScrollView>
+                </View>
                 </View>
                 <Toolbar navigation={navigate}/>
             </View>
@@ -224,7 +215,6 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 20,
         fontWeight: "bold",
-        fontFamily: 'notoserif',
         alignSelf: 'center',
     },
     normalText: {
