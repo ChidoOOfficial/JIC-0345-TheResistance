@@ -42,7 +42,7 @@ export default class QuizzesPage extends React.Component {
                         <Button title='Start Quiz' onPress={() => Alert.alert('Press OK to Start', '', (i) => console.log(i))}/>
                     </View>
                 </SafeAreaView>
-                <Toolbar/>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }

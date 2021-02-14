@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
+import { StyleSheet, View, Image, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 
 export default class Toolbar extends Component {
     render() {
-        console.log('nice')
+        console.log('toolbar running!')
         return(
             <View style={[styles.toolbarContainer]}>
-                <View style={[styles.toolbarButton, {backgroundColor: 'blue'}]}>
-                              
+                <View style={styles.toolbarButton}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}>
+                        <View style={styles.container}>
+                            <Image source={require('../assets/home.png')} style={styles.image} />
+                        </View>  
+                    </TouchableOpacity>                  
                 </View>
-                <View style={[styles.toolbarButton, {backgroundColor: 'green'}]}>
-                              
+                <View style={styles.toolbarButton}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('RankingsPage'); }}>
+                        <View style={styles.container}>
+                            <Image source={require('../assets/score.png')} style={styles.image} />
+                        </View>   
+                    </TouchableOpacity>                             
+                </View>    
+                <View style={styles.toolbarButton}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('UserProfilePage'); }}>
+                        <View style={styles.container}>
+                            <Image source={require('../assets/user.png')} style={styles.image} />
+                        </View>  
+                    </TouchableOpacity>                             
                 </View>
-                <View style={[styles.toolbarButton, {backgroundColor: 'orange'}]}>
-                              
+                <View style={styles.toolbarButton}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('StorePage'); }}>
+                        <View style={styles.container}>
+                            <Image source={require('../assets/shop.png')} style={styles.image} />
+                        </View>  
+                    </TouchableOpacity>                             
                 </View>
-                <View style={[styles.toolbarButton, {backgroundColor: 'pink'}]}>
-                              
-                </View>
-                <View style={[styles.toolbarButton, {backgroundColor: 'purple'}]}>
-                              
-                </View>                              
+                <View style={styles.toolbarButton}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('Settings');}}>
+                        <View style={styles.container}>
+                            <Image source={require('../assets/settings.png')} style={styles.image} />
+                        </View>  
+                    </TouchableOpacity>                             
+                </View>                          
             </View>
         )
     }
@@ -31,12 +51,23 @@ const styles = StyleSheet.create({
         height: 75,
         width: "100%",
         bottom: 0,
-        backgroundColor: 'red',
         flexDirection: 'row'
     },
     toolbarButton: {        
         height: "100%",
-        width: "20%",
-
+        width: "20%",        
+        alignContent: 'center',
+        justifyContent: 'center',
+        borderColor: 'gray',
+        borderWidth: 1,
+    },
+    image: {
+        width: 50,
+        height: 50,
+    },
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
+
 });
