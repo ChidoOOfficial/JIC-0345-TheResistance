@@ -27,7 +27,7 @@ const App = createStackNavigator({
       QuizzesPage : { screen: QuizzesPage },
     },
     {
-      initialRouteName: 'LoginPage',
+      initialRouteName: 'QuizzesPage',
     }
 );
 export default createAppContainer(App);
