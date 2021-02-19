@@ -63,49 +63,45 @@ export default class StorePage extends React.Component {
         for (let i = 0; i < this.state.items.length; i++) {
             itemList.push(
                <View style={styles.itemGroup}>
-                        <View style={styles.subContainer}>
-                            <Image source={this.state.items[i].src} style={styles.itemPic} />
+                    <View style={styles.subContainer}>
+                        <Image source={this.state.items[i].src} style={styles.itemPic} />
 
-                            <View stlye={styles.nameQtyBox}>
-                                <Text style={styles.itemTitle}>{this.state.items[i].name}</Text>
-                                <Text>You have: 9</Text>
-                            </View>
-                        </View>
-                        <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
-                            <View>
-                                <Text style={styles.price}>Price</Text>
-                                <Text>{this.state.items[i].price}</Text>
-                            </View>
-                            <View style={styles.itemBuyBox}>
-                                <TouchableOpacity onPress={this.sell.bind(this, i)}>
-                                    <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
-                                        justifyContent: 'center', borderRadius: 5, padding:15}}>
-                                        <Text>-</Text>
-                                    </View>
-                                </TouchableOpacity>
-                                <Text style={styles.itemAmount}>{this.state.items[i].owned}</Text>
-                                <TouchableOpacity onPress={this.buy.bind(this, i)}>
-                                    <View style={{backgroundColor: "#DDD" ,alignItems: 'center', flexDirection: "row",
-                                        justifyContent: 'center', borderRadius: 5, padding:15}}>
-                                        <Text>+</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+                        <View stlye={styles.nameQtyBox}>
+                            <Text style={styles.itemTitle}>{this.state.items[i].name}</Text>
+                            <Text>You have: 9</Text>
                         </View>
                     </View>
-                    
+                    <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
+                        <View>
+                            <Text style={styles.price}>Price</Text>
+                            <Text>{this.state.items[i].price}</Text>
+                        </View>
+                        <View style={styles.itemBuyBox}>
+                            <TouchableOpacity onPress={this.sell.bind(this, i)}>
+                                <View style={styles.itemBuyButton}>
+                                    <Text style={styles.plusMinusText}>-</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <Text style={styles.itemAmount}>{this.state.items[i].owned}</Text>
+                            <TouchableOpacity onPress={this.buy.bind(this, i)}>
+                                <View style={styles.itemBuyButton}>
+                                    <Text style={styles.plusMinusText}>+</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
             );
         }
         return (
             <View style={{flex: 1}}>
                 <View style={styles.screen}>
-                    <Text style={styles.itemTitle}>Available Points: {this.state.points}</Text>
+                    <Text style={styles.available}>Available Points: {this.state.points}</Text>
                     
                     {itemList}
 
                     <TouchableOpacity onPress={this.confirm.bind(this)}>
-                        <View style={{backgroundColor: "#7af59b" ,alignItems: 'center', flexDirection: "row",
-                            justifyContent: 'center', borderRadius: 5, padding:15, marginTop: 50}}>
+                        <View style={styles.confirmPurchases}>
                             <Text style={styles.login}>Purchase!</Text>
                         </View>
                     </TouchableOpacity>
@@ -122,11 +118,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#74B4E0',
         alignItems: 'center',
     },
+    available: {
+        textAlign: "center",
+        fontSize: 40,
+        color: "#FFFFFF",
+        margin: 20,
+    },
     itemGroup: {
         margin: 10,
         padding: 10,
-        width: "90%",
-        backgroundColor: '#EEEEEE',
+        width: "95%",
+        backgroundColor: '#FFFFFF',
         borderRadius: 15,
         display: 'flex',
         flexDirection: 'row',
@@ -163,11 +165,32 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         marginLeft: 10
     },
-    itemButtons: {
-    },
     itemAmount: {
         fontSize: 30,
         justifyContent: 'center',
         margin: 10
     },
+    itemBuyButton: {
+        backgroundColor: "#F45BB5",
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'center',
+        borderRadius: 5,
+        padding:15
+    },
+    plusMinusText: {
+        fontWeight: "bold",
+        fontSize: 30,
+        "fontFamily": "monospace",
+        color: "white"
+    },
+    confirmPurchases: {
+        backgroundColor: "#7af59b",
+        alignItems: 'center',
+        flexDirection: "row",
+        justifyContent: 'center',
+        borderRadius: 5,
+        padding:15,
+        marginTop: 50
+    }
 });
