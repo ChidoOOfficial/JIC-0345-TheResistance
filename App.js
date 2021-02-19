@@ -9,6 +9,7 @@ import UserProfileListPage from './pages/UserProfileListPage';
 import UserProfilePage from './pages/UserProfilePage';
 import StorePage from './pages/StorePage';
 import SettingsPage from './pages/SettingsPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 import RankingsPage from './pages/RankingsPage';
 import QuizzesPage from './pages/QuizzesPage';
 
@@ -22,6 +23,7 @@ const App = createStackNavigator({
       UserProfilePage: { screen: UserProfilePage },
       StorePage: { screen: StorePage },
       Settings: {screen: SettingsPage },
+      ChangePasswordPage: { screen: ChangePasswordPage},
       RankingsPage: { screen: RankingsPage },
 
       QuizzesPage : { screen: QuizzesPage },
