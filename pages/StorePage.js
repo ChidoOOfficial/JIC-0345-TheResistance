@@ -119,7 +119,7 @@ export default class StorePage extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#74B4E0',
         alignItems: 'center',
     },
     itemGroup: {
