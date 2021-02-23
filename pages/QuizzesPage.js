@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper';
 import Toolbar from './Toolbar';
 
 export default class QuizzesPage extends React.Component {
-    //need to update so all quizzes produce alert, not just first two
+    
     constructor() {
         super();
         this.state = {
@@ -13,7 +13,7 @@ export default class QuizzesPage extends React.Component {
         ;
     }
     _onPressButton() {
-        alert('You tapped the button')
+        alert('You pressed the button')
     }
     render() {
         const { navigate } = this.props.navigation;
@@ -36,21 +36,42 @@ export default class QuizzesPage extends React.Component {
                                 color: "black",
                                 borderRadius:80,
                                 borderBottomWidth:0.5,
-                                borderTopWidth: 1,
+                                //commented line below out to remove black outline around search button
+                                //borderTopWidth: 1,
                                 borderBottomColor: '#7d90a0',
-                                marginBottom: 20
+                                marginBottom: 20,
+                                shadowOpacity: 0
                             }}
                         />
                             <Card style={styles.card}>
-                                <Text style={styles.titleText}> COMMON PHRASES </Text>
-                                <TouchableOpacity style={styles.buttons1} onPress={this._onPressButton}>
-                                    <Text style={styles.normalText}> COMMON PHRASES 1</Text>
+                                <Text style={styles.titleText}> ANIMALS </Text>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.props.navigation.navigate('QuizSamplePage')}>
+                                    <Text style={styles.normalText}> DOGS</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.buttons2} onPress={this._onPressButton}>
-                                    <Text style={styles.normalText}> COMMON PHRASES 2</Text>
+                                    <Text style={styles.normalText}> FARM</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.buttons3} onPress={this._onPressButton}>
-                                    <Text style={styles.normalText}> COMMON PHRASES 3</Text>
+                                    <Text style={styles.normalText}> PETS</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons4} onPress={this._onPressButton}>
+                                    <Text style={styles.normalText}> WILD/ZOO</Text>
+                                </TouchableOpacity>
+                            </Card>
+
+                            <Card style={styles.card}>
+                                <Text style={styles.titleText}> COMMON PHRASES </Text>
+                                <TouchableOpacity style={styles.buttons1} onPress={this._onPressButton}>
+                                    <Text style={styles.normalText}> PHRASES 1</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={this._onPressButton}>
+                                    <Text style={styles.normalText}> PHRASES 2</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons3} onPress={this._onPressButton}>
+                                    <Text style={styles.normalText}> PHRASES 3</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons4} onPress={this._onPressButton}>
+                                    <Text style={styles.normalText}> PHRASES 4</Text>
                                 </TouchableOpacity>
                             </Card>
 
@@ -138,8 +159,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        //alignItems: 'center',
+        //justifyContent: 'center',
         paddingTop: 40,
         backgroundColor: '#ecf0f1',
     },
@@ -177,7 +198,7 @@ const styles = StyleSheet.create({
     },
     buttons1: {
         fontWeight: 'bold',
-        backgroundColor: '#ff6961',
+        backgroundColor: '#f15bb5',
         alignItems: 'center',
         padding: 10,
         width: 340,
@@ -190,7 +211,7 @@ const styles = StyleSheet.create({
     },
     buttons2: {
         fontWeight: 'bold',
-        backgroundColor: '#64bf6a',
+        backgroundColor: '#fee440',
         alignItems: 'center',
         padding: 10,
         width: 340,
@@ -203,7 +224,20 @@ const styles = StyleSheet.create({
     },
     buttons3: {
         fontWeight: 'bold',
-        backgroundColor: '#ffff66',
+        backgroundColor: '#00f5d4',
+        alignItems: 'center',
+        padding: 10,
+        width: 340,
+        borderRadius:80,
+        color:'black',
+        borderColor:'black',
+        justifyContent: "center",
+        height: 50,
+        marginBottom:6
+    },
+    buttons4: {
+        fontWeight: 'bold',
+        backgroundColor: '#9b5de5',
         alignItems: 'center',
         padding: 10,
         width: 340,
@@ -258,11 +292,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     card: {
-        backgroundColor:"ivory", 
-        height:200, 
+        backgroundColor:'ivory', //blue coloring =  #74B4E0
+        height:260, //200 if 3 lessons, 260 if 4
         marginBottom:20,
         borderRadius:20,
-        padding:5
+        padding: 5,
+        shadowOpacity: 0
     }
 
 });
