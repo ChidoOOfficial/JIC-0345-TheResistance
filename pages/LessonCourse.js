@@ -21,20 +21,20 @@ export default class LessonCourse extends React.Component {
                             <Text> {lessonType} </Text>
                             <Swiper showsButtons loop={true}>
                                 <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/Clothing1/8_2_striped_shirt.png')} style={styles.image}>
+                                    <Image source={require('../assets/8_2_striped_shirt.png')} style={styles.image}>
 
                                     </Image>
                                     <Text style={styles.bottomText}> SHIRT</Text>
                                 </SafeAreaView>
 
                                 <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/' + 'C' + 'lothing1/8_5_shorts.png')} style={styles.image}>
+                                    <Image source={require('../assets/8_5_shorts.png')} style={styles.image}>
 
                                     </Image>
                                     <Text style={styles.bottomText}> SHORTS</Text>
                                 </SafeAreaView>
                                 <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/Clothing1/8_9_socks.png')} style={styles.image}>
+                                    <Image source={require('../assets/8_9_socks.png')} style={styles.image}>
 
                                     </Image>
                                     <Text style={styles.bottomText}> SOCKS</Text>
