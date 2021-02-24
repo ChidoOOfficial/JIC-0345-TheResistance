@@ -7,11 +7,7 @@ export default class Toolbar extends Component {
         return(
             <View style={[styles.toolbarContainer]}>
                 <View style={styles.toolbarButton}>
-<<<<<<< HEAD
                     <TouchableOpacity onPress={() => {this.props.navigation('HomePage');}}>
-=======
-                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}> 
->>>>>>> remotes/origin/chido-branch
                         <View style={styles.container}>
                             <Image source={require('../assets/home.png')} style={styles.image} />
                         </View>  
