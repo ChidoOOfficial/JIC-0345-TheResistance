@@ -191,6 +191,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5,
         padding:15,
-        marginTop: 50
+        marginTop: 15
     }
 });

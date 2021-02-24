@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert, Dimensions } from 'react-native';
 
+import Toolbar from './Toolbar';
+
 class StudentHolder extends Component {
     render() {
         return (
