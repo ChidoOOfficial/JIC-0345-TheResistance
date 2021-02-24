@@ -7,7 +7,7 @@ export default class Toolbar extends Component {
         return(
             <View style={[styles.toolbarContainer]}>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}> 
                         <View style={styles.container}>
                             <Image source={require('../assets/home.png')} style={styles.image} />
                         </View>  
@@ -21,7 +21,7 @@ export default class Toolbar extends Component {
                     </TouchableOpacity>                             
                 </View>    
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity onPress={() => {this.props.navigation('UserProfilePage'); }}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('MainUserProfilePage'); }}>
                         <View style={styles.container}>
                             <Image source={require('../assets/user.png')} style={styles.image} />
                         </View>  

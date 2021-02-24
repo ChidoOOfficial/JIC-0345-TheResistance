@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
 
-import Toolbar from './Toolbar';
+import Toolbar from '../Toolbar';
 
 class UserProfileHolder extends Component {
     render() {
@@ -15,41 +15,38 @@ class UserProfileHolder extends Component {
     }
 }
 
-export default class UserProfileListPage extends React.Component {
+export default class UserProfileListPage extends Component {
     render(){
-        const { navigate } = this.props.navigation;
         return (
-            <View style={{flex: 1}}>
+            <View style={styles.container}>
                 <SafeAreaView style={styles.screen}>
                     <View style={styles.header}>
                         <Text style={styles.headerText}> CLASS ROSTER </Text>
                     </View>
                     <View style={styles.userSlots}>
                         <ScrollView>
-                            <UserProfileHolder userName="u8ddu87uty"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t2"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t3"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t4"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t5"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t6"  imageSrc={require("../assets/icon.png")} />
-                            <UserProfileHolder userName="t7"  imageSrc={require("../assets/icon.png")} />
+                            <UserProfileHolder userName="u8ddu87uty"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t2"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t3"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t4"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t5"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t6"  imageSrc={require("../../assets/icon.png")} />
+                            <UserProfileHolder userName="t7"  imageSrc={require("../../assets/icon.png")} />
                         </ScrollView>
                     </View>
-                    <View style={styles.LowerButton}>
-                        <Button title='ADD STUDENT' onPress={() => Alert.prompt('Add Student', 'Enter Student ID', (i) => console.log(i))}/>
-                    </View>
                 </SafeAreaView>
-                <Toolbar navigation={navigate}/>
-            </View>
-            
+            </View>            
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#87cefa"
+    },
     screen: {
         flex: 1,
-        backgroundColor: "#fff"
     },
     header: {
         flex: 1,        
