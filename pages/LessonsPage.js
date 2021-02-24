@@ -4,7 +4,9 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import React from "react";
 import Toolbar from './Toolbar';
 import {FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons} from '@expo/vector-icons';
+import { CheckBox } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import LessonCourse from "./LessonCourse";
 //import all the components we are going to use.
 
 export default class LessonsPage extends React.Component {
@@ -15,8 +17,14 @@ export default class LessonsPage extends React.Component {
         }
         ;
     }
+
     _onPressButton() {
         alert('You tapped the button')
+    }
+
+    learn = (navigate, words) => {
+        console.log('runnings');
+        navigate('LessonCourse', {lessonType: words});
     }
 
     render() {
@@ -45,19 +53,19 @@ export default class LessonsPage extends React.Component {
 
                             <Text style={styles.titleText}> COMMON PHRASES </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={this._onPressButton}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
                                     <Text style={styles.normalText}> 1</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={this._onPressButton}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <Octicons name="pencil" size={24} color="black" />
                                     <Text style={styles.normalText}> 2</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialIcons name="phone-in-talk" size={24} color="black" />
                                     <Text style={styles.normalText}> 3</Text>
@@ -67,19 +75,19 @@ export default class LessonsPage extends React.Component {
 
                         <Text style={styles.titleText}> COLORS </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <FontAwesome5 name="paint-brush" size={24} color="mediumblue"/>
                                     <Text style={styles.normalText}> 1</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <Ionicons name="md-color-palette-outline" size={24} color="black" />
                                     <Text style={styles.normalText}> 2</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <Ionicons name="md-color-fill-outline" size={24} color="black" />
                                     <Text style={styles.normalText}> 3</Text>
@@ -90,17 +98,17 @@ export default class LessonsPage extends React.Component {
 
                             <Text style={styles.titleText}> NUMBERS </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="numeric-1" size={36} color="blue" />
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="numeric-2" size={36} color="purple" />
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="numeric-3" size={36} color="deeppink" />
                                 </View>
@@ -109,19 +117,19 @@ export default class LessonsPage extends React.Component {
 
                         <Text style={styles.titleText}> CLOTHING </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, 'Clothing1')}>
                                 <View style={styles.viewButtons}>
                                     <FontAwesome5 name="tshirt" size={24} color="white" />
                                     <Text style={styles.normalText}> 1</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, 'Clothing2')}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="hat-fedora" size={24} color="purple" />
                                     <Text style={styles.normalText}> 2</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <FontAwesome5 name="socks" size={24} color="deeppink" />
                                     <Text style={styles.normalText}> 3</Text>
@@ -131,19 +139,19 @@ export default class LessonsPage extends React.Component {
 
                         <Text style={styles.titleText}> HOUSING </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <FontAwesome5 name="house-user" size={24} color="blue" />
                                     <Text style={styles.normalText}> 1</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="garage-variant" size={24} color="black" />
                                     <Text style={styles.normalText}> 2</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <FontAwesome5 name="bed" size={24} color="black" />
                                     <Text style={styles.normalText}> 3</Text>
@@ -153,19 +161,19 @@ export default class LessonsPage extends React.Component {
 
                         <Text style={styles.titleText}> GRAMMAR </Text>
                         <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1}>
+                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="format-letter-case" size={28} color="blue" />
                                     <Text style={styles.normalText}> 1</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2}>
+                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="format-letter-case" size={28} color="purple" />
                                     <Text style={styles.normalText}> 2</Text>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3}>
+                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
                                 <View style={styles.viewButtons}>
                                     <MaterialCommunityIcons name="format-letter-case" size={28} color="deeppink" />
                                     <Text style={styles.normalText}> 3</Text>
