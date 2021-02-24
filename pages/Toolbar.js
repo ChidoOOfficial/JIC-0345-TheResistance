@@ -7,7 +7,7 @@ export default class Toolbar extends Component {
         return(
             <View style={[styles.toolbarContainer]}>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity onPress={() => {this.props.navigation('QuizzesPage');}}>
+                    <TouchableOpacity onPress={() => {this.props.navigation('HomePage');}}>
                         <View style={styles.container}>
                             <Image source={require('../assets/home.png')} style={styles.image} />
                         </View>  
