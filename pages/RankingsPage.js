@@ -9,7 +9,7 @@ class StudentHolder extends Component {
             <View style={styles.studentContainer}>
                 <Image style={styles.studentImage} source={this.props.imageSrc}/>
                 <Text style={styles.studentNameText}> {this.props.studentName} </Text>
-                <View style={styles.studentScoreContainer} flex right>
+                <View style={styles.studentScoreContainer}>
                   <Text style={styles.studentScore}> {this.props.studentScore} </Text>
                 </View>
             </View>
