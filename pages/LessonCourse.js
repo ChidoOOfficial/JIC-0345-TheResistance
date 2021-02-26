@@ -9,43 +9,85 @@ import Swiper from 'react-native-swiper'
 
 export default class LessonCourse extends React.Component {
 
+    state={
+        lessonName:"lesson",
+    };
+
     render() {
         const { navigate } = this.props.navigation;
-        const lessonType =  this.props.navigation.getParam('lessonType', 'no name')
-        return (
-            <View style={{flex: 1}}>
+        const {lessonType} =  this.props.navigation.getParam('lessonType', 'no name')
+        let lessonName = {lessonType}
+        if (lessonName === "lesson") {
+            return (
                 <View style={{flex: 1}}>
-                    <View style={styles.screen}>
-                        <ScrollView contentContainerStyle={styles.screen}>
-                            <Text style={styles.logo}> Quinault Text </Text>
-                            <Text> {lessonType} </Text>
-                            <Swiper showsButtons loop={true}>
-                                <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/8_2_striped_shirt.png')} style={styles.image}>
+                    <View style={{flex: 1}}>
+                        <View style={styles.screen}>
+                            <ScrollView contentContainerStyle={styles.screen}>
+                                <Text style={styles.logo}> Quinault Text </Text>
+                                <Text> {lessonName} </Text>
+                                <Swiper showsButtons loop={true}>
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_2_striped_shirt.png')} style={styles.image}>
 
-                                    </Image>
-                                    <Text style={styles.bottomText}> SHIRT</Text>
-                                </SafeAreaView>
+                                        </Image>
+                                        <Text style={styles.bottomText}> SHIRT</Text>
+                                    </SafeAreaView>
 
-                                <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/8_5_shorts.png')} style={styles.image}>
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_5_shorts.png')} style={styles.image}>
 
-                                    </Image>
-                                    <Text style={styles.bottomText}> SHORTS</Text>
-                                </SafeAreaView>
-                                <SafeAreaView style={styles.container}>
-                                    <Image source={require('../assets/8_9_socks.png')} style={styles.image}>
+                                        </Image>
+                                        <Text style={styles.bottomText}> SHORTS</Text>
+                                    </SafeAreaView>
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_9_socks.png')} style={styles.image}>
 
-                                    </Image>
-                                    <Text style={styles.bottomText}> SOCKS</Text>
-                                </SafeAreaView>
-                            </Swiper>
-                        </ScrollView>
+                                        </Image>
+                                        <Text style={styles.bottomText}> SOsdfsCKS</Text>
+                                    </SafeAreaView>
+                                </Swiper>
+                            </ScrollView>
+                        </View>
                     </View>
+                    <Toolbar navigation={navigate}/>
                 </View>
-                <Toolbar navigation={navigate}/>
-            </View>
-        );
+            );
+        } else {
+            return (
+                <View style={{flex: 1}}>
+                    <View style={{flex: 1}}>
+                        <View style={styles.screen}>
+                            <ScrollView contentContainerStyle={styles.screen}>
+                                <Text style={styles.logo}> Quinault Text </Text>
+                                <Swiper showsButtons loop={true}>
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_2_striped_shirt.png')} style={styles.image}>
+
+                                        </Image>
+                                        <Text style={styles.bottomText}> SHIRT</Text>
+                                    </SafeAreaView>
+
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_5_shorts.png')} style={styles.image}>
+
+                                        </Image>
+                                        <Text style={styles.bottomText}> SHORTS</Text>
+                                    </SafeAreaView>
+                                    <SafeAreaView style={styles.container}>
+                                        <Image source={require('../assets/8_9_socks.png')} style={styles.image}>
+
+                                        </Image>
+                                        <Text style={styles.bottomText}> SOCKS</Text>
+                                    </SafeAreaView>
+                                </Swiper>
+                            </ScrollView>
+                        </View>
+                    </View>
+                    <Toolbar navigation={navigate}/>
+                </View>
+            );
+        }
+
 
     }
 }
