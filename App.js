@@ -4,6 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 
 import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
 import HomePage from './pages/HomePage';
 import LessonsPage from './pages/LessonsPage';
 //import UserProfileListPage from './pages/UserProfilePages/UserProfileListPage';
@@ -20,6 +21,7 @@ import LessonCourse from './pages/LessonCourse'
 const App = createStackNavigator({
       //Constant which holds all the screens like index of any book
       LoginPage: { screen: LoginPage },
+      RegistrationPage: { screen: RegistrationPage },
       HomePage: { screen: HomePage },
       //First entry by default be our first screen if we do not define initialRouteName
       LessonsPage: { screen: LessonsPage },
@@ -39,7 +41,7 @@ const App = createStackNavigator({
         LessonCourse: {screen: LessonCourse }
     },
     {
-      initialRouteName: 'HomePage',
+      initialRouteName: 'LoginPage',
     }
 );
 export default createAppContainer(App);
