@@ -2,7 +2,6 @@ import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, 
 import React from "react";
 import Toolbar from './Toolbar';
 import {CheckBox} from "react-native-elements";
-import {FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons} from "@expo/vector-icons";
 import Swiper from 'react-native-swiper'
 //import all the components we are going to use.
 
