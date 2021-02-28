@@ -34,12 +34,6 @@ export default class SettingsPage extends React.Component {
         	<View style={{flex: 1}}>
 	            <View style={styles.screen}>
                     <View style={styles.options}>
-                        {/*<TouchableOpacity style={styles.optionBtn}>
-                            <View style={{alignItems: 'center', flexDirection: "row",
-                                justifyContent: 'center', padding:6}}>
-                                <Text style={styles.optionText}>Change Profile Picture</Text>
-                            </View>
-                        </TouchableOpacity>*/}
 
                         <TouchableOpacity onPress={() =>navigate('ChangePasswordPage')} style={styles.optionBtnFirst}>
                             <View style={{alignItems: 'center', flexDirection: "row",
@@ -76,6 +70,7 @@ export default class SettingsPage extends React.Component {
                             <Text style={styles.logout}>Log out</Text>
                         </View>
                     </TouchableOpacity>
+                    
                 </View>
 	            <Toolbar navigation={navigate}/>
 	        </View>
