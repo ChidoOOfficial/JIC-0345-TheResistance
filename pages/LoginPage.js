@@ -18,6 +18,7 @@ export default class LoginPage extends React.Component {
 
     login = (navigate) => {
         console.log('runnings');
+        //navigate('HomePage');
         navigate('LessonsPage');
         /*fetch('http://128.61.76.39:3000/', {
             method: 'GET',
