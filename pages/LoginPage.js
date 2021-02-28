@@ -18,6 +18,7 @@ export default class LoginPage extends React.Component {
 
     login = (navigate) => {
         console.log('runnings');
+        //navigate('HomePage');
         navigate('LessonsPage');
         /*fetch('http://128.61.76.39:3000/', {
             method: 'GET',
@@ -65,7 +66,7 @@ export default class LoginPage extends React.Component {
                         <Text style={styles.forgotPassword}>Forgot Password?</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() =>navigate('RegistrationPage')}>
                     <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6, marginTop: 50}}>
                         <Text style={styles.login}>Signup</Text>
