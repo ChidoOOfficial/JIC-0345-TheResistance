@@ -41,10 +41,13 @@ export default class RankingsPage extends React.Component {
                         </ScrollView>
                     </View>
                 </SafeAreaView>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }
 }
+
+
   
 const styles = StyleSheet.create({
   screen: {
