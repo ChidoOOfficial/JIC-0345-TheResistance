@@ -9,7 +9,7 @@ class StudentHolder extends Component {
             <View style={styles.studentContainer}>
                 <Image style={styles.studentImage} source={this.props.imageSrc}/>
                 <Text style={styles.studentNameText}> {this.props.studentName} </Text>
-                <View style={styles.studentScoreContainer} flex right>
+                <View style={styles.studentScoreContainer}>
                   <Text style={styles.studentScore}> {this.props.studentScore} </Text>
                 </View>
             </View>
@@ -41,10 +41,13 @@ export default class RankingsPage extends React.Component {
                         </ScrollView>
                     </View>
                 </SafeAreaView>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }
 }
+
+
   
 const styles = StyleSheet.create({
   screen: {

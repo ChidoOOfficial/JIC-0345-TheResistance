@@ -14,8 +14,11 @@ export default class LessonCourse extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        const {lessonType} =  this.props.navigation.getParam('lessonType', 'no name')
+        const lessonType =  this.props.navigation.getParam('lessonType', 'no-name')
+                
+
         let lessonName = {lessonType}
+
         if (lessonName === "lesson") {
             return (
                 <View style={{flex: 1}}>
