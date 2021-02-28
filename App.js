@@ -38,7 +38,7 @@ const App = createStackNavigator({
       RankingsPage: { screen: RankingsPage },
       QuizzesPage : { screen: QuizzesPage },
       QuizSamplePage : {screen: QuizSamplePage },
-        LessonCourse: {screen: LessonCourse }
+      LessonCourse: {screen: LessonCourse }
     },
     {
       initialRouteName: 'LoginPage',
