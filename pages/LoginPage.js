@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
 
 //import all the components we are going to use.
 
+var AutoLogin = True
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -17,20 +18,38 @@ export default class LoginPage extends React.Component {
     };
 
     login = (navigate) => {
-        console.log('runnings');
-        //navigate('HomePage');
-        navigate('HomePage');
-        /*fetch('http://128.61.76.39:3000/', {
-            method: 'GET',
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/login', {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }
+            }, 
+            body: JSON.stringify({
+                username: AutoLogin ? 'chido' : this.state.username, 
+                password: AutoLogin ? 'x' : this.state.password
+            })
         })
         .then((res) => res.json())
         .then((json) => {
-            console.log(json);
-        });*/
+            if (json.loggedIn) {
+                console.log('loggedin')
+                navigate('HomePage');
+            }
+            else {
+                Alert.alert(
+                    'Invalid Login Credentials',
+                    'Username or Password do not match',
+                    [
+                      {
+                        text: 'Try Again',
+                        style: 'cancel'
+                      }
+                    ]
+                  ); 
+            }
+        });
+
     }   
 
     render(){       
