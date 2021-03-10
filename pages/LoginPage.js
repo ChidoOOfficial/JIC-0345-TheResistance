@@ -4,7 +4,7 @@ import Toolbar from './Toolbar';
 
 //import all the components we are going to use.
 
-var AutoLogin = True
+var AutoLogin = true
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -50,6 +50,7 @@ export default class LoginPage extends React.Component {
             }
         });
 
+        
     }   
 
     render(){       
