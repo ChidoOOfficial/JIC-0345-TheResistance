@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   headerText: {
-    fontSize: 30
+    fontSize: 25
   },
   studentSlots: {
     flex: 10,
