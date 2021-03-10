@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, TouchableWithoutFeedback, TouchableOpacity} fr
 
 export default class Toolbar extends Component {
     render() {
+
         return(
             <View style={[styles.toolbarContainer]}>
                 <View style={styles.toolbarButton}>
