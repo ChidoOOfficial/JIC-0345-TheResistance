@@ -23,7 +23,7 @@ export default class LessonsPage extends React.Component {
     }
 
     learn = (navigate, words) => {
-        console.log('runnings');
+        words = 'testword'
         navigate('LessonCourse', {lessonType: words});
     }
 

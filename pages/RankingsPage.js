@@ -41,10 +41,13 @@ export default class RankingsPage extends React.Component {
                         </ScrollView>
                     </View>
                 </SafeAreaView>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }
 }
+
+
   
 const styles = StyleSheet.create({
   screen: {
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   headerText: {
-    fontSize: 30
+    fontSize: 25
   },
   studentSlots: {
     flex: 10,
