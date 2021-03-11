@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button,
 //import { Card } from 'react-native-paper';
 import Toolbar from './Toolbar';
 import { Checkbox } from 'react-native-elements'
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper/src'
 
 export default class QuizSamplePage extends React.Component {
     
