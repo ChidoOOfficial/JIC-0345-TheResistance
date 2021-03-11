@@ -4,20 +4,49 @@ import React from "react";
 import Toolbar from './Toolbar';
 
 export default class StorePage extends React.Component {
+    state = {
+        points: 0,
+        items: []
+    };
+
     constructor(props) {
         super(props);
-        this.state = {
-            points: 500,
-            items: [{name: "Cow", price: 100, owned: 0, src: require('../assets/cow.png')}, 
-                    {name: "Goose", price: 150, owned: 0, src: require('../assets/goose.png')},
-                    {name: "Snake", price: 250, owned: 0, src: require('../assets/snake.png')},]
-        };
+
+        let usersInventory = [];
+        let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')}, 
+                              {Item: "Goose", price: 150, owned: 0, selected: 0, src: require('../assets/goose.png')},
+                              {Item: "Snake", price: 250, owned: 0, selected: 0, src: require('../assets/snake.png')},];
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/inventory', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            usersInventory = json["Inventory"];
+
+            for (let storeItem of itemDetailList) {
+                for (let userItem of usersInventory) {
+                    if(storeItem.Item == userItem.Item) {
+                        storeItem.owned = userItem.Quantity;
+                    }
+                }
+            }
+
+            this.setState({
+                points: 500,
+                items: itemDetailList
+            });
+        });
     }
 
     buy(itemNum) {
         if (this.state.items[itemNum].price <= this.state.points) { //enough points
             let updatedItems = this.state.items;
-            updatedItems[itemNum].owned++;
+            updatedItems[itemNum].selected++;
 
             this.setState({
                 points: this.state.points - this.state.items[itemNum].price,
@@ -29,9 +58,9 @@ export default class StorePage extends React.Component {
     };
   
     sell(itemNum) {
-        if (this.state.items[itemNum].owned > 0) {
+        if (this.state.items[itemNum].selected > 0) {
             let updatedItems = this.state.items;
-            updatedItems[itemNum].owned--;
+            updatedItems[itemNum].selected--;
 
             this.setState({
                 points: this.state.points + this.state.items[itemNum].price,
@@ -46,14 +75,49 @@ export default class StorePage extends React.Component {
         Alert.alert("Confirm", "Are you sure?",
             [
                 {text: "No", style: "cancel"},
-                {text: "Yes", onPress: () => updateDatabase()}
+                {text: "Yes", onPress: () => this.updateDatabase()}
             ],
             {cancelable: false}
         );
     }
 
     updateDatabase() {
-        //send the order through to the database here
+        let newInventory = [];
+        for (let storeItem of this.state.items) {
+            newInventory.push({
+                "Item": storeItem.Item,
+                "Quantity": storeItem.owned + storeItem.selected
+            });
+        }
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/inventory', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                "Inventory": newInventory
+            })
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            
+        });
+
+        // update onscreen content
+        let updatedOnScreenItems = [];
+        for (let i = 0; i < this.state.items.length; i++) {
+            updatedOnScreenItems[i] = this.state.items[i];
+            updatedOnScreenItems[i].owned += updatedOnScreenItems[i].selected;
+            updatedOnScreenItems[i].selected = 0;
+        }
+
+        this.setState({
+            points: this.state.points,
+            items: updatedOnScreenItems
+        });
+
     }
 
     render() {
@@ -62,13 +126,13 @@ export default class StorePage extends React.Component {
         var itemList = [];
         for (let i = 0; i < this.state.items.length; i++) {
             itemList.push(
-               <View style={styles.itemGroup}>
+               <View style={styles.itemGroup} key={i}>
                     <View style={styles.subContainer}>
                         <Image source={this.state.items[i].src} style={styles.itemPic} />
 
                         <View stlye={styles.nameQtyBox}>
-                            <Text style={styles.itemTitle}>{this.state.items[i].name}</Text>
-                            <Text>You have: 9</Text>
+                            <Text style={styles.itemTitle}>{this.state.items[i].Item}</Text>
+                            <Text>You have: {this.state.items[i].owned}</Text>
                         </View>
                     </View>
                     <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
@@ -82,7 +146,7 @@ export default class StorePage extends React.Component {
                                     <Text style={styles.plusMinusText}>-</Text>
                                 </View>
                             </TouchableOpacity>
-                            <Text style={styles.itemAmount}>{this.state.items[i].owned}</Text>
+                            <Text style={styles.itemAmount}>{this.state.items[i].selected}</Text>
                             <TouchableOpacity onPress={this.buy.bind(this, i)}>
                                 <View style={styles.itemBuyButton}>
                                     <Text style={styles.plusMinusText}>+</Text>
