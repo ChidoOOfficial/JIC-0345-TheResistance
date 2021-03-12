@@ -163,7 +163,7 @@ export default class StorePage extends React.Component {
 
                         <View stlye={styles.nameQtyBox}>
                             <Text style={styles.itemTitle}>{this.state.items[i].Item}</Text>
-                            <Text>You have: {this.state.items[i].owned}</Text>
+                            <Text>{this.state.items[i].owned} owned</Text>
                         </View>
                     </View>
                     <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
@@ -191,7 +191,7 @@ export default class StorePage extends React.Component {
         return (
             <View style={{flex: 1}}>
                 <View style={styles.screen}>
-                    <Text style={styles.available}>Available Points: {this.state.points}</Text>
+                    <Text style={styles.available}>Available Coins: {this.state.points}</Text>
                     
                     {itemList}
 
