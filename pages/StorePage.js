@@ -12,7 +12,7 @@ export default class StorePage extends React.Component {
     constructor(props) {
         super(props);
 
-        let usersInventory = [];
+        let usersInventory = this.state.items;
         let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')}, 
                               {Item: "Goose", price: 150, owned: 0, selected: 0, src: require('../assets/goose.png')},
                               {Item: "Snake", price: 250, owned: 0, selected: 0, src: require('../assets/snake.png')},];
@@ -37,8 +37,26 @@ export default class StorePage extends React.Component {
             }
 
             this.setState({
-                points: 500,
+                points: this.state.points,
                 items: itemDetailList
+            });
+        });
+
+        let userCoins = this.state.points;
+        fetch('https://junior-design-resistence.herokuapp.com/user/coins', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            userCoins = json["Coins"];
+
+            this.setState({
+                points: userCoins,
+                items: this.state.items
             });
         });
     }
@@ -102,7 +120,20 @@ export default class StorePage extends React.Component {
         })
         .then((res) => res.json())
         .then((json) => {
-            
+        });
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/coins', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                "Coins": this.state.points
+            })
+        })
+        .then((res) => res.json())
+        .then((json) => {
         });
 
         // update onscreen content
