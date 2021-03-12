@@ -15,7 +15,7 @@ class StudentHolder extends Component {
     }
 }
 
-export default class RankingsPage extends React.Component {
+export default class StudentResultsPage extends React.Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
     height: 65
   },
   studentNameText: {
-    fontSize: 20
+    fontSize: 18
   },
   studentContainer: {
     height: 80, //this heigh makes the spacing around the image border look better
     width: Dimensions.get('window').width * 0.7, //made 0.7 of the screen to allow padding
-    backgroundColor: 'green',
+    backgroundColor: '#74B4E0',
     marginBottom: 25, //number of pixels offset from the bottom
     flexDirection: 'row', // aligns the quiz images and names to the left
     alignItems: 'center' // aligns boxes to be centered
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'right',
     padding: 10,
-    fontSize: 28
+    fontSize: 20
   }
 });
