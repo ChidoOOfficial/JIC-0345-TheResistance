@@ -37,6 +37,8 @@ export default class QuizSamplePage extends React.Component {
 
     handleTL1 = () => {  //CORRECT (Chihuahua)
         const { attemptsQ1 } = this.state;
+        const { attemptsQ2 } = this.state;
+        const { attemptsQ3 } = this.state;
         const { score } = this.state;
         if (attemptsQ1 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
             this.setState({ tl1Color: '#7af59b' });
@@ -46,6 +48,11 @@ export default class QuizSamplePage extends React.Component {
             this.setState({ attemptsQ1: 0});
             this.setState({ score: score + 1});
             alert('Correct! Great Job!');
+
+            if (attemptsQ2 == 0 && attemptsQ3 == 0) {
+                console.log('gets here?');
+                this.props.navigation.navigate('SettingsPage');
+            }
         }
     }
     handleTR1 = () => { // INCORRECT (Bulldog)
@@ -335,6 +342,16 @@ export default class QuizSamplePage extends React.Component {
                                     <Text style={styles.bufferText}>a</Text>
                                 </TouchableOpacity>
                             </SafeAreaView>
+                            <SafeAreaView style={styles.container}>
+                                <View style={styles.container}>
+                                        <Text style={styles.scoreHeader}> Score </Text>
+                                        <Text style={styles.score}> {this.state.score} / 3 </Text>
+                                </View>
+                                {/* The line below was added so swipe dots don't interfere with answer choices*/}
+                                <TouchableOpacity styles={styles.spaceButton} onPress={this.buffer}>
+                                    <Text style={styles.bufferText}>a</Text>
+                                </TouchableOpacity>
+                            </SafeAreaView>
                         </Swiper>
                     </ScrollView>
                     </View>
@@ -348,6 +365,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         //flexDirection: "row",
+        justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
     },
@@ -387,6 +405,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '800',
         flexDirection: 'row'
+    },
+    score: {
+        color: "white",
+        fontSize: 40,
+        fontWeight: '800',
+    },
+    scoreHeader: {
+        color: "white",
+        fontSize: 50,
+        fontWeight: '800',
     },
     bufferText: {
         color: "#74B4E0",
