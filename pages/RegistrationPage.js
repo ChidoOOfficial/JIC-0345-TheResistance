@@ -14,8 +14,11 @@ export default class LoginPage extends React.Component {
     }
     
     state={
-        name: "",
         username:"",
+        firstname: "",
+        lastname: "",
+        email: "",
+        accounttype: "",
         password:"",
         retypePassword:""
     };
@@ -23,18 +26,19 @@ export default class LoginPage extends React.Component {
     login = (navigate) => {
 
         //need to add url to the line below once an endpoint is created
-        fetch('' , {
+        fetch('https://junior-design-resistence.herokuapp.com/user/register' , {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             // didnt include body like in LoginPage because we dont want an autologin
-        }) // don't know why it doesnt like these parentheses
+        }}) // don't know why it doesnt like these parentheses
         .then((res) => res.json())
         .then((json) => {
             //changed json variable to registered
             if (json.registered) {
                 console.log('registered')
+                Alert.alert('Registration Successful. You will now be taken to the Login Page.')
                 navigate('LoginPage');
             }
             else {
@@ -51,7 +55,7 @@ export default class LoginPage extends React.Component {
             }
         });
     }
-    }
+    
 
     render(){       
         const { navigate } = this.props.navigation;
@@ -67,16 +71,37 @@ export default class LoginPage extends React.Component {
                             <View style={styles.inputView} >
                                 <TextInput
                                     style={styles.userInput}
-                                    placeholder="First and Last Name"
+                                    placeholder="Username"
+                                    placeholderTextColor="white"
+                                    onChangeText={username => this.setState({username})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="First Name"
                                     placeholderTextColor="white"
                                     onChangeText={name => this.setState({name})}/>
                             </View>
                             <View style={styles.inputView} >
                                 <TextInput
                                     style={styles.userInput}
-                                    placeholder="Username"
+                                    placeholder="Last Name"
                                     placeholderTextColor="white"
-                                    onChangeText={username => this.setState({username})}/>
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="Email"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="Account Type (Student or Teacher)"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
                             </View>
                             <View style={styles.inputView} >
                                 <TextInput
@@ -105,7 +130,8 @@ export default class LoginPage extends React.Component {
             </View>
         );
     }
-} //also doesn't like this line
+}
+
 
 const styles = StyleSheet.create({
     screen: {
