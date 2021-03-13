@@ -29,13 +29,16 @@ export default class QuizSamplePage extends React.Component {
         br3Color: 'ivory'
     };
 
+    green = '#7af59b';
+    red = '#fb5b5a';
+
     constructor(props) {
         super(props);
-        //this.updateScore = this.updateScore.bind(this);
+        this.updateScore = this.updateScore.bind(this);
     }
 
 
-    
+
 
 
     handleTL1() {  //CORRECT (Chihuahua)
@@ -44,13 +47,17 @@ export default class QuizSamplePage extends React.Component {
         if (attemptsQ1 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
 
             this.setState({
-                tl1Color: '#7af59b',
-                tr1Color: '#fb5b5a',
-                bl1Color: '#fb5b5a',  // Sets correct button to green, all others red, disallow attempts, and update score
-                br1Color: '#fb5b5a',
+                tl1Color: this.green,
+                tr1Color: this.red,
+                bl1Color: this.red,  // Sets correct button to green, all others red, disallow attempts, and update score
+                br1Color: this.red,
                 attemptsQ1: 0,
                 score: score + 1
             });
+
+            if (this.state.attemptsQ2 == 0 && this.state.attemptsQ3 == 0) {  // If user has no more attempts, end quiz and update score
+                this.updateScore(this.state.score + 1);  // Must be +1 because this.state.score does not update until after function call
+            }
 
             alert('Correct! Great Job!');
         }
@@ -59,12 +66,12 @@ export default class QuizSamplePage extends React.Component {
     handleTR1() { // INCORRECT (Bulldog)
         let attemptsQ1 = this.state.attemptsQ1;
         let tr1Color = this.state.tr1Color;
-        if (tr1Color != '#fb5b5a') {  //If the button has not been pressed
+        if (tr1Color != this.red) {  //If the button has not been pressed
 
             if (attemptsQ1 > 1) {  // If more attempts are allowed, sets button just pressed to red and reduces attempts to let user try again
 
                 this.setState({
-                    tr1Color: '#fb5b5a',
+                    tr1Color: this.red,
                     attemptsQ1: attemptsQ1 - 1
                 });
     
@@ -74,12 +81,16 @@ export default class QuizSamplePage extends React.Component {
     
                 this.setState({
                     attemptsQ1: 0,
-                    tl1Color: '#7af59b',
-                    tr1Color: '#fb5b5a',
-                    bl1Color: '#fb5b5a',
-                    br1Color: '#fb5b5a'
+                    tl1Color: this.green,
+                    tr1Color: this.red,
+                    bl1Color: this.red,
+                    br1Color: this.red
                 });
-    
+                
+                if (this.state.attemptsQ2 == 0 && this.state.attemptsQ3 == 0) {  // If user has no more attempts, end quiz and update score
+                    this.updateScore(this.state.score);
+                }
+
                 alert('That is incorrect.');
             }
         }
@@ -88,12 +99,12 @@ export default class QuizSamplePage extends React.Component {
     handleBL1() {  // INCORRECT (Labrador)
         let attemptsQ1 = this.state.attemptsQ1;
         let bl1Color = this.state.bl1Color;
-        if (bl1Color != '#fb5b5a') {
+        if (bl1Color != this.red) {
 
             if (attemptsQ1 > 1) {
                 
                 this.setState({
-                    bl1Color: '#fb5b5a',
+                    bl1Color: this.red,
                     attemptsQ1: attemptsQ1 - 1
                 });
                 
@@ -102,11 +113,15 @@ export default class QuizSamplePage extends React.Component {
                 
                 this.setState({
                     attemptsQ1: 0,
-                    tl1Color: '#7af59b',
-                    tr1Color: '#fb5b5a',
-                    bl1Color: '#fb5b5a',
-                    br1Color: '#fb5b5a'
+                    tl1Color: this.green,
+                    tr1Color: this.red,
+                    bl1Color: this.red,
+                    br1Color: this.red
                 });
+
+                if (this.state.attemptsQ2 == 0 && this.state.attemptsQ3 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
                 
@@ -117,12 +132,12 @@ export default class QuizSamplePage extends React.Component {
     handleBR1() {  // INCORRECT (Pitbull)
         let attemptsQ1 = this.state.attemptsQ1;
         let br1Color = this.state.br1Color;
-        if (br1Color != '#fb5b5a') {
+        if (br1Color != this.red) {
 
             if (attemptsQ1 > 1) {
                 
                 this.setState({
-                    br1Color: '#fb5b5a',
+                    br1Color: this.red,
                     attemptsQ1: attemptsQ1 - 1
                 });
                 
@@ -132,11 +147,15 @@ export default class QuizSamplePage extends React.Component {
                 
                 this.setState({
                     attemptsQ1: 0,
-                    tl1Color: '#7af59b',
-                    tr1Color: '#fb5b5a',
-                    bl1Color: '#fb5b5a',
-                    br1Color: '#fb5b5a'
+                    tl1Color: this.green,
+                    tr1Color: this.red,
+                    bl1Color: this.red,
+                    br1Color: this.red
                 });
+
+                if (this.state.attemptsQ2 == 0 && this.state.attemptsQ3 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
                 
@@ -151,12 +170,12 @@ export default class QuizSamplePage extends React.Component {
     handleTL2() {  // INCORRECT (Shiba Inu)
         let attemptsQ2 = this.state.attemptsQ2;
         let tl2Color = this.state.tl2Color;
-        if (tl2Color != '#fb5b5a') {
+        if (tl2Color != this.red) {
 
             if (attemptsQ2 > 1) {
 
                 this.setState({
-                    tl2Color: '#fb5b5a',
+                    tl2Color: this.red,
                     attemptsQ2: attemptsQ2 - 1
                 });
 
@@ -166,11 +185,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ2: 0,
-                    tl2Color: '#fb5b5a',
-                    tr2Color: '#7af59b',
-                    bl2Color: '#fb5b5a',
-                    br2Color: '#fb5b5a'
+                    tl2Color: this.red,
+                    tr2Color: this.green,
+                    bl2Color: this.red,
+                    br2Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ3 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -183,13 +206,17 @@ export default class QuizSamplePage extends React.Component {
         if (attemptsQ2 > 0){
             
             this.setState({
-                tl2Color: '#fb5b5a',
-                tr2Color: '#7af59b',
-                bl2Color: '#fb5b5a',
-                br2Color: '#fb5b5a',
+                tl2Color: this.red,
+                tr2Color: this.green,
+                bl2Color: this.red,
+                br2Color: this.red,
                 attemptsQ2: 0,
                 score: score + 1
             });
+
+            if (this.state.attemptsQ1 == 0 && this.state.attemptsQ3 == 0) {
+                this.updateScore(this.state.score + 1);
+            }
             
             alert('Correct! Great Job!');
         }
@@ -198,12 +225,12 @@ export default class QuizSamplePage extends React.Component {
     handleBL2() {  // INCORRECT (Terrier)
         let attemptsQ2 = this.state.attemptsQ2;
         let bl2Color = this.state.bl2Color;
-        if (bl2Color != '#fb5b5a') {
+        if (bl2Color != this.red) {
             
             if (attemptsQ2 > 1) {
 
                 this.setState({
-                    bl2Color: '#fb5b5a',
+                    bl2Color: this.red,
                     attemptsQ2: attemptsQ2 - 1
                 });
 
@@ -213,11 +240,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ2: 0,
-                    tl2Color: '#fb5b5a',
-                    tr2Color: '#7af59b',
-                    bl2Color: '#fb5b5a',
-                    br2Color: '#fb5b5a'
+                    tl2Color: this.red,
+                    tr2Color: this.green,
+                    bl2Color: this.red,
+                    br2Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ3 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -227,12 +258,12 @@ export default class QuizSamplePage extends React.Component {
     handleBR2() {  // INCORRECT (Shetland)
         let attemptsQ2 = this.state.attemptsQ2;
         let br2Color = this.state.br2Color;
-        if (br2Color != '#fb5b5a') {
+        if (br2Color != this.red) {
             
             if (attemptsQ2 > 1) {
 
                 this.setState({
-                    br2Color: '#fb5b5a',
+                    br2Color: this.red,
                     attemptsQ2: attemptsQ2 - 1
                 });
 
@@ -242,11 +273,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ2: 0,
-                    tl2Color: '#fb5b5a',
-                    tr2Color: '#7af59b',
-                    bl2Color: '#fb5b5a',
-                    br2Color: '#fb5b5a'
+                    tl2Color: this.red,
+                    tr2Color: this.green,
+                    bl2Color: this.red,
+                    br2Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ3 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -260,12 +295,12 @@ export default class QuizSamplePage extends React.Component {
     handleTL3() {  // INCORRECT (Great Dane)
         let attemptsQ3 = this.state.attemptsQ3;
         let tl3Color = this.state.tl3Color;
-        if (tl3Color != '#fb5b5a') {
+        if (tl3Color != this.red) {
 
             if (attemptsQ3 > 1) {
 
                 this.setState({
-                    tl3Color: '#fb5b5a',
+                    tl3Color: this.red,
                     attemptsQ3: attemptsQ3 - 1
                 });
 
@@ -275,11 +310,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ3: 0,
-                    tl3Color: '#fb5b5a',
-                    tr3Color: '#fb5b5a',
-                    bl3Color: '#7af59b',
-                    br3Color: '#fb5b5a'
+                    tl3Color: this.red,
+                    tr3Color: this.red,
+                    bl3Color: this.green,
+                    br3Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ2 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -289,12 +328,12 @@ export default class QuizSamplePage extends React.Component {
     handleTR3() {  // INCORRECT (Husky)
         let attemptsQ3 = this.state.attemptsQ3;
         let tr3Color = this.state.tr3Color;
-        if (tr3Color != '#fb5b5a') {
+        if (tr3Color != this.red) {
 
             if (attemptsQ3 > 1) {
 
                 this.setState({
-                    tr3Color: '#fb5b5a',
+                    tr3Color: this.red,
                     attemptsQ3: attemptsQ3 - 1
                 });
 
@@ -304,11 +343,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ3: 0,
-                    tl3Color: '#fb5b5a',
-                    tr3Color: '#fb5b5a',
-                    bl3Color: '#7af59b',
-                    br3Color: '#fb5b5a'
+                    tl3Color: this.red,
+                    tr3Color: this.red,
+                    bl3Color: this.green,
+                    br3Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ2 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -321,14 +364,18 @@ export default class QuizSamplePage extends React.Component {
         if (attemptsQ3 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
 
             this.setState({
-                tl3Color: '#fb5b5a',
-                tr3Color: '#fb5b5a',
-                bl3Color: '#7af59b',
-                br3Color: '#fb5b5a',
+                tl3Color: this.red,
+                tr3Color: this.red,
+                bl3Color: this.green,
+                br3Color: this.red,
                 attemptsQ3: 0,
                 score: score + 1
             });
 
+            if (this.state.attemptsQ1 == 0 && this.state.attemptsQ2 == 0) {
+                this.updateScore(this.state.score + 1);
+            }
+            
             alert('Correct! Great Job!');
         }
     }
@@ -336,12 +383,12 @@ export default class QuizSamplePage extends React.Component {
     handleBR3() {  // INCORRECT (German Shepard)
         let attemptsQ3 = this.state.attemptsQ3;
         let br3Color = this.state.br3Color;
-        if (br3Color != '#fb5b5a') {
+        if (br3Color != this.red) {
 
             if (attemptsQ3 > 1) {
 
                 this.setState({
-                    br3Color: '#fb5b5a',
+                    br3Color: this.red,
                     attemptsQ3: attemptsQ3 - 1
                 });
 
@@ -351,11 +398,15 @@ export default class QuizSamplePage extends React.Component {
 
                 this.setState({
                     attemptsQ3: 0,
-                    tl3Color: '#fb5b5a',
-                    tr3Color: '#fb5b5a',
-                    bl3Color: '#7af59b',
-                    br3Color: '#fb5b5a'
+                    tl3Color: this.red,
+                    tr3Color: this.red,
+                    bl3Color: this.green,
+                    br3Color: this.red
                 });
+
+                if (this.state.attemptsQ1 == 0 && this.state.attemptsQ2 == 0) {
+                    this.updateScore(this.state.score);
+                }
 
                 alert('That is incorrect.');
             }
@@ -365,39 +416,25 @@ export default class QuizSamplePage extends React.Component {
 
 
 
-
-    // updateScore() {
-    //     let score = this.state.score;
-    //     fetch('https://junior-design-resistence.herokuapp.com/user/quizscore/add', {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json'
-    //         }, 
-    //         body: JSON.stringify({
-    //             topic: "dogs",
-    //         })
-    //     })
-    //     .then((res) => res.json())
-    //     .then((json) => {
-    //         if (json.loggedIn) {
-    //             console.log('loggedin')
-    //             navigate('HomePage');
-    //         }
-    //         else {
-    //             Alert.alert(
-    //                 'Invalid Login Credentials',
-    //                 'Username or Password do not match',
-    //                 [
-    //                   {
-    //                     text: 'Try Again',
-    //                     style: 'cancel'
-    //                   }
-    //                 ]
-    //               ); 
-    //         }
-    //     });
-    // }
+    // Sends final score to database
+    updateScore(score) {
+        fetch('https://junior-design-resistence.herokuapp.com/user/quizscore/add', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({
+                topic: "dogs",
+                score: score,
+                possiblescore: 3
+            })
+        })
+        .then((res) => res.json())
+        .then((json) => {
+            console.log("submitted quiz score of: " + score);
+        });
+    }
 
 
 
