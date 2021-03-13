@@ -35,202 +35,368 @@ export default class QuizSamplePage extends React.Component {
 
 
 
+
+
     handleTL1 = () => {  //CORRECT (Chihuahua)
         const { attemptsQ1 } = this.state;
-        const { attemptsQ2 } = this.state;
-        const { attemptsQ3 } = this.state;
         const { score } = this.state;
         if (attemptsQ1 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
-            this.setState({ tl1Color: '#7af59b' });
-            this.setState({ tr1Color: '#fb5b5a' });
-            this.setState({ bl1Color: '#fb5b5a' });
-            this.setState({ br1Color: '#fb5b5a' });    // Sets correct button to green, all others red, disallow attempts, and update score
-            this.setState({ attemptsQ1: 0});
-            this.setState({ score: score + 1});
-            alert('Correct! Great Job!');
 
-            if (attemptsQ2 == 0 && attemptsQ3 == 0) {
-                console.log('gets here?');
-                this.props.navigation.navigate('SettingsPage');
+            this.setState({
+                tl1Color: '#7af59b',
+                tr1Color: '#fb5b5a',
+                bl1Color: '#fb5b5a',  // Sets correct button to green, all others red, disallow attempts, and update score
+                br1Color: '#fb5b5a',
+                attemptsQ1: 0,
+                score: score + 1
+            });
+
+            alert('Correct! Great Job!');
+        }
+    }
+
+    handleTR1 = () => { // INCORRECT (Bulldog)
+        const { attemptsQ1 } = this.state;
+        const { tr1Color } = this.state;
+        if (tr1Color != '#fb5b5a') {  //If the button has not been pressed
+
+            if (attemptsQ1 > 1) {  // If more attempts are allowed, sets button just pressed to red and reduces attempts to let user try again
+
+                this.setState({
+                    tr1Color: '#fb5b5a',
+                    attemptsQ1: attemptsQ1 - 1
+                });
+    
+                alert('That is incorrect. Try again.');
+    
+            } else if (attemptsQ1 == 1) {  // No more attempts are allowed, and buttons are updated accordingly
+    
+                this.setState({
+                    attemptsQ1: 0,
+                    tl1Color: '#7af59b',
+                    tr1Color: '#fb5b5a',
+                    bl1Color: '#fb5b5a',
+                    br1Color: '#fb5b5a'
+                });
+    
+                alert('That is incorrect.');
             }
         }
     }
-    handleTR1 = () => { // INCORRECT (Bulldog)
-        const { attemptsQ1 } = this.state;
-        if (attemptsQ1 > 1) {  // If more attempts are allowed, sets button just pressed to red and reduces attempts to let user try again
-            this.setState({ tr1Color: '#fb5b5a' });
-            this.setState({ attemptsQ1: attemptsQ1 - 1});
-            console.log(attemptsQ1);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ1 == 1) {  // No more attempts are allowed, and buttons are updated accordingly
-            this.setState({ attemptsQ1: 0});
-            this.setState({ tl1Color: '#7af59b' });
-            this.setState({ tr1Color: '#fb5b5a' });
-            this.setState({ bl1Color: '#fb5b5a' });
-            this.setState({ br1Color: '#fb5b5a' });
-            alert('That is incorrect.');
-        }
-    }
+
     handleBL1 = () => {  // INCORRECT (Labrador)
         const { attemptsQ1 } = this.state;
-        if (attemptsQ1 > 1) {
-            this.setState({ bl1Color: '#fb5b5a' });
-            this.setState({ attemptsQ1: attemptsQ1 - 1});
-            console.log(attemptsQ1);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ1 == 1) {
-            this.setState({ attemptsQ1: 0});
-            this.setState({ tl1Color: '#7af59b' });
-            this.setState({ tr1Color: '#fb5b5a' });
-            this.setState({ bl1Color: '#fb5b5a' });
-            this.setState({ br1Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { bl1Color } = this.state;
+        if (bl1Color != '#fb5b5a') {
+
+            if (attemptsQ1 > 1) {
+                
+                this.setState({
+                    bl1Color: '#fb5b5a',
+                    attemptsQ1: attemptsQ1 - 1
+                });
+                
+                alert('That is incorrect. Try again.');
+            } else if (attemptsQ1 == 1) {
+                
+                this.setState({
+                    attemptsQ1: 0,
+                    tl1Color: '#7af59b',
+                    tr1Color: '#fb5b5a',
+                    bl1Color: '#fb5b5a',
+                    br1Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+                
+            }
         }
     }
+
     handleBR1 = () => {  // INCORRECT (Pitbull)
         const { attemptsQ1 } = this.state;
-        if (attemptsQ1 > 1) {
-            this.setState({ br1Color: '#fb5b5a' });
-            this.setState({ attemptsQ1: attemptsQ1 - 1});
-            console.log(attemptsQ1);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ1 == 1) {
-            this.setState({ attemptsQ1: 0});
-            this.setState({ tl1Color: '#7af59b' });
-            this.setState({ tr1Color: '#fb5b5a' });
-            this.setState({ bl1Color: '#fb5b5a' });
-            this.setState({ br1Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { br1Color } = this.state;
+        if (br1Color != '#fb5b5a') {
+
+            if (attemptsQ1 > 1) {
+                
+                this.setState({
+                    br1Color: '#fb5b5a',
+                    attemptsQ1: attemptsQ1 - 1
+                });
+                
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ1 == 1) {
+                
+                this.setState({
+                    attemptsQ1: 0,
+                    tl1Color: '#7af59b',
+                    tr1Color: '#fb5b5a',
+                    bl1Color: '#fb5b5a',
+                    br1Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+                
+            }
         }
     }
+
+
 
 
 
     handleTL2 = () => {  // INCORRECT (Shiba Inu)
         const { attemptsQ2 } = this.state;
-        if (attemptsQ2 > 1) {
-            this.setState({ tl2Color: '#fb5b5a' });
-            this.setState({ attemptsQ2: attemptsQ2 - 1});
-            console.log(attemptsQ2);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ2 == 1) {
-            this.setState({ attemptsQ2: 0});
-            this.setState({ tl2Color: '#fb5b5a' });
-            this.setState({ tr2Color: '#7af59b' });
-            this.setState({ bl2Color: '#fb5b5a' });
-            this.setState({ br2Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { tl2Color } = this.state;
+        if (tl2Color != '#fb5b5a') {
+
+            if (attemptsQ2 > 1) {
+
+                this.setState({
+                    tl2Color: '#fb5b5a',
+                    attemptsQ2: attemptsQ2 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ2 == 1) {
+
+                this.setState({
+                    attemptsQ2: 0,
+                    tl2Color: '#fb5b5a',
+                    tr2Color: '#7af59b',
+                    bl2Color: '#fb5b5a',
+                    br2Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
     handleTR2 = () => {  // CORRECT (Beagle)
         const { attemptsQ2 } = this.state;
         const { score } = this.state;
         if (attemptsQ2 > 0){
-            this.setState({ tl2Color: '#fb5b5a' });
-            this.setState({ tr2Color: '#7af59b' });
-            this.setState({ bl2Color: '#fb5b5a' });
-            this.setState({ br2Color: '#fb5b5a' });
-            this.setState({ attemptsQ2: 0});
-            this.setState({ score: score + 1});
+            
+            this.setState({
+                tl2Color: '#fb5b5a',
+                tr2Color: '#7af59b',
+                bl2Color: '#fb5b5a',
+                br2Color: '#fb5b5a',
+                attemptsQ2: 0,
+                score: score + 1
+            });
+            
             alert('Correct! Great Job!');
         }
     }
+
     handleBL2 = () => {  // INCORRECT (Terrier)
         const { attemptsQ2 } = this.state;
-        if (attemptsQ2 > 1) {
-            this.setState({ bl2Color: '#fb5b5a' });
-            this.setState({ attemptsQ2: attemptsQ2 - 1});
-            console.log(attemptsQ2);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ2 == 1) {
-            this.setState({ attemptsQ2: 0});
-            this.setState({ tl2Color: '#fb5b5a' });
-            this.setState({ tr2Color: '#7af59b' });
-            this.setState({ bl2Color: '#fb5b5a' });
-            this.setState({ br2Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { bl2Color } = this.state;
+        if (bl2Color != '#fb5b5a') {
+            
+            if (attemptsQ2 > 1) {
+
+                this.setState({
+                    bl2Color: '#fb5b5a',
+                    attemptsQ2: attemptsQ2 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ2 == 1) {
+
+                this.setState({
+                    attemptsQ2: 0,
+                    tl2Color: '#fb5b5a',
+                    tr2Color: '#7af59b',
+                    bl2Color: '#fb5b5a',
+                    br2Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
     handleBR2 = () => {  // INCORRECT (Shetland)
         const { attemptsQ2 } = this.state;
-        if (attemptsQ2 > 1) {
-            this.setState({ br2Color: '#fb5b5a' });
-            this.setState({ attemptsQ2: attemptsQ2 - 1});
-            console.log(attemptsQ2);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ2 == 1) {
-            this.setState({ attemptsQ2: 0});
-            this.setState({ tl2Color: '#fb5b5a' });
-            this.setState({ tr2Color: '#7af59b' });
-            this.setState({ bl2Color: '#fb5b5a' });
-            this.setState({ br2Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { br2Color } = this.state;
+        if (br2Color != '#fb5b5a') {
+            
+            if (attemptsQ2 > 1) {
+
+                this.setState({
+                    br2Color: '#fb5b5a',
+                    attemptsQ2: attemptsQ2 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ2 == 1) {
+
+                this.setState({
+                    attemptsQ2: 0,
+                    tl2Color: '#fb5b5a',
+                    tr2Color: '#7af59b',
+                    bl2Color: '#fb5b5a',
+                    br2Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
+
 
 
 
     handleTL3 = () => {  // INCORRECT (Great Dane)
         const { attemptsQ3 } = this.state;
-        if (attemptsQ3 > 1) {
-            this.setState({ tl3Color: '#fb5b5a' });
-            this.setState({ attemptsQ3: attemptsQ3 - 1});
-            console.log(attemptsQ3);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ3 == 1) {
-            this.setState({ attemptsQ3: 0});
-            this.setState({ tl3Color: '#fb5b5a' });
-            this.setState({ tr3Color: '#fb5b5a' });
-            this.setState({ bl3Color: '#7af59b' });
-            this.setState({ br3Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { tl3Color } = this.state;
+        if (tl3Color != '#fb5b5a') {
+
+            if (attemptsQ3 > 1) {
+
+                this.setState({
+                    tl3Color: '#fb5b5a',
+                    attemptsQ3: attemptsQ3 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ3 == 1) {
+
+                this.setState({
+                    attemptsQ3: 0,
+                    tl3Color: '#fb5b5a',
+                    tr3Color: '#fb5b5a',
+                    bl3Color: '#7af59b',
+                    br3Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
     handleTR3 = () => {  // INCORRECT (Husky)
         const { attemptsQ3 } = this.state;
-        if (attemptsQ3 > 1) {
-            this.setState({ tr3Color: '#fb5b5a' });
-            this.setState({ attemptsQ3: attemptsQ3 - 1});
-            console.log(attemptsQ3);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ3 == 1) {
-            this.setState({ attemptsQ3: 0});
-            this.setState({ tl3Color: '#fb5b5a' });
-            this.setState({ tr3Color: '#fb5b5a' });
-            this.setState({ bl3Color: '#7af59b' });
-            this.setState({ br3Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { tr3Color } = this.state;
+        if (tr3Color != '#fb5b5a') {
+
+            if (attemptsQ3 > 1) {
+
+                this.setState({
+                    tr3Color: '#fb5b5a',
+                    attemptsQ3: attemptsQ3 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ3 == 1) {
+
+                this.setState({
+                    attemptsQ3: 0,
+                    tl3Color: '#fb5b5a',
+                    tr3Color: '#fb5b5a',
+                    bl3Color: '#7af59b',
+                    br3Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
     handleBL3 = () => {  // CORRECT (Dachshund)
         const { attemptsQ3 } = this.state;
         const { score } = this.state;
         if (attemptsQ3 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
-            this.setState({ tl3Color: '#fb5b5a' });
-            this.setState({ tr3Color: '#fb5b5a' });
-            this.setState({ bl3Color: '#7af59b' });
-            this.setState({ br3Color: '#fb5b5a' });
-            this.setState({ attemptsQ3: 0});
-            this.setState({ score: score + 1});
+
+            this.setState({
+                tl3Color: '#fb5b5a',
+                tr3Color: '#fb5b5a',
+                bl3Color: '#7af59b',
+                br3Color: '#fb5b5a',
+                attemptsQ3: 0,
+                score: score + 1
+            });
+
             alert('Correct! Great Job!');
         }
     }
+
     handleBR3 = () => {  // INCORRECT (German Shepard)
         const { attemptsQ3 } = this.state;
-        if (attemptsQ3 > 1) {
-            this.setState({ br3Color: '#fb5b5a' });
-            this.setState({ attemptsQ3: attemptsQ3 - 1});
-            console.log(attemptsQ3);
-            alert('That is incorrect. Try again.');
-        } else if (attemptsQ3 == 1) {
-            this.setState({ attemptsQ3: 0});
-            this.setState({ tl3Color: '#fb5b5a' });
-            this.setState({ tr3Color: '#fb5b5a' });
-            this.setState({ bl3Color: '#7af59b' });
-            this.setState({ br3Color: '#fb5b5a' });
-            alert('That is incorrect.');
+        const { br3Color } = this.state;
+        if (br3Color != '#fb5b5a') {
+
+            if (attemptsQ3 > 1) {
+
+                this.setState({
+                    br3Color: '#fb5b5a',
+                    attemptsQ3: attemptsQ3 - 1
+                });
+
+                alert('That is incorrect. Try again.');
+
+            } else if (attemptsQ3 == 1) {
+
+                this.setState({
+                    attemptsQ3: 0,
+                    tl3Color: '#fb5b5a',
+                    tr3Color: '#fb5b5a',
+                    bl3Color: '#7af59b',
+                    br3Color: '#fb5b5a'
+                });
+
+                alert('That is incorrect.');
+            }
         }
     }
+
+
+
+
+
+    // updateScore = () => {
+    //     fetch('https://junior-design-resistence.herokuapp.com/user/quizscore/add', {
+    //         method: 'POST',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json'
+    //         }, 
+    //         body: JSON.stringify({
+    //             username: AutoLogin ? 'chido' : this.state.username, 
+    //             password: AutoLogin ? 'x' : this.state.password
+    //         })
+    //     })
+    //     .then((res) => res.json())
+    //     .then((json) => {
+    //         if (json.loggedIn) {
+    //             console.log('loggedin')
+    //             navigate('HomePage');
+    //         }
+    //         else {
+    //             Alert.alert(
+    //                 'Invalid Login Credentials',
+    //                 'Username or Password do not match',
+    //                 [
+    //                   {
+    //                     text: 'Try Again',
+    //                     style: 'cancel'
+    //                   }
+    //                 ]
+    //               ); 
+    //         }
+    //     });
+    // }
 
 
 
