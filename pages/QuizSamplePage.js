@@ -10,10 +10,6 @@ import Swiper from 'react-native-swiper'
 
 export default class QuizSamplePage extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     state={
         score: 0,
         attemptsQ1: 2,
@@ -33,13 +29,18 @@ export default class QuizSamplePage extends React.Component {
         br3Color: 'ivory'
     };
 
+    constructor(props) {
+        super(props);
+        //this.updateScore = this.updateScore.bind(this);
+    }
 
 
+    
 
 
-    handleTL1 = () => {  //CORRECT (Chihuahua)
-        const { attemptsQ1 } = this.state;
-        const { score } = this.state;
+    handleTL1() {  //CORRECT (Chihuahua)
+        let attemptsQ1 = this.state.attemptsQ1;
+        let score = this.state.score;
         if (attemptsQ1 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
 
             this.setState({
@@ -55,9 +56,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleTR1 = () => { // INCORRECT (Bulldog)
-        const { attemptsQ1 } = this.state;
-        const { tr1Color } = this.state;
+    handleTR1() { // INCORRECT (Bulldog)
+        let attemptsQ1 = this.state.attemptsQ1;
+        let tr1Color = this.state.tr1Color;
         if (tr1Color != '#fb5b5a') {  //If the button has not been pressed
 
             if (attemptsQ1 > 1) {  // If more attempts are allowed, sets button just pressed to red and reduces attempts to let user try again
@@ -84,9 +85,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBL1 = () => {  // INCORRECT (Labrador)
-        const { attemptsQ1 } = this.state;
-        const { bl1Color } = this.state;
+    handleBL1() {  // INCORRECT (Labrador)
+        let attemptsQ1 = this.state.attemptsQ1;
+        let bl1Color = this.state.bl1Color;
         if (bl1Color != '#fb5b5a') {
 
             if (attemptsQ1 > 1) {
@@ -113,9 +114,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBR1 = () => {  // INCORRECT (Pitbull)
-        const { attemptsQ1 } = this.state;
-        const { br1Color } = this.state;
+    handleBR1() {  // INCORRECT (Pitbull)
+        let attemptsQ1 = this.state.attemptsQ1;
+        let br1Color = this.state.br1Color;
         if (br1Color != '#fb5b5a') {
 
             if (attemptsQ1 > 1) {
@@ -147,9 +148,9 @@ export default class QuizSamplePage extends React.Component {
 
 
 
-    handleTL2 = () => {  // INCORRECT (Shiba Inu)
-        const { attemptsQ2 } = this.state;
-        const { tl2Color } = this.state;
+    handleTL2() {  // INCORRECT (Shiba Inu)
+        let attemptsQ2 = this.state.attemptsQ2;
+        let tl2Color = this.state.tl2Color;
         if (tl2Color != '#fb5b5a') {
 
             if (attemptsQ2 > 1) {
@@ -176,9 +177,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleTR2 = () => {  // CORRECT (Beagle)
-        const { attemptsQ2 } = this.state;
-        const { score } = this.state;
+    handleTR2() {  // CORRECT (Beagle)
+        let attemptsQ2 = this.state.attemptsQ2;
+        let score = this.state.score;
         if (attemptsQ2 > 0){
             
             this.setState({
@@ -194,9 +195,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBL2 = () => {  // INCORRECT (Terrier)
-        const { attemptsQ2 } = this.state;
-        const { bl2Color } = this.state;
+    handleBL2() {  // INCORRECT (Terrier)
+        let attemptsQ2 = this.state.attemptsQ2;
+        let bl2Color = this.state.bl2Color;
         if (bl2Color != '#fb5b5a') {
             
             if (attemptsQ2 > 1) {
@@ -223,9 +224,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBR2 = () => {  // INCORRECT (Shetland)
-        const { attemptsQ2 } = this.state;
-        const { br2Color } = this.state;
+    handleBR2() {  // INCORRECT (Shetland)
+        let attemptsQ2 = this.state.attemptsQ2;
+        let br2Color = this.state.br2Color;
         if (br2Color != '#fb5b5a') {
             
             if (attemptsQ2 > 1) {
@@ -256,9 +257,9 @@ export default class QuizSamplePage extends React.Component {
 
 
 
-    handleTL3 = () => {  // INCORRECT (Great Dane)
-        const { attemptsQ3 } = this.state;
-        const { tl3Color } = this.state;
+    handleTL3() {  // INCORRECT (Great Dane)
+        let attemptsQ3 = this.state.attemptsQ3;
+        let tl3Color = this.state.tl3Color;
         if (tl3Color != '#fb5b5a') {
 
             if (attemptsQ3 > 1) {
@@ -285,9 +286,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleTR3 = () => {  // INCORRECT (Husky)
-        const { attemptsQ3 } = this.state;
-        const { tr3Color } = this.state;
+    handleTR3() {  // INCORRECT (Husky)
+        let attemptsQ3 = this.state.attemptsQ3;
+        let tr3Color = this.state.tr3Color;
         if (tr3Color != '#fb5b5a') {
 
             if (attemptsQ3 > 1) {
@@ -314,9 +315,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBL3 = () => {  // CORRECT (Dachshund)
-        const { attemptsQ3 } = this.state;
-        const { score } = this.state;
+    handleBL3() {  // CORRECT (Dachshund)
+        let attemptsQ3 = this.state.attemptsQ3;
+        let score = this.state.score;
         if (attemptsQ3 > 0){  // Checks for attempts to eliminate alert showing or user getting score after losing all attempts
 
             this.setState({
@@ -332,9 +333,9 @@ export default class QuizSamplePage extends React.Component {
         }
     }
 
-    handleBR3 = () => {  // INCORRECT (German Shepard)
-        const { attemptsQ3 } = this.state;
-        const { br3Color } = this.state;
+    handleBR3() {  // INCORRECT (German Shepard)
+        let attemptsQ3 = this.state.attemptsQ3;
+        let br3Color = this.state.br3Color;
         if (br3Color != '#fb5b5a') {
 
             if (attemptsQ3 > 1) {
@@ -365,7 +366,8 @@ export default class QuizSamplePage extends React.Component {
 
 
 
-    // updateScore = () => {
+    // updateScore() {
+    //     let score = this.state.score;
     //     fetch('https://junior-design-resistence.herokuapp.com/user/quizscore/add', {
     //         method: 'POST',
     //         headers: {
@@ -373,8 +375,7 @@ export default class QuizSamplePage extends React.Component {
     //             'Content-Type': 'application/json'
     //         }, 
     //         body: JSON.stringify({
-    //             username: AutoLogin ? 'chido' : this.state.username, 
-    //             password: AutoLogin ? 'x' : this.state.password
+    //             topic: "dogs",
     //         })
     //     })
     //     .then((res) => res.json())
@@ -442,18 +443,18 @@ export default class QuizSamplePage extends React.Component {
                             <SafeAreaView style={styles.container}>
                                 <Image source={require('../assets/Animals/01chihuahua.png')} style={styles.image}/> 
                                 <View style={styles.topButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl1Color}]} onPress={this.handleTL1}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl1Color}]} onPress={this.handleTL1.bind(this)}>
                                         <Text style={styles.text}> Chihuahua </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr1Color}]} onPress={this.handleTR1}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr1Color}]} onPress={this.handleTR1.bind(this)}>
                                         <Text style={styles.text}> Bulldog </Text>
                                     </TouchableOpacity>
                                 </View>  
                                 <View style={styles.bottomButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl1Color}]} onPress={this.handleBL1}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl1Color}]} onPress={this.handleBL1.bind(this)}>
                                         <Text style={styles.text}> Labrodor </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br1Color}]} onPress={this.handleBR1}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br1Color}]} onPress={this.handleBR1.bind(this)}>
                                         <Text style={styles.text}> Pitbull </Text>
                                     </TouchableOpacity>
                                 </View>  
@@ -465,18 +466,18 @@ export default class QuizSamplePage extends React.Component {
                             <SafeAreaView style={styles.container}>
                                 <Image source={require('../assets/Animals/02Beagle.png')} style={styles.image}/>   
                                 <View style={styles.topButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl2Color}]} onPress={this.handleTL2}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl2Color}]} onPress={this.handleTL2.bind(this)}>
                                         <Text style={styles.text}> Shiba Inu </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr2Color}]} onPress={this.handleTR2}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr2Color}]} onPress={this.handleTR2.bind(this)}>
                                         <Text style={styles.text}> Beagle </Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.bottomButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl2Color}]} onPress={this.handleBL2}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl2Color}]} onPress={this.handleBL2.bind(this)}>
                                         <Text style={styles.text}> Terrier </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br2Color}]} onPress={this.handleBR2}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br2Color}]} onPress={this.handleBR2.bind(this)}>
                                         <Text style={styles.text}> Shetland </Text>
                                     </TouchableOpacity>
                                 </View>
@@ -488,18 +489,18 @@ export default class QuizSamplePage extends React.Component {
                             <SafeAreaView style={styles.container}>
                                 <Image source={require('../assets/Animals/03Dachshund.png')} style={styles.image}/>   
                                 <View style={styles.topButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl3Color}]} onPress={this.handleTL3}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tl3Color}]} onPress={this.handleTL3.bind(this)}>
                                         <Text style={styles.text}> Great Dane </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr3Color}]} onPress={this.handleTR3}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.tr3Color}]} onPress={this.handleTR3.bind(this)}>
                                         <Text style={styles.text}> Husky </Text>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.bottomButtons}>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl3Color}]} onPress={this.handleBL3}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.bl3Color}]} onPress={this.handleBL3.bind(this)}>
                                         <Text style={styles.text}> Dachshund </Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br3Color}]} onPress={this.handleBR3}>
+                                    <TouchableOpacity style={[this.buttonStyle, {backgroundColor: this.state.br3Color}]} onPress={this.handleBR3.bind(this)}>
                                         <Text style={styles.text}> German Shepard </Text>
                                     </TouchableOpacity>
                                 </View>
