@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
 
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper/src'
 
 import Toolbar from './Toolbar';
 import UserProfilePage from './UserProfilePages/UserProfilePage'
