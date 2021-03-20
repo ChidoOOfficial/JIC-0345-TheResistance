@@ -7,11 +7,55 @@ import Toolbar from './Toolbar';
 
 export default class LoginPage extends React.Component {
 
+    //Copied from Loginp=Page.js, should have it so login is persistent through the app
+    constructor(props) {
+        super(props);
+        this.login = this.login.bind(this);
+    }
+    
     state={
         username:"",
+        firstname: "",
+        lastname: "",
+        email: "",
+        accounttype: "",
         password:"",
         retypePassword:""
     };
+
+    login = (navigate) => {
+
+        //need to add url to the line below once an endpoint is created
+        fetch('https://junior-design-resistence.herokuapp.com/user/register' , {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            // didnt include body like in LoginPage because we dont want an autologin
+        }}) // don't know why it doesnt like these parentheses
+        .then((res) => res.json())
+        .then((json) => {
+            //changed json variable to registered
+            if (json.registered) {
+                console.log('registered')
+                Alert.alert('Registration Successful. You will now be taken to the Login Page.')
+                navigate('LoginPage');
+            }
+            else {
+                Alert.alert(
+                    'Invalid Login Credentials',
+                    'Username or Password do not match or username is already registered',
+                    [
+                      {
+                        text: 'Try Again',
+                        style: 'cancel'
+                      }
+                    ]
+                  ); 
+            }
+        });
+    }
+    
 
     render(){       
         const { navigate } = this.props.navigation;
@@ -33,6 +77,34 @@ export default class LoginPage extends React.Component {
                             </View>
                             <View style={styles.inputView} >
                                 <TextInput
+                                    style={styles.userInput}
+                                    placeholder="First Name"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="Last Name"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="Email"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                    style={styles.userInput}
+                                    placeholder="Account Type (Student or Teacher)"
+                                    placeholderTextColor="white"
+                                    onChangeText={name => this.setState({name})}/>
+                            </View>
+                            <View style={styles.inputView} >
+                                <TextInput
                                     secureTextEntry
                                     style={styles.userInput}
                                     placeholder="Password"
@@ -47,10 +119,10 @@ export default class LoginPage extends React.Component {
                                     placeholderTextColor="white"
                                     onChangeText={retypePassword => this.setState({password:retypePassword})}/>
                             </View>
-                            <TouchableOpacity onPress={() =>navigate('HomePage')} style={styles.saveBtn}>
+                            <TouchableOpacity onPress={() =>navigate('HomePage')} style={styles.registerBtn}>
                                 <View style={{alignItems: 'center', flexDirection: "row",
-                                    justifyContent: 'center', padding:6}}>
-                                    <Text style={styles.save}>Register</Text>
+                                    justifyContent: 'center', padding:6,}}>
+                                    <Text style={styles.registerText}>Register</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -59,6 +131,7 @@ export default class LoginPage extends React.Component {
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     screen: {
@@ -81,7 +154,7 @@ const styles = StyleSheet.create({
     },
     inputView:{
         width:"80%",
-        backgroundColor:"#465881",
+        backgroundColor:"#9b5de5",
         borderRadius:25,
         height:50,
         marginBottom:20,
@@ -92,19 +165,21 @@ const styles = StyleSheet.create({
         height:50,
         color:"white"
     },
-    saveBtn:{
+    registerBtn:{
         width: "25%",
         height: 45,
         borderRadius: 25,
-        backgroundColor: "#7af59b",
+        backgroundColor: "#f15bb5",
         alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
         marginTop: 40,
     },
-    save: {
+    registerText: {
         color: 'black',
-        fontSize: 16,
+        fontSize: 20,
+        fontWeight: '800',
         flexDirection: 'row'
-    }
+    }, 
+    
 });
