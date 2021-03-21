@@ -13,7 +13,7 @@ export default class LessonsPage extends React.Component {
     constructor() {
         super();
         this.state = {
-            buttonName: ' '
+            lessonType: ''
         }
         ;
     }
@@ -23,8 +23,8 @@ export default class LessonsPage extends React.Component {
     }
 
     learn = (navigate, words) => {
-        words = 'testword'
         navigate('LessonCourse', {lessonType: words});
+        /*the lesson type will conditionally render the lesson course depending on the button pressed*/
     }
 
     render() {
@@ -50,136 +50,191 @@ export default class LessonsPage extends React.Component {
                                 marginBottom: 20
                             }}
                         />
+                        <Card style={styles.card}>
+                            <Card.Title title="                 ANIMALS"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "dogs")}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="dog" size={24} color="black" />
+                                        <Text style={styles.normalText}>DOGS</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "farm")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="barn" size={24} color="black" />
+                                        <Text style={styles.normalText}>FARM</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "pets")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialIcons name="pets" size={24} color="black" />
+                                        <Text style={styles.normalText}>PETS</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons4} onPress={() => this.learn(navigate, "wild")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="panda" size={24} color="black" />
+                                        <Text style={styles.normalText}>WILD</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                            <Text style={styles.titleText}> COMMON PHRASES </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
-                                    <Text style={styles.normalText}> 1</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <Octicons name="pencil" size={24} color="black" />
-                                    <Text style={styles.normalText}> 2</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialIcons name="phone-in-talk" size={24} color="black" />
-                                    <Text style={styles.normalText}> 3</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Card style={styles.card}>
+                            <Card.Title title="      COMMON PHRASES"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "phrases1")}>
+                                    <View style={styles.viewButtons}>
+                                        <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
+                                        <Text style={styles.normalText}>1</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "phrases2")}>
+                                    <View style={styles.viewButtons}>
+                                        <Octicons name="pencil" size={24} color="black" />
+                                        <Text style={styles.normalText}>2</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "phrases3")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialIcons name="phone-in-talk" size={24} color="black" />
+                                        <Text style={styles.normalText}>3</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                        <Text style={styles.titleText}> COLORS </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <FontAwesome5 name="paint-brush" size={24} color="mediumblue"/>
-                                    <Text style={styles.normalText}> 1</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <Ionicons name="md-color-palette-outline" size={24} color="black" />
-                                    <Text style={styles.normalText}> 2</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <Ionicons name="md-color-fill-outline" size={24} color="black" />
-                                    <Text style={styles.normalText}> 3</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Card style={styles.card}>
+                            <Card.Title title="                 COLORS"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "colors1")}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="paint-brush" size={24} color="mediumblue"/>
+                                        <Text style={styles.normalText}>1</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "colors2")}>
+                                    <View style={styles.viewButtons}>
+                                        <Ionicons name="md-color-palette-outline" size={24} color="black" />
+                                        <Text style={styles.normalText}>2</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "colors3")}>
+                                    <View style={styles.viewButtons}>
+                                        <Ionicons name="md-color-fill-outline" size={24} color="black" />
+                                        <Text style={styles.normalText}>3</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
+                        <Card style={styles.card}>
+                            <Card.Title title="               NUMBERS"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "numbers1")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="numeric-1" size={36} color="blue" />
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "numbers2")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="numeric-2" size={36} color="purple" />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "numbers3")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="numeric-3" size={36} color="deeppink" />
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                            <Text style={styles.titleText}> NUMBERS </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="numeric-1" size={36} color="blue" />
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="numeric-2" size={36} color="purple" />
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="numeric-3" size={36} color="deeppink" />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Card style={styles.card}>
+                            <Card.Title title="               CLOTHING"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, 'Clothing1')}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="tshirt" size={24} color="white" />
+                                        <Text style={styles.normalText}>1</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, 'Clothing2')}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="hat-fedora" size={24} color="purple" />
+                                        <Text style={styles.normalText}>2</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, 'Clothing3')}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="socks" size={24} color="deeppink" />
+                                        <Text style={styles.normalText}>3</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                        <Text style={styles.titleText}> CLOTHING </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, 'Clothing1')}>
-                                <View style={styles.viewButtons}>
-                                    <FontAwesome5 name="tshirt" size={24} color="white" />
-                                    <Text style={styles.normalText}> 1</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, 'Clothing2')}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="hat-fedora" size={24} color="purple" />
-                                    <Text style={styles.normalText}> 2</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <FontAwesome5 name="socks" size={24} color="deeppink" />
-                                    <Text style={styles.normalText}> 3</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Card style={styles.card}>
+                            <Card.Title title="                HOUSING"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "housing1")}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="house-user" size={24} color="blue" />
+                                        <Text style={styles.normalText}>1</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "housing2")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="garage-variant" size={24} color="black" />
+                                        <Text style={styles.normalText}>2</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "housing3")}>
+                                    <View style={styles.viewButtons}>
+                                        <FontAwesome5 name="bed" size={24} color="black" />
+                                        <Text style={styles.normalText}>3</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                        <Text style={styles.titleText}> HOUSING </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <FontAwesome5 name="house-user" size={24} color="blue" />
-                                    <Text style={styles.normalText}> 1</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="garage-variant" size={24} color="black" />
-                                    <Text style={styles.normalText}> 2</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <FontAwesome5 name="bed" size={24} color="black" />
-                                    <Text style={styles.normalText}> 3</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                        <Card style={styles.card}>
+                            <Card.Title title="               GRAMMAR"/>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "grammar1")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="format-letter-case" size={28} color="blue" />
+                                        <Text style={styles.normalText}>1</Text>
+                                    </View>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate, "grammar2")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="format-letter-case" size={28} color="purple" />
+                                        <Text style={styles.normalText}>2</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.arrangeButtons}>
+                                <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate, "grammar3")}>
+                                    <View style={styles.viewButtons}>
+                                        <MaterialCommunityIcons name="format-letter-case" size={28} color="deeppink" />
+                                        <Text style={styles.normalText}>3</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </Card>
 
-                        <Text style={styles.titleText}> GRAMMAR </Text>
-                        <View style={styles.arrangeButtons}>
-                            <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="format-letter-case" size={28} color="blue" />
-                                    <Text style={styles.normalText}> 1</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons2} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="format-letter-case" size={28} color="purple" />
-                                    <Text style={styles.normalText}> 2</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons3} onPress={() => this.learn(navigate)}>
-                                <View style={styles.viewButtons}>
-                                    <MaterialCommunityIcons name="format-letter-case" size={28} color="deeppink" />
-                                    <Text style={styles.normalText}> 3</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
                         </ScrollView>
                 </View>
                 </View>
@@ -244,44 +299,66 @@ const styles = StyleSheet.create({
     },
     buttons1: {
         fontWeight: 'bold',
-        backgroundColor: 'red',
+        backgroundColor: '#f15bb5',
         alignItems: 'center',
-        padding: 10,
-        width: 75,
+        padding: 2,
+        width: 80,
         borderRadius:80,
         color:'black',
         borderColor:'black',
         justifyContent: "center",
-        height: 75,
+        height: 80,
         marginBottom:6,
-        marginRight:10
+        marginRight:5,
+        marginLeft:39,
+        marginTop: 10
     },
     buttons2: {
         fontWeight: 'bold',
-        backgroundColor: 'orange',
+        backgroundColor: '#fee440',
         alignItems: 'center',
         padding: 10,
-        width: 75,
+        width: 80,
         borderRadius:80,
         color:'black',
         borderColor:'black',
         justifyContent: "center",
-        height: 75,
+        height: 80,
         marginBottom:6,
-        marginRight:10
+        marginRight:40,
+        marginLeft:40,
+        marginTop: 10
     },
     buttons3: {
         fontWeight: 'bold',
-        backgroundColor: 'green',
+        backgroundColor: '#00f5d4',
         alignItems: 'center',
         padding: 10,
-        width: 75,
+        width: 80,
         borderRadius:80,
         color:'black',
         borderColor:'black',
         justifyContent: "center",
-        height: 75,
+        height: 80,
         marginBottom:6,
+        marginRight:5,
+        marginLeft:0,
+        marginTop: 20
+    },
+    buttons4: {
+        fontWeight: 'bold',
+        backgroundColor: '#9b5de5',
+        alignItems: 'center',
+        padding: 10,
+        width: 80,
+        borderRadius:80,
+        color:'black',
+        borderColor:'black',
+        justifyContent: "center",
+        height: 80,
+        marginBottom:6,
+        marginRight:2,
+        marginTop: 20
     },
     search: {
         backgroundColor: "grey",
@@ -324,5 +401,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '800',
         flexDirection: 'row'
+    },
+    card: {
+        backgroundColor:'lightblue', //blue coloring =  #74B4E0
+        height:260, //200 if 3 lessons, 260 if 4
+        marginBottom:20,
+        borderRadius:20,
+        padding: 0,
+        shadowOpacity: 0
     }
 });
