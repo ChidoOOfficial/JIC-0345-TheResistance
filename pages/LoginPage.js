@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
+//import {API_URL} from "@env"
 
 //import all the components we are going to use.
 
+var AutoLogin = true
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -17,23 +19,44 @@ export default class LoginPage extends React.Component {
     };
 
     login = (navigate) => {
-        console.log('runnings');
-        //navigate('HomePage');
-        navigate('LessonsPage');
-        /*fetch('http://128.61.76.39:3000/', {
-            method: 'GET',
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/login', {
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }
+            }, 
+            body: JSON.stringify({
+                username: AutoLogin ? 'chido' : this.state.username, 
+                password: AutoLogin ? 'x' : this.state.password
+            })
         })
         .then((res) => res.json())
         .then((json) => {
-            console.log(json);
-        });*/
+            if (json.loggedIn) {
+                console.log('loggedin')
+                navigate('HomePage');
+            }
+            else {
+                Alert.alert(
+                    'Invalid Login Credentials',
+                    'Username or Password do not match',
+                    [
+                      {
+                        text: 'Try Again',
+                        style: 'cancel'
+                      }
+                    ]
+                  ); 
+            }
+        });
+
+
+
     }   
 
     render(){       
+        
         const { navigate } = this.props.navigation;
 
         return (
@@ -55,19 +78,19 @@ export default class LoginPage extends React.Component {
                         onChangeText={text => this.setState({password:text})}/>
                 </View>
                 <TouchableOpacity onPress={() => this.login(navigate)}>
-                    <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                    <View style={{backgroundColor: "#f15bb5" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6}}>
                         <Text style={styles.login}>Login</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={{alignItems: 'center', flexDirection: "row",
-                        justifyContent: 'flex-end', float:"right"}}>
+                        justifyContent: 'flex-end', float:"right", marginTop: 15}}>
                         <Text style={styles.forgotPassword}>Forgot Password?</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() =>navigate('RegistrationPage')}>
-                    <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                <TouchableOpacity onPress={() =>navigate('RegistrationPage')} styles={styles.signupBtn}>
+                    <View style={{backgroundColor: "#00f5d4" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6, marginTop: 50}}>
                         <Text style={styles.login}>Signup</Text>
                     </View>
@@ -80,19 +103,20 @@ export default class LoginPage extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#74B4E0',
         alignItems: 'center',
         justifyContent: 'center',
     },
     logo:{
         fontWeight:"bold",
         fontSize:50,
-        color:"#fb5b5a",
+        color:"white",
         marginBottom:40
     },
     inputView:{
         width:"80%",
-        backgroundColor:"#465881",
+        //#465881
+        backgroundColor:"#9b5de5",
         borderRadius:25,
         height:50,
         marginBottom:20,
@@ -109,13 +133,23 @@ const styles = StyleSheet.create({
     },
     loginBtn:{
         width:"80%",
-        backgroundColor:"#fb5b5a",
+        backgroundColor:"#9b5de5",
         borderRadius:25,
         height:50,
-        alignItems:"center",
+        //alignItems:"center",
         justifyContent:"center",
         marginTop:40,
         marginBottom:10
+    },
+    signupBtn:{
+        width: "25%",
+        height: 45,
+        borderRadius: 25,
+        backgroundColor: "#00f5d4",
+        //alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
     },
     forgotPassword:{
         color:"black",
@@ -127,6 +161,8 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
         fontWeight: '800',
-        flexDirection: 'row'
+        flexDirection: 'row', 
+        justifyContent: 'center',
+        alignContent: 'center',
     }
 });

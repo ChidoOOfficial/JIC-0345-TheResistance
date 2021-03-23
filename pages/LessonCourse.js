@@ -2,10 +2,15 @@ import {StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, 
 import React, {useState, useEffect} from "react";
 import Toolbar from './Toolbar';
 import {CheckBox} from "react-native-elements";
-import Swiper from 'react-native-swiper'
-import SoundPlayer from 'react-native-sound-player'
-import {MaterialIcons,AntDesign} from "@expo/vector-icons";
+import Swiper from 'react-native-swiper/src'
+import {MaterialIcons, AntDesign} from "@expo/vector-icons";
 import { Audio } from 'expo-av';
+
+//import SoundPlayer from 'react-native-sound-player';
+
+
+
+//import Swiper from 'react-native-swiper'
 //import all the components we are going to use.
 
 
