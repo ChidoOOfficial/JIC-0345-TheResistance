@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, TouchableOpacity, Button, Alert} from 'react-native';
 
 import Toolbar from '../Toolbar';
 
@@ -8,11 +8,37 @@ class UserProfileHolder extends Component {
         return(
             <View style={styles.userContainer}>
                 <Image style={styles.userImage} source={this.props.imageSrc}/>
-                <Text style={styles.userNameText}>  {this.props.userName} </Text>                
+                <Text style={styles.userNameText}>  {this.props.userName} </Text>
+                <TouchableOpacity style={{marginLeft: "auto"}} onPress={this.remove.bind(this)}>
+                    <View >
+                        <Text style={styles.remove}>Remove</Text>
+                    </View>
+                </TouchableOpacity>
+
             </View>
-            
+
         )
     }
+
+    remove() {
+        /*
+        fetch('', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "SpecialID": this.props.userName
+            })
+        })
+        .then((res) => res.json())
+        .then((json) => {
+        });
+        */
+        console.log("removed -> " + this.props.userName)
+    }
+
 }
 
 export default class UserProfileListPage extends Component {
@@ -35,7 +61,7 @@ export default class UserProfileListPage extends Component {
                         </ScrollView>
                     </View>
                 </SafeAreaView>
-            </View>            
+            </View>
         );
     }
 }
@@ -49,7 +75,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        flex: 1,        
+        flex: 1,
         alignItems: "center",
         paddingTop: 30,
     },
@@ -80,5 +106,9 @@ const styles = StyleSheet.create({
         flex: 1.2,
         alignItems: 'center',
         paddingTop: 5
+    },
+    remove: {
+        color: "red",
+        paddingRight: 15
     }
 });
