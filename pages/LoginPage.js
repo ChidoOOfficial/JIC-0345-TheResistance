@@ -14,8 +14,10 @@ export default class LoginPage extends React.Component {
     }
 
     state={
-        username:"",
-        password:""
+        username:"", //need to set username by retrieving it from db
+        password:"",
+        id: "",
+        userMode: "Teacher", //default -> will retrieve from database,
     };
 
     login = (navigate) => {
@@ -25,9 +27,9 @@ export default class LoginPage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify({
-                username: AutoLogin ? 'chido' : this.state.username, 
+                username: AutoLogin ? 'chido' : this.state.userName,
                 password: AutoLogin ? 'x' : this.state.password
             })
         })
@@ -47,19 +49,51 @@ export default class LoginPage extends React.Component {
                         style: 'cancel'
                       }
                     ]
-                  ); 
+                  );
             }
         });
 
+        let ID = this.state.id;
+        fetch('https://junior-design-resistence.herokuapp.com/user/specialID', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                ID = json["SpecialID"];
+                this.setState({
+                   id: ID
+                });
+            });
 
+       /* let userProfile
+        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((json) => {
+                userProfile = json["SpecialID"];
 
-    }   
+                this.setState({
+                    username: userProfile.Username
+                });
+            }); */
+    }
 
-    render(){       
-        
+    render(){
+
         const { navigate } = this.props.navigation;
 
         return (
+            global.uniqueID = this.state.id,
+            global.userType = this.state.userMode,
+            global.studentName = this.state.username, //for some reason it won't display the name
             <View style={styles.screen}>
                 <Text style={styles.logo}>Welcome!</Text>
                 <View style={styles.inputView} >
@@ -161,7 +195,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
         fontWeight: '800',
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'center',
         alignContent: 'center',
     }
