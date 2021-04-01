@@ -22,7 +22,7 @@ export default class RankingsPage extends React.Component {
             <View style={{flex: 1}}>
                 <SafeAreaView style={styles.screen}>
                     <View style={styles.header}>
-                        <Text style={styles.headerText}>Top 10 students by quizzes passed</Text>
+                        <Text style={styles.headerText}>Number of Quisses Passed</Text>
                     </View>
                     <View style={styles.studentSlots}>
                         <ScrollView>

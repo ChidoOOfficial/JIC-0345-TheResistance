@@ -119,7 +119,7 @@ export default class LoginPage extends React.Component {
                                     placeholderTextColor="white"
                                     onChangeText={retypePassword => this.setState({password:retypePassword})}/>
                             </View>
-                            <TouchableOpacity onPress={() =>navigate('HomePage')} style={styles.registerBtn}>
+                            <TouchableOpacity onPress={() => navigate('HomePage')} style={styles.registerBtn}>
                                 <View style={{alignItems: 'center', flexDirection: "row",
                                     justifyContent: 'center', padding:6,}}>
                                     <Text style={styles.registerText}>Register</Text>
