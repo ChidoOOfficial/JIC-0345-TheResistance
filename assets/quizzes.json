@@ -1,0 +1,33 @@
+[{
+    "title": "ANIMALS",
+    "categories": [{
+        "name": "DOGS",
+        "image-resource": "../assets/Animals/01chihuahua.png",
+        "questions": [{
+            "options": [
+                {
+                    "text": "Chihuahua",
+                    "image-resource": null,
+                    "isCorrect": true
+                },
+                {
+                    "text": "Bulldog",
+                    "image-resource": null,
+                    "isCorrect": false
+                },
+                {
+                    "text": "Labrodor",
+                    "image-resource": null,
+                    "isCorrect": false
+                },
+                {
+                    "text": "Pitbull",
+                    "image-resource": null,
+                    "isCorrect": false
+                }
+            ]
+        }]
+    }]
+}, {
+    "quiz": "Quiz2"
+}]

@@ -6,6 +6,8 @@ import Toolbar from './Toolbar';
 import { Checkbox } from 'react-native-elements'
 import Swiper from 'react-native-swiper/src'
 
+import quizData from '../assets/quizzes.json';
+
 
 
 export default class QuizSamplePage extends React.Component {
@@ -468,6 +470,8 @@ export default class QuizSamplePage extends React.Component {
 
 
     render () {
+        console.log(quizData)
+        
         const { navigate } = this.props.navigation;
 
         return (
