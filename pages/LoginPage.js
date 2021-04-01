@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
+//import {API_URL} from "@env"
 
 //import all the components we are going to use.
 
@@ -13,8 +14,10 @@ export default class LoginPage extends React.Component {
     }
 
     state={
-        username:"",
-        password:""
+        username:"", //need to set username by retrieving it from db
+        password:"",
+        id: "",
+        userMode: "Teacher", //default -> will retrieve from database,
     };
 
     login = (navigate) => {
@@ -24,9 +27,9 @@ export default class LoginPage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify({
-                username: AutoLogin ? 'chido' : this.state.username, 
+                username: AutoLogin ? 'chido' : this.state.userName,
                 password: AutoLogin ? 'x' : this.state.password
             })
         })
@@ -46,19 +49,51 @@ export default class LoginPage extends React.Component {
                         style: 'cancel'
                       }
                     ]
-                  ); 
+                  );
             }
         });
 
+        let ID = this.state.id;
+        fetch('https://junior-design-resistence.herokuapp.com/user/specialID', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                ID = json["SpecialID"];
+                this.setState({
+                   id: ID
+                });
+            });
 
-        
-    }   
+       /* let userProfile
+        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((json) => {
+                userProfile = json["SpecialID"];
 
-    render(){       
-        
+                this.setState({
+                    username: userProfile.Username
+                });
+            }); */
+    }
+
+    render(){
+
         const { navigate } = this.props.navigation;
 
         return (
+            global.uniqueID = this.state.id,
+            global.userType = this.state.userMode,
+            global.studentName = this.state.username, //for some reason it won't display the name
             <View style={styles.screen}>
                 <Text style={styles.logo}>Welcome!</Text>
                 <View style={styles.inputView} >
@@ -77,19 +112,19 @@ export default class LoginPage extends React.Component {
                         onChangeText={text => this.setState({password:text})}/>
                 </View>
                 <TouchableOpacity onPress={() => this.login(navigate)}>
-                    <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                    <View style={{backgroundColor: "#f15bb5" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6}}>
                         <Text style={styles.login}>Login</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={{alignItems: 'center', flexDirection: "row",
-                        justifyContent: 'flex-end', float:"right"}}>
+                        justifyContent: 'flex-end', float:"right", marginTop: 15}}>
                         <Text style={styles.forgotPassword}>Forgot Password?</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() =>navigate('RegistrationPage')}>
-                    <View style={{backgroundColor: "red" ,alignItems: 'center', flexDirection: "row",
+                <TouchableOpacity onPress={() =>navigate('RegistrationPage')} styles={styles.signupBtn}>
+                    <View style={{backgroundColor: "#00f5d4" ,alignItems: 'center', flexDirection: "row",
                         justifyContent: 'center', borderRadius: 15, padding:6, marginTop: 50}}>
                         <Text style={styles.login}>Signup</Text>
                     </View>
@@ -102,19 +137,20 @@ export default class LoginPage extends React.Component {
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#74B4E0',
         alignItems: 'center',
         justifyContent: 'center',
     },
     logo:{
         fontWeight:"bold",
         fontSize:50,
-        color:"#fb5b5a",
+        color:"white",
         marginBottom:40
     },
     inputView:{
         width:"80%",
-        backgroundColor:"#465881",
+        //#465881
+        backgroundColor:"#9b5de5",
         borderRadius:25,
         height:50,
         marginBottom:20,
@@ -131,13 +167,23 @@ const styles = StyleSheet.create({
     },
     loginBtn:{
         width:"80%",
-        backgroundColor:"#fb5b5a",
+        backgroundColor:"#9b5de5",
         borderRadius:25,
         height:50,
-        alignItems:"center",
+        //alignItems:"center",
         justifyContent:"center",
         marginTop:40,
         marginBottom:10
+    },
+    signupBtn:{
+        width: "25%",
+        height: 45,
+        borderRadius: 25,
+        backgroundColor: "#00f5d4",
+        //alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
     },
     forgotPassword:{
         color:"black",
@@ -149,6 +195,8 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
         fontWeight: '800',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignContent: 'center',
     }
 });

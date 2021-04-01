@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
 
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper/src'
 
 import Toolbar from './Toolbar';
 import UserProfilePage from './UserProfilePages/UserProfilePage'
@@ -16,26 +16,42 @@ class TitleText extends Component {
       )
     }
   }
-  
+
 
 export default class MainUserProfilePage extends Component {
 
     render(){
         const { navigate } = this.props.navigation;
-        return (
-            <View style={{flex: 1}}>
-                <Swiper
-                    loop={false}
-                    showsPagination={true}
-                    index={0}>
-                    
-                    <UserProfilePage />
-                    <UserProfileListPage />
-                </Swiper>
-                <Toolbar navigation={navigate}/>
-            </View>
-            
-        );
+        if (global.userType === "Teacher") {
+            return (
+                <View style={{flex: 1}}>
+                    <Swiper
+                        loop={false}
+                        showsPagination={true}
+                        index={0}>
+
+                        <UserProfilePage />
+                        <UserProfileListPage />
+                    </Swiper>
+                    <Toolbar navigation={navigate}/>
+                </View>
+
+            );
+        } else {
+            return (
+                <View style={{flex: 1}}>
+                    <Swiper
+                        loop={false}
+                        showsPagination={true}
+                        index={0}>
+
+                        <UserProfilePage />
+                    </Swiper>
+                    <Toolbar navigation={navigate}/>
+                </View>
+
+            );
+        }
     }
 }
 
