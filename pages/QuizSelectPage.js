@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper';
 import Toolbar from './Toolbar';
 import {FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons} from '@expo/vector-icons';
 
-export default class QuizzesPage extends React.Component {
+export default class QuizSelectPage extends React.Component {
 
     constructor() {
         super();
@@ -48,7 +48,7 @@ export default class QuizzesPage extends React.Component {
                             <Card style={styles.card}>
                                 <Card.Title title="                 ANIMALS"/>
                                 <View style={styles.arrangeButtons}>
-                                    <TouchableOpacity style={styles.buttons1} onPress={() => this.props.navigation.navigate('QuizSamplePage')}>
+                                    <TouchableOpacity style={styles.buttons1} onPress={() => this.props.navigation.navigate('QuizPage', { title: 'ANIMALS', category: "DOGS"})}>
                                         <View style={styles.viewButtons}>
                                             <FontAwesome5 name="dog" size={24} color="black" />
                                             <Text style={styles.normalText}>DOGS</Text>

@@ -1,33 +1,91 @@
-[{
-    "title": "ANIMALS",
-    "categories": [{
-        "name": "DOGS",
-        "image-resource": "../assets/Animals/01chihuahua.png",
-        "questions": [{
-            "options": [
-                {
-                    "text": "Chihuahua",
-                    "image-resource": null,
-                    "isCorrect": true
-                },
-                {
-                    "text": "Bulldog",
-                    "image-resource": null,
-                    "isCorrect": false
-                },
-                {
-                    "text": "Labrodor",
-                    "image-resource": null,
-                    "isCorrect": false
-                },
-                {
-                    "text": "Pitbull",
-                    "image-resource": null,
-                    "isCorrect": false
-                }
-            ]
-        }]
-    }]
-}, {
-    "quiz": "Quiz2"
-}]
+[
+    {
+        "title": "ANIMALS",
+        "categories": [
+            {
+                "name": "DOGS",
+                "possiblescore": 3,
+                "questions": [
+                    {
+                        "image_resource": "01chihuahua",
+                        "prompt": "Prompt",
+                        "options": [
+                            {
+                                "text": "Chihuahuar",
+                                "image_resource": null,
+                                "isCorrect": true
+                            },
+                            {
+                                "text": "Bulldog",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Labrodor",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Pitbull",
+                                "image_resource": null,
+                                "isCorrect": false
+                            }
+                        ]
+                    },
+                    {
+                        "image_resource": "02beagle",
+                        "prompt": "Prompt",
+                        "options": [
+                            {
+                                "text": "Shiba Inu",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Beagle",
+                                "image_resource": null,
+                                "isCorrect": true
+                            },
+                            {
+                                "text": "Terrier",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Shetland",
+                                "image_resource": null,
+                                "isCorrect": false
+                            }
+                        ]
+                    },
+                    {
+                        "image_resource": "03dachshund",
+                        "prompt": "Prompt",
+                        "options": [
+                            {
+                                "text": "Great Dane",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Husky",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "Dachshund",
+                                "image_resource": null,
+                                "isCorrect": true
+                            },
+                            {
+                                "text": "German Shepard",
+                                "image_resource": null,
+                                "isCorrect": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

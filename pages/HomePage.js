@@ -19,7 +19,7 @@ export default class HomePage extends React.Component {
                             <Text style={styles.optionText}>Lessons</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.optionBox, {backgroundColor: "#F45BB5"}]} onPress={() => navigate('QuizzesPage')}>
+                    <TouchableOpacity style={[styles.optionBox, {backgroundColor: "#F45BB5"}]} onPress={() => navigate('QuizSelectPage')}>
                         <View>
                             <Text style={[styles.optionText, {"color": "white"}]}>Quizzes</Text>
                         </View>
