@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, LogBox} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
 //import {API_URL} from "@env"
@@ -109,6 +109,7 @@ export default class LoginPage extends React.Component {
             global.uniqueID = this.state.id,
             global.userType = this.state.userMode,
             global.studentName = this.state.username, //for some reason it won't display the name
+            LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
             <View style={styles.screen}>
                 <Text style={styles.logo}>Welcome!</Text>
                 <View style={styles.inputView} >
