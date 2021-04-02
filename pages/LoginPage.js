@@ -37,6 +37,52 @@ export default class LoginPage extends React.Component {
         .then((json) => {
             if (json.loggedIn) {
                 console.log('loggedin')
+                let ID = this.state.id;
+
+                fetch('https://junior-design-resistence.herokuapp.com/user/specialID', {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        ID = json["SpecialID"];
+                        this.setState({
+                            id: ID
+                        });
+                    });
+                console.log('hello')
+                console.log(this.state.id)
+                // default for now will be set to Teacher mode for coding purposes
+                let User = this.state.user;
+                fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "SpecialID": this.state.id
+                    })
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        User = json["user"][0];
+                        this.setState({
+                            userMode: User.AccountType,
+                            username: User.Username
+                        });
+                        //console.log(this.state.user)
+                        //console.log(User)
+                        //console.log(User.AccountType)
+                        //console.log('Below is the username')
+                        //console.log(this.state.username)
+                        this.setState({
+                            userMode: "Teacher" //this is to allow for coding the teacher
+                        })
+                    });
                 navigate('HomePage');
             }
             else {
@@ -53,37 +99,6 @@ export default class LoginPage extends React.Component {
             }
         });
 
-        let ID = this.state.id;
-        fetch('https://junior-design-resistence.herokuapp.com/user/specialID', {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-        })
-            .then((res) => res.json())
-            .then((json) => {
-                ID = json["SpecialID"];
-                this.setState({
-                   id: ID
-                });
-            });
-
-       /* let userProfile
-        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-        })
-            .then((json) => {
-                userProfile = json["SpecialID"];
-
-                this.setState({
-                    username: userProfile.Username
-                });
-            }); */
     }
 
     render(){
