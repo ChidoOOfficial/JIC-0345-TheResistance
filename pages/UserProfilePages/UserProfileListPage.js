@@ -20,7 +20,7 @@ class UserProfileHolder extends Component {
         return(
             <View style={styles.userContainer}>
                 <Image style={styles.userImage} source={this.props.imageSrc}/>
-                <TouchableOpacity onPress={() => this.consoleAlert}>
+                <TouchableOpacity style={styles.studentButton} onPress={() => this.consoleAlert}>
                     <Text style={styles.userNameText}>  {this.props.userName} </Text>
                 </TouchableOpacity>
             </View>
@@ -106,6 +106,7 @@ export default class UserProfileListPage extends Component {
       //  const { navigate } = this.props.navigation;
         return (
             LogBox.ignoreLogs(['VirtualizedLists should never be nested']),
+            LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
             <View style={styles.container}>
                 <SafeAreaView style={styles.screen}>
                     <View style={styles.header}>
@@ -229,5 +230,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         marginLeft: 40
+    },
+    studentButton: {
+        //width:50,
     }
 });
