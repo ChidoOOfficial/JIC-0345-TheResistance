@@ -13,6 +13,20 @@ export default class QuizSelectPage extends React.Component {
             buttonName: ' '
         }
         ;
+
+        fetch('https://junior-design-resistence.herokuapp.com/user/current', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }, 
+        })
+        .then((res) => res.json())
+        .then((json) => {
+
+            // get quiz scores to determine if it needs a checkmark or not
+
+        });
     }
     _onPressButton() {
     }
@@ -47,15 +61,17 @@ export default class QuizSelectPage extends React.Component {
                             {quizData.map(card => {
                                 let categories = card.categories.map((cat, index) => {
                                     let colors = ['#f15bb5', '#fee440', '#00f5d4', '#9b5de5'];
+                                    let completed = 1; // <-use value from the database here
                                     return (
                                         <TouchableOpacity key={index}
                                             style={[styles.buttons,{backgroundColor: colors[index]}]}
                                             onPress={() => this.props.navigation.navigate('QuizPage', {title: card.title, category: cat.name})}>
-                                            
+
                                             <View style={styles.viewButtons}>
                                                 <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
                                                 <Text style={styles.normalText}>{cat.name}</Text>
                                             </View>
+                                            <Image source={require('../assets/Checkmark.png')} style={[styles.checkmark, {visibility: completed ? "visible" : "hidden"}]}/>
                                         </TouchableOpacity>
                                     );
                                 });
@@ -179,5 +195,13 @@ const styles = StyleSheet.create({
         marginBottom:20,
         borderRadius:20,
         shadowOpacity: 0
+    },
+    checkmark : {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: "green",
+        position: "absolute",
+        right: 0
     }
 });
