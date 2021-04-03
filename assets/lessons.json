@@ -1,0 +1,94 @@
+[
+    {
+        "title": "ANIMALS",
+        "categories": [
+            {
+                "name": "WILD",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "Lynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Leopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Tiger",
+                        "image_resource": "01tiger",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Lion",
+                        "image_resource": "01lion",
+                        "quinault_text_resource": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "HOUSING",
+        "categories": [
+            {
+                "name": "HOUSING1",
+                "lessons": [ 
+                    {
+                        "image_resource": "01basket",                        
+                        "english_text_resource": "Where am I weaving the basket?",
+                        "quinault_text_resource": "čɑn čɪkwɪlloməɫ hənməx̣oy"
+                    },
+                    {
+                        "image_resource": "01rug",                        
+                        "english_text_resource": "Put away the rug",
+                        "quinault_text_resource": "ayštuW hənceʔleʔjəktən"
+                    },
+                    {
+                        "image_resource": "01bucket",                        
+                        "english_text_resource": "I'm emptying the bucket",
+                        "quinault_text_resource": "čɪḳ̓wuʔlɑke tisɫil̓kɑltən"
+                    },
+                    {
+                        "image_resource": "01pencil",                        
+                        "english_text_resource": "It is a pencil",
+                        "quinault_text_resource": "t̓ɑʔɑnimɫɪn"
+                    },
+                    {
+                        "image_resource": "3oclock",                        
+                        "english_text_resource": "Before three o'clock",
+                        "quinault_text_resource": "jɑčs čɑʔɫɑ"
+                    },
+                    {
+                        "image_resource": "01broom",                        
+                        "english_text_resource": "I swept the floor with a broom",
+                        "quinault_text_resource": "čitcɑteejək tɑč cɑteejəktən"
+                    },
+                    {
+                        "image_resource": "01dustpan",                        
+                        "english_text_resource": "The garbage is empty",
+                        "quinault_text_resource": "x̣əp̓ɑk tisx̣wɑksiɫɪntən"
+                    },
+                    {
+                        "image_resource": "01suitcase",                        
+                        "english_text_resource": "Give me the suitcase",
+                        "quinault_text_resource": "kwitʔɑwWčic ɫil̓tɑʔɑmtən"
+                    },
+                    {
+                        "image_resource": "01pillow",                        
+                        "english_text_resource": "I want this pillow",
+                        "quinault_text_resource": "čɪčins nisəl̓ḳeʔemin"
+                    },
+                    {
+                        "image_resource": "01mail",                        
+                        "english_text_resource": "Don't forget the mail",
+                        "quinault_text_resource": "ƛ̓o kwitmuluḳɑme ʔɑʔmɑspepɑ"
+                    }                    
+                    
+                ]
+            }
+        ]
+    }
+]
+

@@ -3,9 +3,9 @@ import React from "react";
 
 import Toolbar from './Toolbar';
 
-export default class StorePage extends React.Component {
+export default class StorePageCopy extends React.Component {
     state = {
-        points: 0,
+        //points: 0,
         items: []
     };
 
@@ -13,16 +13,16 @@ export default class StorePage extends React.Component {
         super(props);
 
         let usersInventory = this.state.items;
-        let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')},
+        let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')}, 
                               {Item: "Goose", price: 150, owned: 0, selected: 0, src: require('../assets/goose.png')},
                               {Item: "Snake", price: 250, owned: 0, selected: 0, src: require('../assets/snake.png')},];
 
         fetch('https://junior-design-resistence.herokuapp.com/user/inventory', {
-            method: 'GET',
+            method: '',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }, 
         })
         .then((res) => res.json())
         .then((json) => {
@@ -37,18 +37,19 @@ export default class StorePage extends React.Component {
             }
 
             this.setState({
-                points: this.state.points,
+                //points: this.state.points,
                 items: itemDetailList
             });
         });
 
+        /*
         let userCoins = this.state.points;
         fetch('https://junior-design-resistence.herokuapp.com/user/coins', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }, 
         })
         .then((res) => res.json())
         .then((json) => {
@@ -59,8 +60,9 @@ export default class StorePage extends React.Component {
                 items: this.state.items
             });
         });
+        */
     }
-
+    /*
     buy(itemNum) {
         if (this.state.items[itemNum].price <= this.state.points) { //enough points
             let updatedItems = this.state.items;
@@ -74,7 +76,8 @@ export default class StorePage extends React.Component {
             //not enough points
         }
     };
-
+    
+  
     sell(itemNum) {
         if (this.state.items[itemNum].selected > 0) {
             let updatedItems = this.state.items;
@@ -89,6 +92,7 @@ export default class StorePage extends React.Component {
         }
     };
 
+    
     confirm() {
         Alert.alert("Confirm", "Are you sure?",
             [
@@ -98,6 +102,7 @@ export default class StorePage extends React.Component {
             {cancelable: false}
         );
     }
+    
 
     updateDatabase() {
         let newInventory = [];
@@ -113,7 +118,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }, 
             body: JSON.stringify({
                 "Inventory": newInventory
             })
@@ -127,7 +132,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            },
+            }, 
             body: JSON.stringify({
                 "Coins": this.state.points
             })
@@ -150,10 +155,11 @@ export default class StorePage extends React.Component {
         });
 
     }
+    */
 
     render() {
         const { navigate } = this.props.navigation;
-
+        
         var itemList = [];
         for (let i = 0; i < this.state.items.length; i++) {
             itemList.push(
@@ -166,43 +172,24 @@ export default class StorePage extends React.Component {
                             <Text>{this.state.items[i].owned} owned</Text>
                         </View>
                     </View>
-                    <View style={[styles.subContainer, {'justifyContent': 'flex-end'}]}>
-                        <View>
-                            <Text style={styles.price}>Price</Text>
-                            <Text>{this.state.items[i].price}</Text>
-                        </View>
-                        <View style={styles.itemBuyBox}>
-                            <TouchableOpacity onPress={this.sell.bind(this, i)}>
-                                <View style={styles.itemBuyButton}>
-                                    <Text style={styles.plusMinusText}>-</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <Text style={styles.itemAmount}>{this.state.items[i].selected}</Text>
-                            <TouchableOpacity onPress={this.buy.bind(this, i)}>
-                                <View style={styles.itemBuyButton}>
-                                    <Text style={styles.plusMinusText}>+</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    
+                    
                 </View>
             );
         }
         return (
+            
             <View style={{flex: 1}}>
                 <View style={styles.screen}>
-                    <Text style={styles.available}>Available Coins: {this.state.points}</Text>
-
+                    
+                    
                     {itemList}
 
-                    <TouchableOpacity onPress={this.confirm.bind(this)}>
-                        <View style={styles.confirmPurchases}>
-                            <Text style={styles.login}>Purchase!</Text>
-                        </View>
-                    </TouchableOpacity>
+                    
                 </View>
                 <Toolbar navigation={navigate}/>
             </View>
+            
         );
     }
 }
@@ -222,7 +209,8 @@ const styles = StyleSheet.create({
     itemGroup: {
         margin: 10,
         padding: 10,
-        width: "95%",
+        //changes the length of the white container box
+        width: "45%", //changed from 95% since we dont need plus, minus buttons
         backgroundColor: '#FFFFFF',
         borderRadius: 15,
         display: 'flex',
@@ -239,7 +227,8 @@ const styles = StyleSheet.create({
     itemPic: {
         width: 50,
         height: 50,
-        marginRight : 10
+        marginRight : 10,
+        alignItems: 'center',
     },
     nameQtyBox: {
         alignItems: 'center',
