@@ -20,16 +20,36 @@ class UserProfileHolder extends Component {
         return(
             <View style={styles.userContainer}>
                 <Image style={styles.userImage} source={this.props.imageSrc}/>
-                <TouchableOpacity style={styles.studentButton} onPress={() => this.consoleAlert}>
-                    <Text style={styles.userNameText}>  {this.props.userName} </Text>
+                <Text style={styles.userNameText}>  {this.props.userName} </Text>
+                <TouchableOpacity style={{marginLeft: "auto"}} onPress={this.remove.bind(this)}>
+                    <View >
+                        <Text style={styles.remove}>Remove</Text>
+                    </View>
                 </TouchableOpacity>
             </View>
 
         )
     }
-    consoleAlert() {
-        Alert.alert("Hi");
+
+    remove() {
+        /*
+        fetch('', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "SpecialID": this.props.userName
+            })
+        })
+        .then((res) => res.json())
+        .then((json) => {
+        });
+        */
+        console.log("removed -> " + this.props.userName)
     }
+
 }
 
 export default class UserProfileListPage extends Component {
@@ -196,6 +216,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 5
     },
+
+    remove: {
+        color: "red",
+        paddingRight: 15
     inputView:{
         width:"80%",
         //#465881
