@@ -23,7 +23,7 @@ export default class RankingsPage extends React.Component {
             <View style={{flex: 1}}>
                 <SafeAreaView style={styles.screen}>
                     <View style={styles.header}>
-                        <Text style={styles.headerText}>Number of Quisses Passed</Text>
+                        <Text style={styles.headerText}>Number of Quizzes Passed</Text>
                     </View>
                     <View style={styles.studentSlots}>
                         <ScrollView>
@@ -49,7 +49,7 @@ export default class RankingsPage extends React.Component {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#74B4E0',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   studentContainer: {
     height: 80, //this heigh makes the spacing around the image border look better
     width: Dimensions.get('window').width * 0.7, //made 0.7 of the screen to allow padding
-    backgroundColor: '#74B4E0',
+    backgroundColor: 'white',
     marginBottom: 25, //number of pixels offset from the bottom
     flexDirection: 'row', // aligns the quiz images and names to the left
     alignItems: 'center', // aligns boxes to be centered
