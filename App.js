@@ -13,10 +13,11 @@ import StorePage from './pages/StorePage';
 import SettingsPage from './pages/SettingsPage';
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import RankingsPage from './pages/RankingsPage';
-import QuizSelectPage from './pages/QuizSelectPage';
-import QuizPage from './pages/QuizPage';
-import LessonCourse from './pages/LessonCourse'
-import StudentPurchases from './pages/StudentPurchases';
+import QuizzesPage from './pages/QuizzesPage';
+import QuizSamplePage from './pages/QuizSamplePage';
+import LessonCourse from './pages/LessonCourse';
+import TeacherResultsPage from './pages/TeacherResultsPage';
+
 
 //import all the screens we are going to switch
 const App = createStackNavigator({
@@ -37,12 +38,13 @@ const App = createStackNavigator({
       Settings: {screen: SettingsPage },
       ChangePasswordPage: { screen: ChangePasswordPage},
       RankingsPage: { screen: RankingsPage },
-      QuizSelectPage : { screen: QuizSelectPage },
-      QuizPage : {screen: QuizPage },
-      LessonCourse: {screen: LessonCourse }
+      QuizzesPage : { screen: QuizzesPage },
+      QuizSamplePage : {screen: QuizSamplePage },
+      LessonCourse: {screen: LessonCourse },
+      TeacherResultsPage: {screen: TeacherResultsPage }
     },
     {
-      initialRouteName: 'LoginPage',
+      initialRouteName: 'TeacherResultsPage',
     }
 );
 export default createAppContainer(App);
