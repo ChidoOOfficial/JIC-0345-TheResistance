@@ -16,6 +16,7 @@ import RankingsPage from './pages/RankingsPage';
 import QuizSelectPage from './pages/QuizSelectPage';
 import QuizPage from './pages/QuizPage';
 import LessonCourse from './pages/LessonCourse'
+import StudentPurchases from './pages/StudentPurchases';
 
 //import all the screens we are going to switch
 const App = createStackNavigator({
@@ -32,7 +33,7 @@ const App = createStackNavigator({
                 headerLeft: () => null,
             }, 
         },
-      StorePage: { screen: StorePage },
+      StorePage: { screen: StorePage},
       Settings: {screen: SettingsPage },
       ChangePasswordPage: { screen: ChangePasswordPage},
       RankingsPage: { screen: RankingsPage },
