@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
 
@@ -61,7 +61,7 @@ export default class LoginPage extends React.Component {
         const { navigate } = this.props.navigation;
 
         return (
-            <View style={{flex: 1}}>
+            <ScrollView style={{flex: 1}}>
                     <KeyboardAvoidingView
                         behavior={"padding"}
                         style={styles.screen}
@@ -127,7 +127,7 @@ export default class LoginPage extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -173,7 +173,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
+        marginTop: 30,
+        marginBottom: 35,
     },
     registerText: {
         color: 'black',

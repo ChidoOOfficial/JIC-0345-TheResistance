@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert, Dimensions } from 'react-native';
+import Toolbar from './Toolbar';
 
 class StudentHolder extends Component {
     render() {
@@ -39,6 +40,7 @@ export default class RankingsPage extends React.Component {
                         </ScrollView>
                     </View>
                 </SafeAreaView>
+                <Toolbar navigation={navigate}/>
             </View>
         );
     }
