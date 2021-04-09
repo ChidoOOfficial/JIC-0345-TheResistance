@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, FlatList, Button, SafeAreaView} from 'react-native';
+import {StyleSheet, View, Text, TextInput, TouchableOpacity, ScrollView, FlatList, Button, SafeAreaView, Image} from 'react-native';
 import { Card } from 'react-native-paper';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import React from "react";
@@ -7,6 +7,7 @@ import {FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons}
 import { CheckBox } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LessonCourse from "./LessonCourse";
+import lessonData from '../assets/lessons.json';
 //import all the components we are going to use.
 
 export default class LessonsPage extends React.Component {
@@ -50,7 +51,33 @@ export default class LessonsPage extends React.Component {
                                 marginBottom: 20
                             }}
                         />
-                        <Card style={styles.card}>
+
+                        {lessonData.map(card => {
+                            let categories = card.categories.map((cat, index) => {
+                                let colors = ['#f15bb5', '#fee440', '#00f5d4', '#9b5de5'];
+                                let completed = 1; // <-use value from the database here
+                                return (
+                                    <TouchableOpacity key={index}
+                                        style={[styles.buttons,{backgroundColor: colors[index%colors.length]}]}
+                                        onPress={() => this.props.navigation.navigate('LessonCourse', {title: card.title, category: cat.name})}>
+
+                                        <View style={styles.viewButtons}>
+                                            <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
+                                            <Text style={styles.normalText}>{cat.name}</Text>
+                                        </View>
+                                        <Image source={require('../assets/Checkmark.png')} style={[styles.checkmark, {visibility: completed ? "visible" : "hidden"}]}/>
+                                    </TouchableOpacity>
+                                );
+                            });
+                            return (
+                                <Card style={styles.card}>
+                                    <Card.Title title={card.title}/>
+                                    <View style={styles.arrangeButtons}>{categories}</View>
+                                </Card>
+                            );
+                        })}
+
+                        {/*<Card style={styles.card}>
                             <Card.Title title="                 ANIMALS"/>
                             <View style={styles.arrangeButtons}>
                                 <TouchableOpacity style={styles.buttons1} onPress={() => this.learn(navigate, "dogs")}>
@@ -233,9 +260,8 @@ export default class LessonsPage extends React.Component {
                                     </View>
                                 </TouchableOpacity>
                             </View>
-                        </Card>
-
-                        </ScrollView>
+                        </Card>*/}
+                    </ScrollView>
                 </View>
                 </View>
                 <Toolbar navigation={navigate}/>
@@ -246,23 +272,24 @@ export default class LessonsPage extends React.Component {
 
 }
 const styles = StyleSheet.create({
+    viewButtons: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     arrangeButtons: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
-    },
-    viewButtons: {
-        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flexWrap: "wrap"
     },
     image: {
         flex: 1,
         aspectRatio: 1.5,
         resizeMode: 'contain',
-
     },
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         paddingTop: 40,
         backgroundColor: '#ecf0f1',
     },
@@ -275,14 +302,14 @@ const styles = StyleSheet.create({
     },
     screen: {
         flexGrow: 1,
-        backgroundColor: 'lightskyblue',
+        backgroundColor: '#74B4E0',
         alignItems: 'center',
     },
     logo:{
         fontWeight:"bold",
         fontSize:50,
         color:"black",
-        textDecorationLine: 'underline'
+        paddingBottom: 10
     },
     inputView:{
         width:"80%",
@@ -297,71 +324,17 @@ const styles = StyleSheet.create({
         height:50,
         color:"white"
     },
-    buttons1: {
-        fontWeight: 'bold',
-        backgroundColor: '#f15bb5',
+    buttons: {
         alignItems: 'center',
         padding: 2,
-        width: 80,
-        borderRadius:80,
         color:'black',
-        borderColor:'black',
-        justifyContent: "center",
-        height: 80,
-        marginBottom:6,
-        marginRight:5,
-        marginLeft:39,
-        marginTop: 10
-    },
-    buttons2: {
-        fontWeight: 'bold',
-        backgroundColor: '#fee440',
-        alignItems: 'center',
-        padding: 10,
-        width: 80,
-        borderRadius:80,
-        color:'black',
-        borderColor:'black',
-        justifyContent: "center",
-        height: 80,
-        marginBottom:6,
-        marginRight:40,
-        marginLeft:40,
-        marginTop: 10
-    },
-    buttons3: {
-        fontWeight: 'bold',
-        backgroundColor: '#00f5d4',
-        alignItems: 'center',
-        padding: 10,
-        width: 80,
-        borderRadius:80,
-        color:'black',
-        borderColor:'black',
-        justifyContent: "center",
-        height: 80,
-        marginBottom:6,
-        marginRight:5,
-        marginLeft:0,
-        marginTop: 20
-    },
-    buttons4: {
-        fontWeight: 'bold',
-        backgroundColor: '#9b5de5',
-        alignItems: 'center',
-        padding: 10,
-        width: 80,
-        borderRadius:80,
-        color:'black',
-        borderColor:'black',
-        justifyContent: "center",
-        height: 80,
-        marginBottom:6,
-        marginRight:2,
-        marginTop: 20
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        margin: 10,
     },
     search: {
-        backgroundColor: "grey",
+        backgroundColor: "#d3d3d3",
         fontSize: 20,
         width: 340,
         borderRadius:80,
@@ -385,14 +358,9 @@ const styles = StyleSheet.create({
         right: 10,
         fontSize: 20
     },
-    titleText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        alignSelf: 'center',
-    },
     normalText: {
         color: "black",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '800',
         flexDirection: 'row'
     },
@@ -404,10 +372,17 @@ const styles = StyleSheet.create({
     },
     card: {
         backgroundColor:'lightblue', //blue coloring =  #74B4E0
-        height:260, //200 if 3 lessons, 260 if 4
+        width: 300,
         marginBottom:20,
         borderRadius:20,
-        padding: 0,
         shadowOpacity: 0
+    },
+    checkmark : {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: "green",
+        position: "absolute",
+        right: 0
     }
 });

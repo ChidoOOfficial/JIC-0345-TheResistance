@@ -17,8 +17,8 @@ export default class QuizPage extends React.Component {
         super(props);        
         this.logResult = this.logResult.bind(this);
         this.updateScore = this.updateScore.bind(this);
-        this.title = this.props.navigation.getParam('title')
-        this.category = this.props.navigation.getParam('category')
+        this.title = this.props.navigation.getParam('title');
+        this.category = this.props.navigation.getParam('category');
 
         let quizContainer;
         let quiz;

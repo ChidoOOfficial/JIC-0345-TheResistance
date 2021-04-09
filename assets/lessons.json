@@ -3,7 +3,7 @@
         "title": "ANIMALS",
         "categories": [
             {
-                "name": "WILD",
+                "name": "Wild",
                 "lessons": [ 
                     { 
                         "english_text_resource": "Lynx",
@@ -22,6 +22,96 @@
                     },
                     {
                         "english_text_resource": "Lion",
+                        "image_resource": "01lion",
+                        "quinault_text_resource": ""
+                    },
+                ]
+            },
+            {
+                "name": "Domestic",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "DomesticLynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "DomesticLeopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                ]
+            },
+            {
+                "name": "Zoo",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "ZooLynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "ZooLeopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "ZooTiger",
+                        "image_resource": "01tiger",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "ZooLion",
+                        "image_resource": "01lion",
+                        "quinault_text_resource": ""
+                    }
+                ]
+            },
+            {
+                "name": "Preditors",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "PreditorsLynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreditorsLeopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreditorsTiger",
+                        "image_resource": "01tiger",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreditorsLion",
+                        "image_resource": "01lion",
+                        "quinault_text_resource": ""
+                    }
+                ]
+            },
+            {
+                "name": "Prey",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "PreyLynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreyLeopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreyTiger",
+                        "image_resource": "01tiger",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "PreyLion",
                         "image_resource": "01lion",
                         "quinault_text_resource": ""
                     }

@@ -28,8 +28,6 @@ export default class QuizSelectPage extends React.Component {
 
         });
     }
-    _onPressButton() {
-    }
     render() {
         const { navigate } = this.props.navigation;
 
@@ -64,8 +62,8 @@ export default class QuizSelectPage extends React.Component {
                                     let completed = 1; // <-use value from the database here
                                     return (
                                         <TouchableOpacity key={index}
-                                            style={[styles.buttons,{backgroundColor: colors[index]}]}
-                                            onPress={() => this.props.navigation.navigate('QuizPage', {title: card.title, category: cat.name})}>
+                                            style={[styles.buttons,{backgroundColor: colors[index%colors.length]}]}
+                                            onPress={() => this.props.navigation.navigate('QuizzesPage', {title: card.title, category: cat.name})}>
 
                                             <View style={styles.viewButtons}>
                                                 <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />
