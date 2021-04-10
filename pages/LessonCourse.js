@@ -43,6 +43,7 @@ export default class LessonCourse extends React.Component {
                                     lesson_title={this.title}
                                     lesson_category={this.category}
                                     lesson_number={k}
+                                    key={k}
                                 />
                             );  
                         }
