@@ -45,6 +45,7 @@ const App = createStackNavigator({
       LessonCourse: {screen: LessonCourse },
       TeacherResultsPage: {screen: TeacherResultsPage },
       QuizSelectPage : { screen: QuizSelectPage }
+
     },
     {
       initialRouteName: 'LoginPage',
