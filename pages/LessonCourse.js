@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper/src'
 import {MaterialIcons, AntDesign} from "@expo/vector-icons";
 import { Audio } from 'expo-av';
 import LessonComponent from './LessonComponent'
+import lessonData from '../assets/lessons.json';
 
 //import SoundPlayer from 'react-native-sound-player';
 
@@ -17,6 +18,36 @@ import LessonComponent from './LessonComponent'
 
 export default class LessonCourse extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        const { navigate } = this.props.navigation;
+        
+        this.lesson_title =  this.props.navigation.getParam('lesson_title', 'no-name')
+        this.lesson_category =  this.props.navigation.getParam('lesson_category', 'no-name')
+        let lessonContainer;
+        this.lesson = null;
+
+        //console.log( this.lesson_title)
+        //console.log( this.lesson_category)
+
+        
+
+        for (let i = 0; i < lessonData.length; i++) {
+            if (lessonData[i].title == this.lesson_title) {
+                lessonContainer = lessonData[i]
+                break
+            }
+        }
+
+        for (let i = 0; i < lessonContainer.categories.length; i++) {
+            if (lessonContainer.categories[i].name == this.lesson_category) {
+                this.lesson = lessonContainer.categories[i]
+                break
+            }
+        }
+    }
+
     state={
         lessonName:"lesson",
     };
@@ -24,59 +55,40 @@ export default class LessonCourse extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
-        const lessonType =  this.props.navigation.getParam('lessonType', 'no-name')
+
+        const lesson_title =  this.props.navigation.getParam('lesson_title', 'no-name')
+        const lesson_category =  this.props.navigation.getParam('lesson_category', 'no-name')
+
+        let num_lessons = this.lesson.lessons.length;
+
+
+        var lessons = [];
+        for(let i = 0; i < num_lessons; i++){
+            lessons.push(
+                <LessonComponent lesson_title={this.lesson_title} lesson_category={this.lesson_category} lesson_number={i}/>
+            )
+        }
+
+        
+
+        return (
+            <View style={{flex: 1}}>
+                    <View style={{flex: 1}}>
+                        <View style={styles.screen}>
+                            <ScrollView contentContainerStyle={styles.screen}>
+                                <Swiper showsButtons loop={true}>
+                                    { lessons }
+                                </Swiper>
+                            </ScrollView>
+                        </View>
+                    </View>
+                    <Toolbar navigation={navigate}/>
+                </View>
+        )
       //  let audio = new Audio("../assets/Wild/1_1_lynx.mp3")
       // <AntDesign name="sound" size={24} color="black" />
-        if (this.props.navigation.state.params.lessonType === 'wild') {
-            return (
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1}}>
-                        <View style={styles.screen}>
-                            <ScrollView contentContainerStyle={styles.screen}>
-                                <Swiper showsButtons loop={true}>
-                                    <LessonComponent lesson_title={'ANIMALS'} lesson_category={'WILD'} lesson_number={0}/>
-                                    <LessonComponent lesson_title={'ANIMALS'} lesson_category={'WILD'} lesson_number={1}/>
-                                    <LessonComponent lesson_title={'ANIMALS'} lesson_category={'WILD'} lesson_number={2}/>
-                                    <LessonComponent lesson_title={'ANIMALS'} lesson_category={'WILD'} lesson_number={3}/>
-
-                                </Swiper>
-                            </ScrollView>
-                        </View>
-                    </View>
-                    <Toolbar navigation={navigate}/>
-                </View>
-            );
-        }
-        else if (this.props.navigation.state.params.lessonType === 'housing1') {
-            {/*this if statement is for conditional rendering
-            depending on what what button was pressed in the LessonsPage. It is not working as of yet so
-            the else block is the default screen output*/}
-            return (
-                <View style={{flex: 1}}>
-                    <View style={{flex: 1}}>
-                        <View style={styles.screen}>
-                            <ScrollView contentContainerStyle={styles.screen}>
-                                <Swiper showsButtons loop={false}>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={0}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={1}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={2}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={3}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={4}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={5}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={6}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={7}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={8}/>
-                                    <LessonComponent lesson_title={'HOUSING'} lesson_category={'HOUSING1'} lesson_number={9}/>
-                                    
-                                </Swiper>
-                            </ScrollView>
-                        </View>
-                    </View>
-                    <Toolbar navigation={navigate}/>
-                </View>
-            );
-        } else { {/*default page output until conditional rendering works*/}
-            return (
+        /**else { {/*default page output until conditional rendering works*///}
+            /*return (
                 <View style={{flex: 1}}>
                     <View style={{flex: 1}}>
                         <View style={styles.screen}>
@@ -99,7 +111,7 @@ export default class LessonCourse extends React.Component {
                     <Toolbar navigation={navigate}/>
                 </View>
             );
-        }
+        }**/
 
 
     }

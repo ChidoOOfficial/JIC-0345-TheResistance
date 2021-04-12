@@ -1,8 +1,8 @@
 import React, {Component} from "react"; // maybe add {useState}
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, 
     Alert, Dimensions, TouchableOpacity, TextInput } from 'react-native';
-import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph,
-    StackedBarChart } from "react-native-chart-kit";
+/**import { LineChart, BarChart, PieChart, ProgressChart, ContributionGraph,
+    StackedBarChart } from "react-native-chart-kit";**/
 import Toolbar from './Toolbar';
 
     export default class QuizSamplePage extends React.Component {

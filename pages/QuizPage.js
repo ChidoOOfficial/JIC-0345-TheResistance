@@ -21,7 +21,7 @@ export default class QuizPage extends React.Component {
         this.category = this.props.navigation.getParam('category')
 
         let quizContainer;
-        let quiz;
+        this.quiz = null;
 
         for (let i = 0; i < quizData.length; i++) {
             if (quizData[i].title == this.title) {
@@ -30,11 +30,14 @@ export default class QuizPage extends React.Component {
         }
         for (let i = 0; i < quizContainer.categories.length; i++) {
             if (quizContainer.categories[i].name == this.category) {
-                quiz = quizContainer.categories[i]
+                this.quiz = quizContainer.categories[i]
             }
         }
 
-        this.possiblescore = quiz.possiblescore
+        this.possiblescore = this.quiz.possiblescore
+
+        console.log(this.title)
+        console.log(this.category)
     }
 
     state={
@@ -104,6 +107,28 @@ export default class QuizPage extends React.Component {
     render () {
         const { navigate } = this.props.navigation;
 
+        let num_questions = this.quiz.questions.length;
+
+        var questions = [];
+        for(let i = 0; i < num_questions; i++){
+            questions.push(
+                <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={i} log_score={this.logResult}/>
+            )
+        }
+
+        questions.push(          
+            <SafeAreaView style={styles.container}>
+                <View style={styles.container}>
+                        <Text style={styles.scoreHeader}> Score </Text>
+                        <Text style={styles.score}> {this.state.score} / {this.possiblescore} </Text>
+                </View>
+                {/* The line below was added so swipe dots don't interfere with answer choices*/}
+                <TouchableOpacity styles={styles.spaceButton} onPress={this.buffer}>
+                    <Text style={styles.bufferText}>a</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        )
+
         return (
             <View style={{flex: 1}}>
                 <View style={{flex: 1}}>
@@ -111,20 +136,7 @@ export default class QuizPage extends React.Component {
 
                     <ScrollView contentContainerStyle={styles.screen}>
                         <Swiper style={styles.wrapper} showsButtons loop={false}>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={0} log_score={this.logResult}/>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={1} log_score={this.logResult}/>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={2} log_score={this.logResult}/>
-
-                            <SafeAreaView style={styles.container}>
-                                <View style={styles.container}>
-                                        <Text style={styles.scoreHeader}> Score </Text>
-                                        <Text style={styles.score}> {this.state.score} / 3 </Text>
-                                </View>
-                                {/* The line below was added so swipe dots don't interfere with answer choices*/}
-                                <TouchableOpacity styles={styles.spaceButton} onPress={this.buffer}>
-                                    <Text style={styles.bufferText}>a</Text>
-                                </TouchableOpacity>
-                            </SafeAreaView>
+                            { questions }
                         </Swiper>
                     </ScrollView>
                     </View>
