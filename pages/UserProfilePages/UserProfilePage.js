@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, Image, Button, Alert} from 'react-native';
-  
+
 
 export default class UserProfilePage extends Component {
 
@@ -8,22 +8,26 @@ export default class UserProfilePage extends Component {
         return (
             <View style = {styles.container}>
                 <View style={styles.heading}>
-                    <Text style = {styles.headingtext}> Hi User</Text>
+                    <Text style = {styles.headingtext}> Hi {global.studentName}</Text>
                 </View>
                 <View style={styles.userProfileImageContainter}>
                     <Image source={require('../../assets/icon.png')} style={styles.userProfileImage}/>
                 </View>
 
-                <View style={[styles.textContainer, {paddingTop: 30}]}>
+                <View style={[styles.textContainer, {paddingTop: 15}]}>
                     <Text style = {styles.textLabel}> Progress:</Text>
-                    <Text style = {styles.textValue}> 65%</Text>                    
+                    <Text style = {styles.textValue}> 65%</Text>
                 </View>
-                <View style={[styles.textContainer, {paddingBottom: 40}]}>
+                <View style={[styles.textContainer, {paddingBottom: 0}]}>
                 <Text style = {styles.textLabel}> Date Joined:</Text>
                     <Text style = {styles.textValue}> 2/3/21</Text>
                 </View>
+                <View style={[styles.textContainer, {paddingBottom: 40}]}>
+                    <Text style = {styles.textLabel}> ID:</Text>
+                    <Text style = {styles.textValue}> {global.uniqueID} </Text>
+                </View>
             </View>
-            
+
         );
     }
 }
@@ -35,7 +39,7 @@ const styles = StyleSheet.create({
     },
     textValue: {
         flex: 1,
-        fontSize: 20,
+        fontSize: 19,
         textAlign: 'right',
     },
     textContainer: {
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
         paddingBottom: 0,
         flex: 1,
         flexDirection: 'row',
-        
+
     },
     container: {
         flex: 1,

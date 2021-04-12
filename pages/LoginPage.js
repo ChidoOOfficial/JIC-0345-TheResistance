@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, LogBox} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
 //import {API_URL} from "@env"
@@ -14,8 +14,10 @@ export default class LoginPage extends React.Component {
     }
 
     state={
-        username:"",
-        password:""
+        username:"", //need to set username by retrieving it from db
+        password:"",
+        id: "",
+        userMode: "Teacher", //default -> will retrieve from database,
     };
 
     login = (navigate) => {
@@ -25,9 +27,9 @@ export default class LoginPage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify({
-                username: AutoLogin ? 'chido' : this.state.username, 
+                username: AutoLogin ? 'chido' : this.state.userName,
                 password: AutoLogin ? 'x' : this.state.password
             })
         })
@@ -35,6 +37,52 @@ export default class LoginPage extends React.Component {
         .then((json) => {
             if (json.loggedIn) {
                 console.log('loggedin')
+                let ID = this.state.id;
+
+                fetch('https://junior-design-resistence.herokuapp.com/user/specialID', {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        ID = json["SpecialID"];
+                        this.setState({
+                            id: ID
+                        });
+                    });
+                console.log('hello')
+                console.log(this.state.id)
+                // default for now will be set to Teacher mode for coding purposes
+                let User = this.state.user;
+                fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        "SpecialID": this.state.id
+                    })
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        User = json["user"][0];
+                        this.setState({
+                            userMode: User.AccountType,
+                            username: User.Username
+                        });
+                        //console.log(this.state.user)
+                        //console.log(User)
+                        //console.log(User.AccountType)
+                        //console.log('Below is the username')
+                        //console.log(this.state.username)
+                        this.setState({
+                            userMode: "Teacher" //this is to allow for coding the teacher
+                        })
+                    });
                 navigate('HomePage');
             }
             else {
@@ -47,19 +95,21 @@ export default class LoginPage extends React.Component {
                         style: 'cancel'
                       }
                     ]
-                  ); 
+                  );
             }
         });
 
+    }
 
+    render(){
 
-    }   
-
-    render(){       
-        
         const { navigate } = this.props.navigation;
 
         return (
+            global.uniqueID = this.state.id,
+            global.userType = this.state.userMode,
+            global.studentName = this.state.username, //for some reason it won't display the name
+            LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
             <View style={styles.screen}>
                 <Text style={styles.logo}>Welcome!</Text>
                 <View style={styles.inputView} >
@@ -161,7 +211,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 20,
         fontWeight: '800',
-        flexDirection: 'row', 
+        flexDirection: 'row',
         justifyContent: 'center',
         alignContent: 'center',
     }

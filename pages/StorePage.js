@@ -13,7 +13,7 @@ export default class StorePage extends React.Component {
         super(props);
 
         let usersInventory = this.state.items;
-        let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')}, 
+        let itemDetailList = [{Item: "Cow", price: 100, owned: 0, selected: 0, src: require('../assets/cow.png')},
                               {Item: "Goose", price: 150, owned: 0, selected: 0, src: require('../assets/goose.png')},
                               {Item: "Snake", price: 250, owned: 0, selected: 0, src: require('../assets/snake.png')},];
 
@@ -22,7 +22,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
         })
         .then((res) => res.json())
         .then((json) => {
@@ -48,7 +48,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
         })
         .then((res) => res.json())
         .then((json) => {
@@ -74,7 +74,7 @@ export default class StorePage extends React.Component {
             //not enough points
         }
     };
-  
+
     sell(itemNum) {
         if (this.state.items[itemNum].selected > 0) {
             let updatedItems = this.state.items;
@@ -113,7 +113,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify({
                 "Inventory": newInventory
             })
@@ -127,7 +127,7 @@ export default class StorePage extends React.Component {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
-            }, 
+            },
             body: JSON.stringify({
                 "Coins": this.state.points
             })
@@ -153,7 +153,7 @@ export default class StorePage extends React.Component {
 
     render() {
         const { navigate } = this.props.navigation;
-        
+
         var itemList = [];
         for (let i = 0; i < this.state.items.length; i++) {
             itemList.push(
@@ -192,7 +192,7 @@ export default class StorePage extends React.Component {
             <View style={{flex: 1}}>
                 <View style={styles.screen}>
                     <Text style={styles.available}>Available Coins: {this.state.points}</Text>
-                    
+
                     {itemList}
 
                     <TouchableOpacity onPress={this.confirm.bind(this)}>

@@ -3,7 +3,7 @@ import React from "react";
 
 import Toolbar from './Toolbar';
 
-export default class StorePageCopy extends React.Component {
+export default class StudentPurchases extends React.Component {
     state = {
         //points: 0,
         items: []
