@@ -6,6 +6,7 @@ import Swiper from 'react-native-swiper/src'
 import Toolbar from './Toolbar';
 import UserProfilePage from './UserProfilePages/UserProfilePage'
 import UserProfileListPage from './UserProfilePages/UserProfileListPage'
+import TeacherQuizSelectPage from './TeacherQuizSelectPage'
 
 class TitleText extends Component {
     render() {
@@ -31,7 +32,7 @@ export default class MainUserProfilePage extends Component {
                         index={0}>
 
                         <UserProfilePage />
-                        <UserProfileListPage />
+                        <UserProfileListPage navigation={this.props.navigation}/>
                     </Swiper>
                     <Toolbar navigation={navigate}/>
                 </View>

@@ -48,8 +48,8 @@ export default class TeacherQuizResultsPage extends React.Component {
 
 
     getTopic() {
-        return this.category.charAt(0) + this.category.slice(1).toLowerCase() + " (" +
-            this.title.charAt(0) + this.title.slice(1).toLowerCase() + ")";
+        return this.title.charAt(0) + this.title.slice(1).toLowerCase() + " (" +
+            this.category.charAt(0) + this.category.slice(1).toLowerCase() + ")";
     }
 
 

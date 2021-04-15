@@ -14,7 +14,7 @@ export default class Toolbar extends Component {
                     </TouchableOpacity>                  
                 </View>
                 <View style={styles.toolbarButton}>
-                    <TouchableOpacity onPress={() => {this.props.navigation('TeacherQuizSelectPage'); /*temp access to new page*/ }}> 
+                    <TouchableOpacity onPress={() => {this.props.navigation('RankingsPage'); }}> 
                         <View style={styles.container}>
                             <Image source={require('../assets/score.png')} style={styles.image} />
                         </View>   
