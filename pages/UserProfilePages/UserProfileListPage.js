@@ -169,7 +169,8 @@ export default class UserProfileListPage extends Component {
                 });
                 //console.log(this.state.user)
                 //console.log(User)
-                if (!this.array.find(p => p.userName === this.state.user)) {
+                if (this.array.includes(this.state.user)) console.log(this.state.user)
+                if (!this.array.find(p => p.userName === user)) {
                     this.array.push({title : <UserProfileHolder userName={this.state.user}  imageSrc={require("../../assets/icon.png")} />})
                     this.setState({ arrayHolder: [...this.array] })
                 }
