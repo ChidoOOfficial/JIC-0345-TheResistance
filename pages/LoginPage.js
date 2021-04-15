@@ -71,17 +71,9 @@ export default class LoginPage extends React.Component {
                     .then((json) => {
                         User = json["user"][0];
                         this.setState({
-                            userMode: User.AccountType,
+                            userMode: "Teacher", //User.AccountType -> teacher is default for coding purposes
                             username: User.Username
                         });
-                        //console.log(this.state.user)
-                        //console.log(User)
-                        //console.log(User.AccountType)
-                        //console.log('Below is the username')
-                        //console.log(this.state.username)
-                        this.setState({
-                            userMode: "Teacher" //this is to allow for coding the teacher
-                        })
                     });
                 navigate('HomePage');
             }
