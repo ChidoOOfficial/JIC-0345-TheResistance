@@ -33,9 +33,6 @@ export default class QuizSelectPage extends React.Component {
     }
 
     quizSelect = (navigate, title, category) => {
-        console.log({
-            title, 
-            category})
 
         navigate('QuizPage', {
             title, 

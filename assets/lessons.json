@@ -89,6 +89,36 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "DEFAULT",
+        "categories": [
+            {
+                "name": "DEFAULT",
+                "lessons": [ 
+                    { 
+                        "english_text_resource": "Lynx",
+                        "image_resource": "01lynx",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Leopard",
+                        "image_resource": "01leopard",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Tiger",
+                        "image_resource": "01tiger",
+                        "quinault_text_resource": ""
+                    },
+                    {
+                        "english_text_resource": "Lion",
+                        "image_resource": "01lion",
+                        "quinault_text_resource": ""
+                    }
+                ]
+            }
+        ]
     }
 ]
 

@@ -28,10 +28,43 @@ export default class LessonCourse extends React.Component {
         let lessonContainer;
         this.lesson = null;
 
-        //console.log( this.lesson_title)
-        //console.log( this.lesson_category)
+        
+
+        for (let i = 0; i < lessonData.length; i++) {
+            if (lessonData[i].title == this.lesson_title) {
+                lessonContainer = lessonData[i]
+                break
+            }
+        }
+
+        if (lessonContainer == null) {
+            this.setDefault();
+        } else {
+
+            for (let i = 0; i < lessonContainer.categories.length; i++) {
+                if (lessonContainer.categories[i].name == this.lesson_category) {
+                    this.lesson = lessonContainer.categories[i]
+                    break
+                }
+            }
+
+            if (this.lesson == null) {
+                this.setDefault();
+            }
+        }
 
         
+
+        console.log(this.lesson_title)
+        console.log(this.lesson_category)
+        console.log(this.lesson)
+    }
+    
+    setDefault() {
+        let lessonContainer;
+        
+        this.lesson_title =  "ANIMALS"
+        this.lesson_category = "WILD"
 
         for (let i = 0; i < lessonData.length; i++) {
             if (lessonData[i].title == this.lesson_title) {
@@ -46,6 +79,8 @@ export default class LessonCourse extends React.Component {
                 break
             }
         }
+
+        
     }
 
     state={
@@ -55,9 +90,6 @@ export default class LessonCourse extends React.Component {
     render() {
 
         const { navigate } = this.props.navigation;
-
-        const lesson_title =  this.props.navigation.getParam('lesson_title', 'no-name')
-        const lesson_category =  this.props.navigation.getParam('lesson_category', 'no-name')
 
         let num_lessons = this.lesson.lessons.length;
 

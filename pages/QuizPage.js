@@ -23,21 +23,50 @@ export default class QuizPage extends React.Component {
         let quizContainer;
         this.quiz = null;
 
-        for (let i = 0; i < quizData.length; i++) {
-            if (quizData[i].title == this.title) {
-                quizContainer = quizData[i]
+        
+
+        if (this.title == "ANIMALS"  && this.category == "DOGS") {
+            for (let i = 0; i < quizData.length; i++) {
+                if (quizData[i].title == this.title) {
+                    quizContainer = quizData[i]
+                    break
+                }
             }
-        }
-        for (let i = 0; i < quizContainer.categories.length; i++) {
-            if (quizContainer.categories[i].name == this.category) {
-                this.quiz = quizContainer.categories[i]
+    
+            for (let i = 0; i < quizContainer.categories.length; i++) {
+                if (quizContainer.categories[i].name == this.category) {
+                    this.quiz = quizContainer.categories[i]
+                    break
+                }
             }
+        } else {
+            this.setDefault()
         }
 
         this.possiblescore = this.quiz.possiblescore
+    }
+    
+    setDefault() {
+        this.title = "ANIMALS"
+        this.category = "DOGS"
 
-        console.log(this.title)
-        console.log(this.category)
+        let quizContainer;
+        this.quiz = null;
+
+        for (let i = 0; i < quizData.length; i++) {
+            if (quizData[i].title == this.title) {
+                quizContainer = quizData[i]
+                break
+            }
+        }
+        
+        for (let i = 0; i < quizContainer.categories.length; i++) {
+            if (quizContainer.categories[i].name == this.category) {
+                this.quiz = quizContainer.categories[i]
+                break
+            }
+        }
+        
     }
 
     state={
@@ -110,6 +139,12 @@ export default class QuizPage extends React.Component {
         let num_questions = this.quiz.questions.length;
 
         var questions = [];
+        
+        console.log("ethii")
+        console.log(this.title)
+        console.log(this.category)
+        console.log("kdonaoni")
+
         for(let i = 0; i < num_questions; i++){
             questions.push(
                 <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={i} log_score={this.logResult}/>
