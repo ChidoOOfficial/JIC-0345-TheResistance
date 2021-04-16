@@ -11,7 +11,7 @@
                         "prompt": "Prompt",
                         "options": [
                             {
-                                "text": "Chihuahuar",
+                                "text": "Chihuahua",
                                 "image_resource": null,
                                 "isCorrect": true
                             },
@@ -21,7 +21,7 @@
                                 "isCorrect": false
                             },
                             {
-                                "text": "Labrodor",
+                                "text": "Labrador",
                                 "image_resource": null,
                                 "isCorrect": false
                             },
@@ -141,13 +141,13 @@
                 "possiblescore": 3,
                 "questions": [
                     {
-                        
+                          
                     },
                     {
-                        
+                          
                     },
                     {
-                        
+                          
                     }
                 ]
             },
@@ -341,13 +341,83 @@
                 "possiblescore": 3,
                 "questions": [
                     {
+                        "image_resource": "01basket",
+                        "prompt": "Where am I weaving the basket?",
+                        "options": [
+                            {
+                                "text": "čɑn čɪkwɪlloməɫ hənməx̣oy",
+                                "image_resource": null,
+                                "isCorrect": true
+                            },
+                            {
+                                "text": "t̓ɑʔɑnimɫɪn",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "čitcɑteejək tɑč cɑteejəktən",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "x̣əp̓ɑk tisx̣wɑksiɫɪntən",
+                                "image_resource": null,
+                                "isCorrect": false
+                            }
+                        ]
                         
                     },
                     {
-                        
+                        "image_resource": "01broom",
+                        "prompt": "I swept the floor with a broom",
+                        "options": [
+                            {
+                                "text": "kwitʔɑwWčic ɫil̓tɑʔɑmtən",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "t̓ɑʔɑnimɫɪn",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "čɪḳ̓wuʔlɑke tisɫil̓kɑltən",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "čitcɑteejək tɑč cɑteejəktən",
+                                "image_resource": null,
+                                "isCorrect": true
+                            }
+                        ]  
                     },
                     {
-                        
+                        "image_resource": "01mail",
+                        "prompt": "Don't forget the mail",
+                        "options": [
+                            {
+                                "text": "kwitʔɑwWčic ɫil̓tɑʔɑmtən",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "ƛ̓o kwitmuluḳɑme ʔɑʔmɑspepɑ",
+                                "image_resource": null,
+                                "isCorrect": true
+                            },
+                            {
+                                "text": "čɪčins nisəl̓ḳeʔemin",
+                                "image_resource": null,
+                                "isCorrect": false
+                            },
+                            {
+                                "text": "jɑčs čɑʔɫɑ",
+                                "image_resource": null,
+                                "isCorrect": false
+                            }
+                        ]  
                     }
                 ]
             },

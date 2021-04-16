@@ -24,7 +24,7 @@
                         "english_text_resource": "Lion",
                         "image_resource": "01lion",
                         "quinault_text_resource": ""
-                    },
+                    }
                 ]
             },
             {
@@ -39,7 +39,7 @@
                         "english_text_resource": "DomesticLeopard",
                         "image_resource": "01leopard",
                         "quinault_text_resource": ""
-                    },
+                    }
                 ]
             },
             {
