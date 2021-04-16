@@ -17,24 +17,24 @@ export default class QuizPage extends React.Component {
         super(props);        
         this.logResult = this.logResult.bind(this);
         this.updateScore = this.updateScore.bind(this);
-        this.title = this.props.navigation.getParam('title')
-        this.category = this.props.navigation.getParam('category')
+        this.title = this.props.navigation.getParam('title');
+        this.category = this.props.navigation.getParam('category');
 
         let quizContainer;
         let quiz;
 
         for (let i = 0; i < quizData.length; i++) {
             if (quizData[i].title == this.title) {
-                quizContainer = quizData[i]
+                quizContainer = quizData[i];
             }
         }
         for (let i = 0; i < quizContainer.categories.length; i++) {
             if (quizContainer.categories[i].name == this.category) {
-                quiz = quizContainer.categories[i]
+                quiz = quizContainer.categories[i];
             }
         }
 
-        this.possiblescore = quiz.possiblescore
+        this.possiblescore = quiz.possiblescore;
     }
 
     state={
@@ -83,24 +83,6 @@ export default class QuizPage extends React.Component {
         }
     }
 
-
-
-    buffer() { }  // Used for proper spacing of SafeAreaView and Navigation Bar
-
-    buttonStyle={
-        flex: 1,
-        flexDirection: "row", //changes nothing if commented
-        backgroundColor: 'ivory',
-        alignItems: 'center', //moves text to top of box
-        padding: 10, //bigger numbers moves text down
-        height: 100,
-        borderRadius: 30, //originally 80
-        justifyContent: "center",
-        margin: 12,
-        marginBottom: 0
-    }
-
-
     render () {
         const { navigate } = this.props.navigation;
 
@@ -108,25 +90,20 @@ export default class QuizPage extends React.Component {
             <View style={{flex: 1}}>
                 <View style={{flex: 1}}>
                     <View style={styles.screen}>
+                        <ScrollView contentContainerStyle={styles.screen}>
+                            <Swiper style={styles.wrapper} showsButtons loop={false}>
+                                <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={0} log_score={this.logResult}/>
+                                <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={1} log_score={this.logResult}/>
+                                <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={2} log_score={this.logResult}/>
 
-                    <ScrollView contentContainerStyle={styles.screen}>
-                        <Swiper style={styles.wrapper} showsButtons loop={false}>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={0} log_score={this.logResult}/>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={1} log_score={this.logResult}/>
-                            <QuizComponent quiz_title={this.title} quiz_category={this.category} quiz_number={2} log_score={this.logResult}/>
-
-                            <SafeAreaView style={styles.container}>
-                                <View style={styles.container}>
-                                        <Text style={styles.scoreHeader}> Score </Text>
-                                        <Text style={styles.score}> {this.state.score} / 3 </Text>
-                                </View>
-                                {/* The line below was added so swipe dots don't interfere with answer choices*/}
-                                <TouchableOpacity styles={styles.spaceButton} onPress={this.buffer}>
-                                    <Text style={styles.bufferText}>a</Text>
-                                </TouchableOpacity>
-                            </SafeAreaView>
-                        </Swiper>
-                    </ScrollView>
+                                <SafeAreaView style={styles.container}>
+                                    <View style={styles.container}>
+                                            <Text style={styles.scoreHeader}> Score </Text>
+                                            <Text style={styles.score}> {this.state.score} / 3 </Text>
+                                    </View>
+                                </SafeAreaView>
+                            </Swiper>
+                        </ScrollView>
                     </View>
                 </View>
                 <Toolbar navigation={navigate}/>
