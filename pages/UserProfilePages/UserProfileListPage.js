@@ -222,10 +222,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 5
     },
-
     remove: {
         color: "darkred",
         paddingRight: 12
+    },
     inputView:{
         width:"80%",
         //#465881
