@@ -26,11 +26,24 @@ import TeacherQuizResultsPage from './pages/TeacherQuizResultsPage';
 //import all the screens we are going to switch
 const App = createStackNavigator({
       //Constant which holds all the screens like index of any book
-      LoginPage: { screen: LoginPage },
+      LoginPage: { 
+            screen: LoginPage,
+            navigationOptions: {
+                title: "Login",
+                headerLeft: () => null,
+            } },
       RegistrationPage: { screen: RegistrationPage },
-      HomePage: { screen: HomePage },
+      HomePage: { 
+            screen: HomePage, 
+            navigationOptions: {
+                title: "Home",
+                headerLeft: () => null,
+            },
+        },
       //First entry by default be our first screen if we do not define initialRouteName
-      LessonsPage: { screen: LessonsPage },
+      LessonsPage: { 
+            screen: LessonsPage
+         },
       MainUserProfilePage: { 
             screen: MainUserProfilePage,
             navigationOptions: {
@@ -42,7 +55,7 @@ const App = createStackNavigator({
       Settings: {screen: SettingsPage },
       ChangePasswordPage: { screen: ChangePasswordPage},
       RankingsPage: { screen: RankingsPage },
-      QuizzesPage : { screen: QuizPage },
+      QuizPage : { screen: QuizPage },
       //QuizSamplePage : {screen: QuizSamplePage },
       LessonCourse: {screen: LessonCourse },
       QuizSelectPage : { screen: QuizSelectPage },

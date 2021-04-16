@@ -11,8 +11,14 @@ import lessonData from '../assets/lessons.json';
 //import all the components we are going to use.
 
 export default class LessonsPage extends React.Component {
-    constructor() {
-        super();
+
+    learn = (navigate, title, category) => {
+        navigate('LessonCourse', {
+            title,
+            category
+        });
+
+        /*the lesson type will conditionally render the lesson course depending on the button pressed*/
     }
 
     render() {
@@ -46,7 +52,7 @@ export default class LessonsPage extends React.Component {
                                     return (
                                         <TouchableOpacity key={index}
                                             style={[styles.buttons,{backgroundColor: colors[index%colors.length]}]}
-                                            onPress={() => navigate('LessonCourse', {title: card.title, category: cat.name})}>
+                                            onPress={() => this.learn(navigate, card.title, cat.name)}>
 
                                             <View style={styles.viewButtons}>
                                                 <Ionicons name="ios-chatbubbles-outline" size={24} color="black" />

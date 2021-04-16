@@ -8,6 +8,9 @@ export default class QuizComponent extends Component {
     constructor(props) {
         super(props);
 
+        console.log('In QuizCOmponenets')
+        
+
         let quizContainer;
         let quiz;
 
