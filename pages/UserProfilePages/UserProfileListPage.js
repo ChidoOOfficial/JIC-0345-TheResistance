@@ -32,9 +32,10 @@ class UserProfileHolder extends Component {
     }
 
     remove() {
+        // uncomment this when user remove is set up on db
         /*
-        fetch('', {
-            method: 'POST',
+        fetch('https://junior-design-resistence.herokuapp.com/user', {
+            method: 'DELETE',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
@@ -223,9 +224,8 @@ const styles = StyleSheet.create({
     },
 
     remove: {
-        color: "red",
-        paddingRight: 15
-    },
+        color: "darkred",
+        paddingRight: 12
     inputView:{
         width:"80%",
         //#465881
