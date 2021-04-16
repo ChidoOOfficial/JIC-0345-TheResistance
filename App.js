@@ -16,9 +16,11 @@ import RankingsPage from './pages/RankingsPage';
 import QuizPage from './pages/QuizPage';
 //import QuizSamplePage from './pages/QuizSamplePage';
 import LessonCourse from './pages/LessonCourse';
-import TeacherResultsPage from './pages/TeacherResultsPage';
+//import TeacherResultsPage from './pages/TeacherResultsPage';
 import QuizSelectPage from './pages/QuizSelectPage';
 import QuizComponent from './pages/QuizComponent'
+import TeacherQuizSelectPage from './pages/TeacherQuizSelectPage';
+import TeacherQuizResultsPage from './pages/TeacherQuizResultsPage';
 
 
 //import all the screens we are going to switch
@@ -43,9 +45,9 @@ const App = createStackNavigator({
       QuizzesPage : { screen: QuizPage },
       //QuizSamplePage : {screen: QuizSamplePage },
       LessonCourse: {screen: LessonCourse },
-      TeacherResultsPage: {screen: TeacherResultsPage },
-      QuizSelectPage : { screen: QuizSelectPage }
-
+      QuizSelectPage : { screen: QuizSelectPage },
+      TeacherQuizSelectPage: {screen: TeacherQuizSelectPage },
+      TeacherQuizResultsPage: {screen: TeacherQuizResultsPage },
     },
     {
       initialRouteName: 'LoginPage',
