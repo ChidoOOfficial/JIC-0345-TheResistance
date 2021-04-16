@@ -225,7 +225,8 @@ const styles = StyleSheet.create({
 
     remove: {
         color: "darkred",
-        paddingRight: 12
+        paddingRight: 12,
+    },  
     inputView:{
         width:"80%",
         //#465881
