@@ -23,39 +23,102 @@ export default class LessonCourse extends React.Component {
     // };
     constructor(props) {
         super(props);
+
+        const { navigate } = this.props.navigation;
+        
         this.title = this.props.navigation.getParam('title');
         this.category = this.props.navigation.getParam('category');
+
+        let lessonContainer;
+        this.lesson = null;
+
+        
+
+        for (let i = 0; i < lessonData.length; i++) {
+            if (lessonData[i].title == this.title) {
+                lessonContainer = lessonData[i]
+                break
+            }
+        }
+
+        if (lessonContainer == null) {
+            this.setDefault();
+        } else {
+
+            for (let i = 0; i < lessonContainer.categories.length; i++) {
+                if (lessonContainer.categories[i].name == this.category) {
+                    this.lesson = lessonContainer.categories[i]
+                    break
+                }
+            }
+
+            if (this.lesson == null) {
+                this.setDefault();
+            }
+        }
     }
+    
+    setDefault() {
+        let lessonContainer;
+        
+        this.title =  "ANIMALS"
+        this.category = "WILD"
+
+        for (let i = 0; i < lessonData.length; i++) {
+            if (lessonData[i].title == this.title) {
+                lessonContainer = lessonData[i]
+                break
+            }
+        }
+
+        for (let i = 0; i < lessonContainer.categories.length; i++) {
+            if (lessonContainer.categories[i].name == this.category) {
+                this.lesson = lessonContainer.categories[i]
+                break
+            }
+        }
+
+        
+    }
+
+    state={
+        lessonName:"lesson",
+    };
 
     render() {
 
         const { navigate } = this.props.navigation;
 
-        let lessonComponents = []
+        let num_lessons = this.lesson.lessons.length;
 
-        for (let i = 0; i < lessonData.length; i++) {
-            if (lessonData[i].title == this.title) {
-                for (let j = 0; j < lessonData[i].categories.length; j++) {
-                    if (lessonData[i].categories[j].name == this.category) {
-                        for (let k = 0; k < lessonData[i].categories[j].lessons.length; k++) {
-                            lessonComponents.push(
-                                <LessonComponent 
-                                    lesson_title={this.title}
-                                    lesson_category={this.category}
-                                    lesson_number={k}
-                                    key={k}
-                                />
-                            );  
-                        }
-                        break;
-                    }
-                }     
-                break;
-            }
+
+        var lessons = [];
+        for(let i = 0; i < num_lessons; i++){
+            lessons.push(
+                <LessonComponent lesson_title={this.title} lesson_category={this.category} lesson_number={i}/>
+            )
         }
+
+        
 
         return (
             <View style={{flex: 1}}>
+                    <View style={{flex: 1}}>
+                        <View style={styles.screen}>
+                            <ScrollView contentContainerStyle={styles.screen}>
+                                <Swiper showsButtons loop={true}>
+                                    { lessons }
+                                </Swiper>
+                            </ScrollView>
+                        </View>
+                    </View>
+                    <Toolbar navigation={navigate}/>
+                </View>
+        )
+      //  let audio = new Audio("../assets/Wild/1_1_lynx.mp3")
+      // <AntDesign name="sound" size={24} color="black" />
+        /**else { {/*default page output until conditional rendering works*///}
+            /*return (
                 <View style={{flex: 1}}>
                     <View style={styles.screen}>
                         <ScrollView contentContainerStyle={styles.screen}>
@@ -65,12 +128,11 @@ export default class LessonCourse extends React.Component {
                         </ScrollView>
                     </View>
                 </View>
-                <Toolbar navigation={navigate}/>
-            </View>
-        );
+            );
+        }**/
     }
-    
 }
+
 /*
 async function playSound() {
     const sound = new Audio.Sound();
