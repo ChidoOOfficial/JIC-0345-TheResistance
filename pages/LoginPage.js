@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, LogBox} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
-//import {API_URL} from "@env"
+import configs from '../app_config.json';
 
 //import all the components we are going to use.
 
@@ -22,7 +22,8 @@ export default class LoginPage extends React.Component {
 
     login = (navigate) => {
 
-        fetch('https://junior-design-resistence.herokuapp.com/user/login', {
+        fetch(configs.Server_Address + "user/login", {
+            
             method: 'POST',
             headers: {
                 Accept: 'application/json',
