@@ -16,19 +16,34 @@ import RankingsPage from './pages/RankingsPage';
 import QuizPage from './pages/QuizPage';
 //import QuizSamplePage from './pages/QuizSamplePage';
 import LessonCourse from './pages/LessonCourse';
-import TeacherResultsPage from './pages/TeacherResultsPage';
+//import TeacherResultsPage from './pages/TeacherResultsPage';
 import QuizSelectPage from './pages/QuizSelectPage';
 import QuizComponent from './pages/QuizComponent'
+import TeacherQuizSelectPage from './pages/TeacherQuizSelectPage';
+import TeacherQuizResultsPage from './pages/TeacherQuizResultsPage';
 
 
 //import all the screens we are going to switch
 const App = createStackNavigator({
       //Constant which holds all the screens like index of any book
-      LoginPage: { screen: LoginPage },
+      LoginPage: { 
+            screen: LoginPage,
+            navigationOptions: {
+                title: "Login",
+                headerLeft: () => null,
+            } },
       RegistrationPage: { screen: RegistrationPage },
-      HomePage: { screen: HomePage },
+      HomePage: { 
+            screen: HomePage, 
+            navigationOptions: {
+                title: "Home",
+                headerLeft: () => null,
+            },
+        },
       //First entry by default be our first screen if we do not define initialRouteName
-      LessonsPage: { screen: LessonsPage },
+      LessonsPage: { 
+            screen: LessonsPage
+         },
       MainUserProfilePage: { 
             screen: MainUserProfilePage,
             navigationOptions: {
@@ -40,11 +55,12 @@ const App = createStackNavigator({
       Settings: {screen: SettingsPage },
       ChangePasswordPage: { screen: ChangePasswordPage},
       RankingsPage: { screen: RankingsPage },
-      QuizzesPage : { screen: QuizPage },
+      QuizPage : { screen: QuizPage },
       //QuizSamplePage : {screen: QuizSamplePage },
       LessonCourse: {screen: LessonCourse },
-      TeacherResultsPage: {screen: TeacherResultsPage },
-      QuizSelectPage : { screen: QuizSelectPage }
+      QuizSelectPage : { screen: QuizSelectPage },
+      TeacherQuizSelectPage: {screen: TeacherQuizSelectPage },
+      TeacherQuizResultsPage: {screen: TeacherQuizResultsPage },
     },
     {
       initialRouteName: 'LoginPage',

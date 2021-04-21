@@ -32,9 +32,10 @@ class UserProfileHolder extends Component {
     }
 
     remove() {
+        // uncomment this when user remove is set up on db
         /*
-        fetch('', {
-            method: 'POST',
+        fetch('https://junior-design-resistence.herokuapp.com/user', {
+            method: 'DELETE',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
@@ -123,7 +124,7 @@ export default class UserProfileListPage extends Component {
     }
 
     render(){
-      //  const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             LogBox.ignoreLogs(['VirtualizedLists should never be nested']),
             LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
@@ -165,10 +166,15 @@ export default class UserProfileListPage extends Component {
                         </ScrollView>
                     </View>
 
-
-                    <TouchableOpacity style={styles.AddBtn} onPress={() => this.addToRoster()}>
-                        <Text style={styles.btnText}> Add Student </Text>
-                    </TouchableOpacity>
+                    <View style={styles.btnView}>
+                        <TouchableOpacity style={styles.lowerBtn} onPress={() => navigate('TeacherQuizSelectPage')}>
+                            <Text style={styles.btnText}> View Quiz Scores </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.lowerBtn} onPress={() => this.addToRoster()}>
+                            <Text style={styles.btnText}> Add Student </Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                 </SafeAreaView>
             </View>
         );
@@ -216,10 +222,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 5
     },
-
     remove: {
-        color: "red",
-        paddingRight: 15
+        color: "darkred",
+        paddingRight: 12
     },
     inputView:{
         width:"80%",
@@ -230,16 +235,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 40
     },
-    AddBtn:{
-        width:"60%",
+    lowerBtn:{
+        width:"40%",
         backgroundColor:"#9b5de5",
         borderRadius:25,
         height:40,
         //alignItems:"center",
         justifyContent:"center",
-        marginTop:40,
-        marginBottom:70,
-        marginLeft: 75
+        marginBottom: 20,
+        marginTop: 20
     },
     userInput:{
         height:50,
@@ -249,14 +253,16 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: 'black',
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '800',
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginLeft: 40
+        alignSelf: 'center'
     },
-    studentButton: {
-        //width:50,
+    btnView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginBottom: 60
     }
 });
