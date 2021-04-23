@@ -8,6 +8,9 @@ export default class QuizComponent extends Component {
     constructor(props) {
         super(props);
 
+        console.log('In QuizCOmponenets')
+        
+
         let quizContainer;
         let quiz;
 
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
     wrapper : {},
     prompt:{
         fontWeight:"bold",
-        fontSize:40,
+        fontSize:30, //used to be 40
         color:"black",
         textDecorationLine: 'underline',
         paddingBottom: 10,
@@ -173,7 +176,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "black",
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: '800',
         flexDirection: 'row'
     },
