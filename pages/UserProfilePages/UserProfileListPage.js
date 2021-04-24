@@ -70,6 +70,7 @@ export default class UserProfileListPage extends Component {
                 studentID: "",
                 user: "",
                 index: 0,
+                alreadyPresent: [] //keeps track of the names already on the page of the roster ... used to check duplicates
             }
             let studentRoster = this.state.arrayHolder;
         fetch('https://junior-design-resistence.herokuapp.com/user/allAssociatedSpecialID', {
@@ -94,9 +95,7 @@ export default class UserProfileListPage extends Component {
                     this.setState({studentID: id, textInput_Holder: id}) //gets each individual id and then gets the username with that id
                     this.populateRoster(); //populates the roster with each id from the array
                 }
-                console.log(this.state.arrayHolder)
             });
-        console.log(this.array)
     }
     componentDidMount() {
         this.setState({ arrayHolder: [...this.array] })
@@ -117,16 +116,13 @@ export default class UserProfileListPage extends Component {
         );
     }
     GetItem(item) {
-        Alert.alert(item);
+        Alert.alert(item); //popup with the student name
     }
-    addToDB = () => { //adds a student to the db and then calls populate roster to add the student to the class
+    addToDB = () => { //adds a student to the db and then calls populate roster to add the student to the class roster
+                      //that is displayed on the page
         //BUG: Isn't updating the actual database for some reason
         //let id = "0SAH3WRGQ880"
         let id = this.state.textInput_Holder //enter the id in the line prior
-        //console.log("here")
-        console.log("add to db called")
-        let User = this.state.user;
-        console.log("This is ")
         fetch('https://junior-design-resistence.herokuapp.com/user/addAssociatedSpecialID', {
             method: 'POST',
             headers: {
@@ -144,10 +140,6 @@ export default class UserProfileListPage extends Component {
     populateRoster = () => { //adds the student's name to the screen
         let id = this.state.textInput_Holder //enter the id in the line prior
         let User = this.state.user;
-        console.log("arraholder")
-        console.log(this.state.arrayHolder)
-        console.log("array")
-        console.log(this.array)
         fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
             method: 'POST',
             headers: {
@@ -165,23 +157,23 @@ export default class UserProfileListPage extends Component {
                     user: User.Username,
                     index: this.state.index + 1
                 });
-                console.log("student")
-                console.log(User.Username)
-                if (!this.array.find(p => p.userName === User.Username) && User.Username.length > 0) {
+                if (!this.state.alreadyPresent.includes(User.Username)) {
                     this.array.push({title : <UserProfileHolder userName={this.state.user}  imageSrc={require("../../assets/icon.png")} />})
                     this.setState({ arrayHolder: [...this.array] })
+                    this.state.alreadyPresent.push(User.Username)
                 }
             });
         this.addToDB()
         this.setState({
-            textInput_Holder: ""
+            textInput_Holder: "" //set the input text holder (where the ids and typed) to null otherwise the same student
+                                 //can be readded
         })
     }
 
     render(){
         const { navigate } = this.props.navigation;
         return (
-            LogBox.ignoreLogs(['VirtualizedLists should never be nested']),
+            LogBox.ignoreLogs(['VirtualizedLists should never be nested']), //logbox ignores console warnings
             LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
                 LogBox.ignoreLogs(['Encountered two children with the same']),
             <View style={styles.container}>
