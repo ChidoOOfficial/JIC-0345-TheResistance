@@ -73,6 +73,7 @@ export default class UserProfileListPage extends Component {
             }
             let studentRoster = this.state.arrayHolder;
         fetch('https://junior-design-resistence.herokuapp.com/user/allAssociatedSpecialID', {
+            /*gets all the ids of the students in the roster*/
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -89,14 +90,7 @@ export default class UserProfileListPage extends Component {
                 tempArray = tempArray.filter(function( element ) {
                     return element !== undefined;
                 });
-                console.log(tempArray)
-                for (let i = 0; i < tempArray.length; i++) {
-                    if (tempArray[i] !== undefined) this.state.arrayHolder[i] = tempArray[i]
-                }
-                console.log("a")
-                console.log(this.state.arrayHolder)
-                console.log("b")
-                for (let id of this.state.arrayHolder) {
+                for (let id of tempArray) {
                     this.setState({studentID: id, textInput_Holder: id}) //gets each individual id and then gets the username with that id
                     this.populateRoster(); //populates the roster with each id from the array
                 }
@@ -150,6 +144,10 @@ export default class UserProfileListPage extends Component {
     populateRoster = () => { //adds the student's name to the screen
         let id = this.state.textInput_Holder //enter the id in the line prior
         let User = this.state.user;
+        console.log("arraholder")
+        console.log(this.state.arrayHolder)
+        console.log("array")
+        console.log(this.array)
         fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
             method: 'POST',
             headers: {
@@ -167,19 +165,21 @@ export default class UserProfileListPage extends Component {
                     user: User.Username,
                     index: this.state.index + 1
                 });
-                //console.log(this.state.user)
-                //console.log(User)
-                if (this.array.includes(this.state.user)) console.log(this.state.user)
-                if (!this.array.find(p => p.userName === user)) {
+                console.log("student")
+                console.log(User.Username)
+                if (!this.array.find(p => p.userName === User.Username) && User.Username.length > 0) {
                     this.array.push({title : <UserProfileHolder userName={this.state.user}  imageSrc={require("../../assets/icon.png")} />})
                     this.setState({ arrayHolder: [...this.array] })
                 }
             });
         this.addToDB()
+        this.setState({
+            textInput_Holder: ""
+        })
     }
 
     render(){
-      //  const { navigate } = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             LogBox.ignoreLogs(['VirtualizedLists should never be nested']),
             LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
@@ -216,10 +216,14 @@ export default class UserProfileListPage extends Component {
                         </ScrollView>
                     </View>
 
-
-                    <TouchableOpacity style={styles.AddBtn} onPress={() => this.populateRoster()}>
-                        <Text style={styles.btnText}> Add Student </Text>
-                    </TouchableOpacity>
+                    <View style={styles.btnView}>
+                        <TouchableOpacity style={styles.lowerBtn} onPress={() => navigate('TeacherQuizSelectPage')}>
+                            <Text style={styles.btnText}> View Quiz Scores </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.lowerBtn} onPress={() => this.populateRoster()}>
+                            <Text style={styles.btnText}> Add Student </Text>
+                        </TouchableOpacity>
+                    </View>
                 </SafeAreaView>
             </View>
         );
@@ -281,6 +285,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 40
     },
+    lowerBtn:{
+        width:"40%",
+        backgroundColor:"#9b5de5",
+        borderRadius:25,
+        height:40,
+        //alignItems:"center",
+        justifyContent:"center",
+        marginBottom: 20,
+        marginTop: 20
+    },
     AddBtn:{
         width:"60%",
         backgroundColor:"#9b5de5",
@@ -300,14 +314,21 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: 'black',
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: '800',
         flexDirection: 'row',
         justifyContent: 'center',
         alignContent: 'center',
-        marginLeft: 40
+        marginLeft: 17
     },
     studentButton: {
         //width:50,
+    },
+    btnView: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginBottom: 60
     }
 });
