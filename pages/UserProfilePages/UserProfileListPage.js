@@ -41,8 +41,8 @@ class UserProfileHolder extends Component {
 
     remove() {
         /*
-        fetch('', {
-            method: 'POST',
+        fetch('https://junior-design-resistence.herokuapp.com/user', {
+            method: 'DELETE',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
