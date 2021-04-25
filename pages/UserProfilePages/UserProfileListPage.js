@@ -40,6 +40,7 @@ class UserProfileHolder extends Component {
     }
 
     remove() {
+        // uncomment this when user remove is set up on db
         /*
         fetch('https://junior-design-resistence.herokuapp.com/user', {
             method: 'DELETE',
