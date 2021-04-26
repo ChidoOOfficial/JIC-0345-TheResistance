@@ -47,8 +47,8 @@ export default class QuizPage extends React.Component {
     }
     
     setDefault() {
-        this.title = "ANIMALS"
-        this.category = "DOGS"
+        this.title = "HOUSING"
+        this.category = "1"
 
         let quizContainer;
         this.quiz = null;

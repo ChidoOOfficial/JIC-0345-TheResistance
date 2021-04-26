@@ -5,7 +5,7 @@ import Toolbar from './Toolbar';
 
 export default class StorePage extends React.Component {
     state = {
-        points: 0,
+        points: 500,
         items: []
     };
 
