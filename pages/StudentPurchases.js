@@ -2,7 +2,6 @@ import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Image, Aler
 import React from "react";
 
 import Toolbar from './Toolbar';
-import configs from '../app_config.json';
 
 export default class StudentPurchases extends React.Component {
     state = {
@@ -18,7 +17,7 @@ export default class StudentPurchases extends React.Component {
                               {Item: "Goose", price: 150, owned: 0, selected: 0, src: require('../assets/goose.png')},
                               {Item: "Snake", price: 250, owned: 0, selected: 0, src: require('../assets/snake.png')},];
 
-        fetch(configs.Server_Address + 'user/inventory', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/inventory', {
             method: '',
             headers: {
                 Accept: 'application/json',
@@ -45,7 +44,7 @@ export default class StudentPurchases extends React.Component {
 
         /*
         let userCoins = this.state.points;
-        fetch(configs.Server_Address + 'user/coins', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/coins', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -114,7 +113,7 @@ export default class StudentPurchases extends React.Component {
             });
         }
 
-        fetch(configs.Server_Address + 'user/inventory', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/inventory', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -128,7 +127,7 @@ export default class StudentPurchases extends React.Component {
         .then((json) => {
         });
 
-        fetch(configs.Server_Address + 'user/coins', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/coins', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

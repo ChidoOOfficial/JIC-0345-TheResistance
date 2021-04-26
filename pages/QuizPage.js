@@ -9,8 +9,6 @@ import Swiper from 'react-native-swiper/src'
 
 import quizData from '../assets/quizzes.json';
 
-import configs from '../app_config.json';
-
 
 
 export default class QuizPage extends React.Component {
@@ -82,7 +80,7 @@ export default class QuizPage extends React.Component {
 
     // Sends final score to database
     updateScore() {
-        fetch(configs.Server_Address + 'quizscore/add', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/quizscore/add', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

@@ -8,7 +8,7 @@ class StudentHolder extends Component {
             <View style={styles.studentContainer}>
                 <Image style={styles.studentImage} source={this.props.imageSrc}/>
                 <Text style={styles.studentNameText}> {this.props.studentName} </Text>
-                <View style={styles.studentScoreContainer}>
+                <View style={styles.studentScoreContainer} flex right>
                   <Text style={styles.studentScore}> {this.props.studentScore} </Text>
                 </View>
             </View>
@@ -45,7 +45,7 @@ export default class RankingsPage extends React.Component {
         );
     }
 }
-
+  
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    flex: 1,
+    flex: 1,        
     alignItems: "center",
     paddingTop: 30,
   },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: 65
   },
   studentNameText: {
-    fontSize: 18
+    fontSize: 18 
   },
   studentContainer: {
     height: 80, //this heigh makes the spacing around the image border look better

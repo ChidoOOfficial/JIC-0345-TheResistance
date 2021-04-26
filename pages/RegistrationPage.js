@@ -2,8 +2,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingVi
 import React from "react";
 import Toolbar from './Toolbar';
 
-import configs from '../app_config.json';
-
 //import all the components we are going to use.
 
 
@@ -28,7 +26,7 @@ export default class LoginPage extends React.Component {
     login = (navigate) => {
 
         //need to add url to the line below once an endpoint is created
-        fetch(configs.Server_Address + 'user/register' , {
+        fetch('https://junior-design-resistence.herokuapp.com/user/register' , {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
