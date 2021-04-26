@@ -124,7 +124,7 @@ export default class UserProfileListPage extends Component {
     GetItem(item) {
         Alert.alert(item); //popup with the student name
     }
-    
+
     addToDB = () => { //adds a student to the db and then calls populate roster to add the student to the class roster
                       //that is displayed on the page
         //BUG: Isn't updating the actual database for some reason
@@ -144,6 +144,7 @@ export default class UserProfileListPage extends Component {
         .then((json) => {
         });
     }
+    
     populateRoster = () => { //adds the student's name to the screen
         let id = this.state.textInput_Holder //enter the id in the line prior
         let User = this.state.user;
