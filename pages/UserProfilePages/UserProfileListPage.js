@@ -19,8 +19,16 @@ class UserProfileHolder extends Component {
     render() {
         return(
             <View style={styles.userContainer}>
-                <Image style={styles.userImage} source={this.props.imageSrc}/>
-                <Text style={styles.userNameText}>  {this.props.userName} </Text>
+                <TouchableOpacity>
+                    <View>
+                        <Image style={styles.userImage} source={this.props.imageSrc}/>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View>
+                        <Text style={styles.userNameText}>  {this.props.userName} </Text>
+                    </View>
+                </TouchableOpacity>
                 <TouchableOpacity style={{marginLeft: "auto"}} onPress={this.remove.bind(this)}>
                     <View >
                         <Text style={styles.remove}>Remove</Text>
@@ -62,8 +70,33 @@ export default class UserProfileListPage extends Component {
                 textInput_Holder: '',
                 studentID: "",
                 user: "",
-                index: 0
+                index: 0,
+                alreadyPresent: [] //keeps track of the names already on the page of the roster ... used to check duplicates
             }
+            let studentRoster = this.state.arrayHolder;
+        fetch('https://junior-design-resistence.herokuapp.com/user/allAssociatedSpecialID', {
+            /*gets all the ids of the students in the roster*/
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                studentRoster = json["specialIDs"].StudentSpecialIDList;
+                let tempArray = [];
+                for (let i = 0; i < studentRoster.length; i++) {
+                    if (studentRoster[i] !== null) {tempArray[i] = studentRoster[i];}
+                }
+                tempArray = tempArray.filter(function( element ) {
+                    return element !== undefined;
+                });
+                for (let id of tempArray) {
+                    this.setState({studentID: id, textInput_Holder: id}) //gets each individual id and then gets the username with that id
+                    this.populateRoster(); //populates the roster with each id from the array
+                }
+            });
     }
     componentDidMount() {
         this.setState({ arrayHolder: [...this.array] })
@@ -84,15 +117,14 @@ export default class UserProfileListPage extends Component {
         );
     }
     GetItem(item) {
-        Alert.alert(item);
+        Alert.alert(item); //popup with the student name
     }
-    addToRoster = () => { //add a student to the class list
+    addToDB = () => { //adds a student to the db and then calls populate roster to add the student to the class roster
+                      //that is displayed on the page
+        //BUG: Isn't updating the actual database for some reason
         //let id = "0SAH3WRGQ880"
         let id = this.state.textInput_Holder //enter the id in the line prior
-        //console.log("here")
-        console.log(id)
-        let User = this.state.user;
-        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+        fetch('https://junior-design-resistence.herokuapp.com/user/addAssociatedSpecialID', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -104,30 +136,47 @@ export default class UserProfileListPage extends Component {
         })
         .then((res) => res.json())
         .then((json) => {
-            User = json["user"][0];
-            this.setState({
-                user: User.Username,
-                index: this.state.index + 1
-            });
-            console.log(this.state.user)
-            console.log(User)
-            if (!this.array.find(p => p.userName === user)) {
-                this.array.push({title : <UserProfileHolder userName={this.state.user}  imageSrc={require("../../assets/icon.png")} />})
-                this.setState({ arrayHolder: [...this.array] })
-            }
         });
-        //this.array.push({title : this.state.textInput_Holder});
-        /*if (this.state.textInput_Holder !== "") {
-            this.array.push({title : <UserProfileHolder userName={this.state.textInput_Holder}  imageSrc={require("../../assets/icon.png")} />})
-            this.setState({ arrayHolder: [...this.array] })
-        } */
+    }
+    populateRoster = () => { //adds the student's name to the screen
+        let id = this.state.textInput_Holder //enter the id in the line prior
+        let User = this.state.user;
+        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "SpecialID": id
+            })
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                User = json["user"][0];
+                this.setState({
+                    user: User.Username,
+                    index: this.state.index + 1
+                });
+                if (!this.state.alreadyPresent.includes(User.Username)) {
+                    this.array.push({title : <UserProfileHolder userName={this.state.user}  imageSrc={require("../../assets/icon.png")} />})
+                    this.setState({ arrayHolder: [...this.array] })
+                    this.state.alreadyPresent.push(User.Username)
+                }
+            });
+        this.addToDB()
+        this.setState({
+            textInput_Holder: "" //set the input text holder (where the ids and typed) to null otherwise the same student
+                                 //can be readded
+        })
     }
 
     render(){
         const { navigate } = this.props.navigation;
         return (
-            LogBox.ignoreLogs(['VirtualizedLists should never be nested']),
+            LogBox.ignoreLogs(['VirtualizedLists should never be nested']), //logbox ignores console warnings
             LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']),
+                LogBox.ignoreLogs(['Encountered two children with the same']),
             <View style={styles.container}>
                 <SafeAreaView style={styles.screen}>
                     <View style={styles.header}>
@@ -156,13 +205,7 @@ export default class UserProfileListPage extends Component {
                                     flexGrow: 1,
                                 }}
                             />
-                            <UserProfileHolder userName="u8ddu87uty"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t2"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t3"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t4"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t5"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t6"  imageSrc={require("../../assets/icon.png")} />
-                            <UserProfileHolder userName="t7"  imageSrc={require("../../assets/icon.png")} />
+
                         </ScrollView>
                     </View>
 
@@ -170,11 +213,10 @@ export default class UserProfileListPage extends Component {
                         <TouchableOpacity style={styles.lowerBtn} onPress={() => navigate('TeacherQuizSelectPage')}>
                             <Text style={styles.btnText}> View Quiz Scores </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.lowerBtn} onPress={() => this.addToRoster()}>
+                        <TouchableOpacity style={styles.lowerBtn} onPress={() => this.populateRoster()}>
                             <Text style={styles.btnText}> Add Student </Text>
                         </TouchableOpacity>
                     </View>
-                    
                 </SafeAreaView>
             </View>
         );
@@ -222,9 +264,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 5
     },
+
     remove: {
-        color: "darkred",
-        paddingRight: 12,
+        color: "red",
+        paddingRight: 15
     },
     inputView:{
         width:"80%",
@@ -245,6 +288,17 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20
     },
+    AddBtn:{
+        width:"60%",
+        backgroundColor:"#9b5de5",
+        borderRadius:25,
+        height:40,
+        //alignItems:"center",
+        justifyContent:"center",
+        marginTop:40,
+        marginBottom:70,
+        marginLeft: 75
+    },
     userInput:{
         height:50,
         color:"white",
@@ -253,10 +307,15 @@ const styles = StyleSheet.create({
     },
     btnText: {
         color: 'black',
-        fontSize: 18,
+        fontSize: 19,
         fontWeight: '800',
         flexDirection: 'row',
-        alignSelf: 'center'
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginLeft: 17
+    },
+    studentButton: {
+        //width:50,
     },
     btnView: {
         flex: 1,

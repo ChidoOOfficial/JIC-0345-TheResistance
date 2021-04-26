@@ -5,12 +5,14 @@ import Toolbar from './Toolbar';
 import quizData from '../assets/quizzes.json';
 import {FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons} from '@expo/vector-icons';
 
+import configs from '../app_config.json';
+
 export default class QuizSelectPage extends React.Component {
 
     constructor() {
         super();
 
-        fetch('https://junior-design-resistence.herokuapp.com/user/current', {
+        fetch(configs.Server_Address + 'user/current', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

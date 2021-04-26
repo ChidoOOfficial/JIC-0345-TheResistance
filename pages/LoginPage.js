@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Button, Alert, LogBox} from 'react-native';
 import React from "react";
 import Toolbar from './Toolbar';
-//import {API_URL} from "@env"
+import configs from '../app_config.json';
 
 //import all the components we are going to use.
 
@@ -22,7 +22,8 @@ export default class LoginPage extends React.Component {
 
     login = (navigate) => {
 
-        fetch('https://junior-design-resistence.herokuapp.com/user/login', {
+        fetch(configs.Server_Address + "user/login", {
+            
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -71,17 +72,9 @@ export default class LoginPage extends React.Component {
                     .then((json) => {
                         User = json["user"][0];
                         this.setState({
-                            userMode: User.AccountType,
+                            userMode: "Teacher", //User.AccountType -> teacher is default for coding purposes
                             username: User.Username
                         });
-                        //console.log(this.state.user)
-                        //console.log(User)
-                        //console.log(User.AccountType)
-                        //console.log('Below is the username')
-                        //console.log(this.state.username)
-                        this.setState({
-                            userMode: "Teacher" //this is to allow for coding the teacher
-                        })
                     });
                 navigate('HomePage');
             }
