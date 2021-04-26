@@ -72,7 +72,7 @@ export default class StorePage extends React.Component {
                 items: updatedItems
             });
         } else {
-            //not enough points
+            Alert.alert("Not Enough Coins")
         }
     };
 
@@ -277,7 +277,6 @@ const styles = StyleSheet.create({
     plusMinusText: {
         fontWeight: "bold",
         fontSize: 30,
-        "fontFamily": "monospace",
         color: "white"
     },
     confirmPurchases: {

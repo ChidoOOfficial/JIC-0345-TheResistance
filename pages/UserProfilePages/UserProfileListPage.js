@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import Toolbar from '../Toolbar';
+import configs from '../../app_config.json';
 
 class UserProfileHolder extends Component {
     render() {
@@ -74,7 +75,7 @@ export default class UserProfileListPage extends Component {
                 alreadyPresent: [] //keeps track of the names already on the page of the roster ... used to check duplicates
             }
             let studentRoster = this.state.arrayHolder;
-        fetch('https://junior-design-resistence.herokuapp.com/user/allAssociatedSpecialID', {
+        fetch(configs.Server_Address + 'user/allAssociatedSpecialID', {
             /*gets all the ids of the students in the roster*/
             method: 'GET',
             headers: {
@@ -98,13 +99,16 @@ export default class UserProfileListPage extends Component {
                 }
             });
     }
+
     componentDidMount() {
         this.setState({ arrayHolder: [...this.array] })
     }
+
     joinData = () => {
         this.array.push({title : this.state.textInput_Holder});
         this.setState({ arrayHolder: [...this.array] })
     }
+
     FlatListItemSeparator = () => {
         return (
             <View
@@ -116,15 +120,17 @@ export default class UserProfileListPage extends Component {
             />
         );
     }
+
     GetItem(item) {
         Alert.alert(item); //popup with the student name
     }
+    
     addToDB = () => { //adds a student to the db and then calls populate roster to add the student to the class roster
                       //that is displayed on the page
         //BUG: Isn't updating the actual database for some reason
         //let id = "0SAH3WRGQ880"
         let id = this.state.textInput_Holder //enter the id in the line prior
-        fetch('https://junior-design-resistence.herokuapp.com/user/addAssociatedSpecialID', {
+        fetch(configs.Server_Address + 'user/addAssociatedSpecialID', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -141,7 +147,7 @@ export default class UserProfileListPage extends Component {
     populateRoster = () => { //adds the student's name to the screen
         let id = this.state.textInput_Holder //enter the id in the line prior
         let User = this.state.user;
-        fetch('https://junior-design-resistence.herokuapp.com/user/bySpecialID', {
+        fetch(configs.Server_Address + 'user/bySpecialID', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
