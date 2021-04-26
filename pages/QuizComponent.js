@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignItems: 'center',
         justifyContent: 'center',
+        aspectRatio: .8, //make the quiz images larger for the collateral
     },
     screen: {
         flex: 1,

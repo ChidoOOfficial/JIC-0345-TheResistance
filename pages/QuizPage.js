@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     wrapper : {},
     prompt:{
         fontWeight:"bold",
-        fontSize: 25, //used to be 40
+        fontSize: 40, //used to be 40
         color:"black",
         textDecorationLine: 'underline',
         paddingBottom: 10,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "black",
-        fontSize: 25, //used to be 20
+        fontSize: 20,
         fontWeight: '800',
         flexDirection: 'row'
     },
